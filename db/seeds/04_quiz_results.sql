@@ -1,4 +1,5 @@
-INSERT INTO users (name, email, password)
-VALUES ('Names McNamed', 'McNamed@gmail.com', '$2a$10$FB/BOAVhpuLvpOREQVmvmezD4ED/.JBIDRh70tGevYzYzQgFId2u'),
-('Joker The', 'jokes@gmail.com', '$2a$10$FB/BOAVhpuLvpOREQVmvmezD4ED/.JBIDRh70tGevYzYzQgFId2u'),
-('Named', 'Nah@gmail.com', '$2a$10$FB/BOAVhpuLvpOREQVmvmezD4ED/.JBIDRh70tGevYzYzQgFId2u');
+INSERT INTO quiz_results (user_id, quiz_id, score, max_score)
+VALUES (1,1,5,10),
+(2,1,8,10),
+(1,2,9,10),
+(2,2,7,10);
