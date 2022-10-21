@@ -1,5 +1,4 @@
 -- Drop and recreate multiple choice questions
-
 DROP TABLE IF EXISTS quiz_results CASCADE;
 
 CREATE TABLE quiz_results (
