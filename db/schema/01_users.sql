@@ -1,17 +1,9 @@
+DROP TABLE IF EXISTS users CASCADE;
+
 CREATE TABLE users (
   id SERIAL PRIMARY KEY NOT NULL,
   name VARCHAR(255) NOT NULL,
-  start_date DATE,
-  end_date DATE
-);
-
-CREATE TABLE quizzes (
-  id SERIAL PRIMARY KEY NOT NULL,
-  name VARCHAR(255) NOT NULL,
-  email VARCHAR(255),
-  phone VARCHAR(32),
-  github VARCHAR(255),
-  start_date DATE,
-  end_date DATE,
-  cohort_id INTEGER REFERENCES cohorts(id) ON DELETE CASCADE
+  email VARCHAR(255) NOT NULL,
+  password VARCHAR(255) NOT NULL,
+  rating SMALLINT NOT NULL DEFAULT 0
 );
