@@ -8,6 +8,3 @@ CREATE TABLE quiz_results (
   score SMALLINT NOT NULL,
   max_score SMALLINT NOT NULL
 );
-
-
-
