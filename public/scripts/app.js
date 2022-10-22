@@ -1,1 +1,1 @@
-// Client facing scripts here
+// CLIENT facing scripts here

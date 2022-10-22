@@ -1,4 +1,5 @@
-// Client facing scripts here
+// CLIENT facing SCRIPTS here - - USERS
+
 $(() => {
   $('#fetch-users').on('click', () => {
     $.ajax({
