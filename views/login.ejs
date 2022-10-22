@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <title>Login</title>
+
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <link rel="stylesheet" href="/vendor/normalize-4.1.1.css" />
+  <link rel="stylesheet" href="/vendor/border-box.css" />
+  <link rel="stylesheet" href="/styles/main.css" />
+  <link rel="stylesheet" href="/styles/layout.css" />
+
+  <script src="/vendor/jquery-3.0.0.js"></script>
+  <!-- <script defer src="/scripts/users.js"></script> -->
+</head>
+
+<body>
+  <h1>Please Login</h1>
+
+  <div class="login-form-container">
+
+      <form class="login-form" action="/login" method="POST">
+
+        <label for="inputEmail"><b>Log in</b> with email</label>
+        <input type="email" name="email" id="inputEmail" aria-describedby="emailHelp"
+          placeholder="email"/>
+        <small id="emailHelp"></small>
+
+      <label for="inputPassword">Password</label>
+      <input type="password" name="password" id="inputPassword" placeholder="password" />
+      <button type="submit">Log in</button>
+      <a href="/register">not a user?</a>
+
+      </form>
+
+  </div>
+</body>
+
+</html>
