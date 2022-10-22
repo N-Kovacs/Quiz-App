@@ -40,6 +40,7 @@ const loginRoutes = require('./routes/login')
 app.use('/api/users', userApiRoutes);
 app.use('/api/quizzes', quizApiRoutes);
 app.use('/users', usersRoutes);
+app.use('/user/:id', usersRoutes);
 app.use('/quizzes', quizzesRoutes);
 app.use('/login', loginRoutes);
 

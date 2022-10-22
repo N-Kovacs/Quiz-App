@@ -22,14 +22,14 @@ router.post('/', (req, res) => {
       verifyPassword(req.body.password, data[0])
 
       if (!data[0]) {
-        res.status(400).send("Sorry, couldn't find anything!");
+        res.status(400).send("Sorry, couldn't find anything.");
       }
       if (!verifyPass) {
-        res.status(401).send("Sorry, unauthorized!");
+        res.status(401).send("Unauthorized!");
       }
       //if verifyPassword(...) true return the json obj
       // res.json(data[0]);
-      res.redirect('/user/:id');
+      res.redirect('/users/:id');
     })
     .catch(err => {
       res

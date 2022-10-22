@@ -11,8 +11,8 @@ const userQueries = require('../db/queries/users');
 
 router.get('/', (req, res) => {
   userQueries.getUsers()
-    .then(data => {
-      res.json(data);
+    .then(users => {
+      res.json({ users });
     })
     .catch(err => {
       res
