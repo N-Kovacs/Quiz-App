@@ -7,4 +7,10 @@ const getQuizzes = () => {
     });
 };
 
+const postQuizzes = () => {
+  return db.query(`
+  `)
+}
+
+
 module.exports = { getQuizzes };

@@ -16,4 +16,9 @@ router.get('/new', (req, res) => {
   res.render('quizzes_new');
 });
 
+router.post('/new', (req, res) => {
+  console.log(req)
+}
+)
+
 module.exports = router;

@@ -5,5 +5,6 @@ CREATE TABLE quizzes (
   owner_id INTEGER REFERENCES users(id) ON DELETE CASCADE,
   public BOOLEAN NOT NULL DEFAULT FALSE,
   title VARCHAR(255),
-  subject VARCHAR(225)
+  subject VARCHAR(225),
+  url VARCHAR(225)
 );
