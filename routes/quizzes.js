@@ -7,6 +7,7 @@
 
 const express = require('express');
 const router  = express.Router();
+const quizQueries = require('../db/queries/quizzes');
 
 router.get('/', (req, res) => {
   res.render('quizzes');
@@ -17,7 +18,8 @@ router.get('/new', (req, res) => {
 });
 
 router.post('/new', (req, res) => {
-  console.log(req)
+  quizQueries.postQuizzes(req.body)
+  .then(console.log("done"))
 }
 )
 
