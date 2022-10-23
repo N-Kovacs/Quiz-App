@@ -1,7 +1,7 @@
 body {
   display: flex;
   flex-direction: column;
-  justify-content: center;
+  // justify-content: center;
   align-items: center;
   min-height: 100vh;
 
@@ -13,6 +13,17 @@ body {
       rgba(163, 219, 208, 1) 59%,
       rgba(163, 208, 219, 1) 74%,
       rgba(163, 208, 219, 1) 100%);
+}
+
+.welcome-header {
+  font-size: 14px;
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+}
+
+.explore-quizzes>button {
+  margin-bottom: 1em;
 }
 
 .login-form-container {
@@ -32,9 +43,33 @@ body {
 
 }
 
-.quizzes-container {
+.quiz-container {
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
+}
+
+.quiz {
+  width: 30em;
+  padding: 10px;
+  border: 3px solid #282860;
+  margin-top: 10px;
+  margin-bottom: 10px;
+  display: flex;
+  flex-direction: column
+}
+
+.quiz-header {
+  flex-direction: row;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 40px;
+}
+.quiz-image {
+  align-self: flex-end;
+}
+.quiz-footer {
+  align-self: flex-end;
 }

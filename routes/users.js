@@ -15,16 +15,16 @@ router.get('/', (req, res) => {
 
 router.get('/:id', (req, res) => {
   userQueries.getUserByID(req.params.id)
-  .then(data => {
-    const user_id = data[0].id;
+  .then(user => {
+    const user_id = user[0].id;
     const templateVars = {
       user_id,
-      name: data[0].name,
-      email: data[0].email,
-      rating: data[0].rating
+      name: user[0].name,
+      email: user[0].email,
+      rating: user[0].rating
     }
     if (!user_id) {
-      return res.status(422).send("Invalid ID!")
+      return res.status(422).send("Invalid User ID!")
     }
     res.render('user', templateVars);
   })
