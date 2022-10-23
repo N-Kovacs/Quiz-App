@@ -4,7 +4,6 @@
  *   these routes are mounted onto /api/quizzes
  * See: https://expressjs.com/en/guide/using-middleware.html#middleware.router
  */
-
 const express = require('express');
 const router  = express.Router();
 const quizQueries = require('../db/queries/quizzes');

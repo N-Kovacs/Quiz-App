@@ -1,34 +1,31 @@
 <!--this code is rendered on multiple pages-->
 <header>
-  <nav class="">
-    <a class="" href="/">Quiz App</a>
-    <button class="" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup"
-      aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
-      <span class="navbar-toggler-icon"></span>
-    </button>
+  <nav class="navbar-top">
+    <h1>Q U I Z A P P</h1>
     <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
       <div class="navbar-nav">
         <a class="nav-item nav-link" href="/urls">My Quizzes</a>
         <a class="nav-item nav-link" href="/urls/new">Create New Quiz</a>
 
         <form class="form-inline" action="/logout" method="POST">
-          <div style="position: absolute; right: 16px">
-            <% if (user) { %>
+          <div>
 
+            <% if (user_id) { %>
                 <h7 style="font-size: 15px">
-                  <%= `${user.email}` %>
+                  <%= `Welcome, ${name}!` %>
                 </h7>
-                <button formaction="/logout" class="btn btn-primary btn-sm"
-                  style="margin-left: 14px;padding-left: 8px">Logout</button>
+                <button formaction="/logout" class="btn btn-primary btn-sm">Logout</button>
+
                 <% } else { %>
                   <div class="btn-group btn-group-sm" role="group" aria-label="Basic example">
                     <a class="nav-item nav-link" href="/login">
                       Login</a>
                     <a class="nav-item nav-link" href="/register">
                       Register</a>
-                  </div>
 
+                  </div>
               <% } %>
+
           </div>
         </form>
       </div>
