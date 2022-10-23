@@ -18,6 +18,7 @@ router.get('/new', (req, res) => {
 });
 
 router.post('/new', (req, res) => {
+  console.log(req.body)
   quizQueries.postQuizzes(req.body)
   .then(console.log("done"))
 }
