@@ -13,7 +13,7 @@ router.get('/', (req, res) => {
 });
 
 router.get('/new', (req, res) => {
-  res.render('newquiz');
+  res.render('quizzes_new');
 });
 
 module.exports = router;
