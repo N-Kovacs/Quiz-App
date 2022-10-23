@@ -7,7 +7,7 @@ const getUsers = () => {
     });
 };
 
-////    Get 1 USER
+////    Get 1 USER by email
 const getUser = (email) => {
   return db.query(`
   SELECT * FROM users
@@ -17,5 +17,15 @@ const getUser = (email) => {
     return user.rows;
   })
 }
+////    Get 1 USER by id (**COMBINE THIS AND PREV ONE)
+const getUserByID = (id) => {
+  return db.query(`
+  SELECT * FROM users
+  WHERE id = $1;
+  `, [id])
+  .then(user => {
+    return user.rows;
+  })
+}
 
-module.exports = { getUsers, getUser };
+module.exports = { getUsers, getUser, getUserByID };

@@ -5,13 +5,13 @@ const router = express.Router();
 const verifyPassword = require('../js/helpers');
 const userQueries = require('../db/queries/users');
 
-////    GET
+////      GET     ////
 
 router.get('/', (req, res) => {
   res.render('login');
 });
 
-////    POST
+////      POST    ////
 
 router.post('/', (req, res) => {
 
@@ -27,9 +27,8 @@ router.post('/', (req, res) => {
       if (!verifyPass) {
         res.status(401).send("Unauthorized!");
       }
-      //if verifyPassword(...) true return the json obj
-      // res.json(data[0]);
-      res.redirect('/users/:id');
+      // res.json(data[0]); return json obj?
+      res.redirect(`/users/${data[0].id}`);
     })
     .catch(err => {
       res
@@ -37,7 +36,5 @@ router.post('/', (req, res) => {
         .json({ error: err.message });
     });
 });
-
-// create separate GET for user/:id
 
 module.exports = router;
