@@ -17,7 +17,8 @@ const getUser = (email) => {
     return user.rows;
   })
 }
-////    Get 1 USER by id (**COMBINE THIS AND PREV ONE)
+////    Get 1 USER by id
+////        (**COMBINE THIS AND PREV ONE?)
 const getUserByID = (id) => {
   return db.query(`
   SELECT * FROM users

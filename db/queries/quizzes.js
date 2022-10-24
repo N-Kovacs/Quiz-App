@@ -14,6 +14,10 @@ const getQuizzes = () => {
     });
 };
 
+const getQuizAttempt = () => {
+  
+}
+
 //returns quiz deatils given an id
 const getQuizByID = (id) => {
   return db.query(`

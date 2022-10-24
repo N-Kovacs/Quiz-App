@@ -26,7 +26,6 @@ const generateRandomString = function () {
 };
 
 
-
 $(() => {
   //append first question
   let numberOfQuestions = 1;
@@ -54,8 +53,3 @@ $(() => {
     }
   });
 });
-
-
-
-
-

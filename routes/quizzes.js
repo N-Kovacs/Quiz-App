@@ -9,11 +9,13 @@ const router = express.Router();
 const quizQueries = require('../db/queries/quizzes');
 const questionsQueries = require('../db/queries/questions_multiple_choice');
 
+
 /////////////////////////////////////////////////
 ////    GET ROUTES
 ///////////////////////////////////////////////
 
-////    Render All Quizzes to Page
+////    All Quizzes render to Explore Page
+////
 router.get('/', (req, res) => {
   quizQueries.getQuizzes()
   .then(quizzes => {
@@ -26,7 +28,7 @@ router.get('/', (req, res) => {
     if (!quizzes) {
       return res.status(404).send("Error! Nothing found.")
     }
-    console.log(quizzes);
+    // console.log(quizzes);
     res.render('quizzes', templateVars)
     })
     .catch(err => {
@@ -37,13 +39,15 @@ router.get('/', (req, res) => {
 });
 
 
-//webpage shown for creating new quizzes. Will need a template vars at some point
+////    Create New Quiz Form
+////  Will need a template vars at some point
 router.get('/new', (req, res) => {
   res.render('quizzes_new');
 });
 
 
-//webpage shown after creating quizzes
+////    Quiz Form Completed
+////
 router.get('/new/:id', (req, res) => {
   let dataStore;
   quizQueries.getQuizByID(req.params.id)
@@ -68,22 +72,27 @@ router.get('/new/:id', (req, res) => {
 });
 
 ////    Take the Quiz!
+////
 router.get('/:id', (req, res) => {
-  
+  // grab req.params.id <---
+  const quiz_id = req.params.id
+  // fetch the quiz from DB
+  quizQueries.getQuiz()
+
 })
-// grab req.params.id <---
-// fetch the quiz from DB
 
 // inside templateVars creating key: values
 //      quiz:  quiz (entire quiz),
 //
 //      define the indiv questions in object
 
+
 /////////////////////////////////////////////////
 ////    POST ROUTES
 ///////////////////////////////////////////////
 
-//posting data to database
+////    Insert New Quiz to Database
+////
 router.post('/new', (req, res) => {
   let count = Math.round(((Object.keys(req.body).length - 4) / 5));
   let temp;
@@ -94,11 +103,15 @@ router.post('/new', (req, res) => {
     })
     .then(() => {
       res.redirect("/quizzes/new/" + temp);
+    })
+    //***   I added a catch   ***
+    .catch(err => {
+      res
+        .status(500)
+        .json({ error: err.message });
     });
-
 }
 );
-
 
 
 module.exports = router;
