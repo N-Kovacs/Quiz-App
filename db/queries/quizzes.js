@@ -24,9 +24,12 @@ const postQuizzes = (quiz) => {
   RETURNING *;
   `, [1, public, quiz.title, quiz.subject, quiz.custom_url ])
   .then((result) => {
-    return result;
+    console.log("cool")
+    console.log(result.rows[0].id)
+    return result.rows[0].id
   })
   .catch((err) => {
+    console.log("hot")
     console.log(err.message);
   });
 }

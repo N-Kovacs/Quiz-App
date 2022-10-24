@@ -6,8 +6,9 @@
  */
 
 const express = require('express');
-const router  = express.Router();
+const router = express.Router();
 const quizQueries = require('../db/queries/quizzes');
+const questionsQueries = require('../db/queries/questions_multiple_choice');
 
 router.get('/', (req, res) => {
   res.render('quizzes');
@@ -18,10 +19,16 @@ router.get('/new', (req, res) => {
 });
 
 router.post('/new', (req, res) => {
-  console.log(req.body)
+  console.log(req.body);
   quizQueries.postQuizzes(req.body)
-  .then(console.log("done"))
+  .then((quizvalue) => questionsQueries.postQuestionsMultipleChoice(quizvalue, 1, req.body)
+  .then(console.log("done!"))
+  )
+    //.then(test => {
+      //console.log("hello");
+      //console.log(res);
+   // });
 }
-)
+);
 
 module.exports = router;
