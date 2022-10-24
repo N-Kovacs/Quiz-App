@@ -41,9 +41,12 @@
             <img />
           </div>
           <div class="quiz-info">
-            <p><strong>Subject: </strong>
-              <%= quizzes[q].subject %>
-            </p>
+            <ul>
+            <li>Topic:&nbsp;<strong>&nbsp;<%= quizzes[q].subject %></strong></li>
+            <li><strong><%= quizzes[q].total_questions %>&nbsp;</strong>&nbsp;questions</li>
+            <li>Average Score:&nbsp;<strong>&nbsp;<%= quizzes[q].avg %>%</strong>
+            </li>
+          </ul>
           </div>
 
           <footer class="quiz-footer

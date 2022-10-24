@@ -1,7 +1,7 @@
 const db = require('../connection');
 
 const getQuizzes = () => {
-  return db.query(`SELECT quizzes.*, ROUND(AVG(quiz_results.score)) AS avg,
+  return db.query(`SELECT quizzes.*, ROUND(AVG(quiz_results.score))*10 AS avg,
   COUNT(questions_multiple_choice.*) AS total_questions
   FROM quizzes
   JOIN quiz_results ON quiz_id = quizzes.id

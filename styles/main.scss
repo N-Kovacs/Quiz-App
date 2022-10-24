@@ -33,14 +33,12 @@ body {
   justify-content: space-evenly;
   align-items: center;
 }
-
 .login-form {
   height: 10em;
   width: 20em;
   display: flex;
   flex-direction: column;
   justify-content: space-evenly;
-
 }
 
 .quiz-container {
@@ -49,17 +47,15 @@ body {
   justify-content: center;
   align-items: center;
 }
-
 .quiz {
   width: 30em;
   padding: 10px;
   border: 3px solid #282860;
-  margin-top: 10px;
-  margin-bottom: 10px;
+  margin-top: 15px;
+  margin-bottom: 15px;
   display: flex;
   flex-direction: column
 }
-
 .quiz-header {
   flex-direction: row;
   display: flex;
@@ -67,7 +63,17 @@ body {
   justify-content: center;
   height: 40px;
 }
+.quiz-info > ul {
+  list-style: none;
+  padding-left: 10px;
+    display: flex;
+    flex-direction: column;
+    line-height: 2em;
+}
 .quiz-image {
+  height: 6em;
+  background-color: rgba(182, 227, 227, 0.532);
+  position: absolute;
   align-self: flex-end;
 }
 .quiz-footer {
