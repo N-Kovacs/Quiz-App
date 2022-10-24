@@ -74,10 +74,10 @@ main {
   width: 90%;
 }
 
-.welcome-header h1:nth-child(2) {
+.welcome-header div:nth-child(2) {
   margin-bottom: 0em;
   text-align: center;
-  color: rgb(61, 34, 195);
+  color: #2717a3;
 }
 
 .explore-quizzes {
@@ -88,16 +88,23 @@ main {
   flex-direction: column;
 }
 
+.login-body {
+  padding-top: 18em;
+}
+
+.login-header {
+  display: flex;
+  justify-content: center;
+}
+
 .login-form-container {
-  height: 20em;
-  display: inline;
+  display: flex;
   flex-direction: column;
-  justify-content: space-evenly;
   align-items: center;
 }
 
 .login-form {
-  height: 10em;
+  height: 12em;
   width: 20em;
   display: flex;
   flex-direction: column;
