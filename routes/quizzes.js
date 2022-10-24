@@ -9,6 +9,7 @@ const router = express.Router();
 const quizQueries = require('../db/queries/quizzes');
 const questionsQueries = require('../db/queries/questions_multiple_choice');
 
+////    Render All Quizzes to Page
 router.get('/', (req, res) => {
   quizQueries.getQuizzes()
   .then(quizzes => {
