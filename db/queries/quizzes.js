@@ -12,8 +12,8 @@ const getQuizzes = () => {
 // NOTE OWNER ID IS DUMMY 1 AT THE MOMENT
 const postQuizzes = (quiz) => {
   let public = false
-  console.log(quiz.title)
-  console.log(quiz.owner_id)
+  //console.log(quiz.title)
+  //console.log(quiz.owner_id)
   if (quiz.public === "on") {
     public = true
   }
@@ -24,12 +24,12 @@ const postQuizzes = (quiz) => {
   RETURNING *;
   `, [1, public, quiz.title, quiz.subject, quiz.custom_url ])
   .then((result) => {
-    console.log("cool")
+
     console.log(result.rows[0].id)
     return result.rows[0].id
   })
   .catch((err) => {
-    console.log("hot")
+    //console.log("hot")
     console.log(err.message);
   });
 }

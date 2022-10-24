@@ -1,5 +1,6 @@
 // CLIENT facing SCRIPTS here - - QUIZZES_new
 
+//markup for creating the additonal question, with name depenedent on how many questions exist
 const createAdditionalQuestion = function(numOfQuestion) {
   const markup = `
   <div class="form-group" id = "quiz_question_${numOfQuestion}">
@@ -11,7 +12,6 @@ const createAdditionalQuestion = function(numOfQuestion) {
   </div>
   `
   return markup;
-
 };
 
 const generateRandomString = function () {
@@ -24,26 +24,29 @@ const generateRandomString = function () {
 };
 
 $(() => {
-  let numberOfQuestions = 0;
+  //append first question
+  let numberOfQuestions = 1;
+  $('#Questions').append(createAdditionalQuestion(numberOfQuestions))
+  //random url button clicked, textbox filled
   $('#random_url_button').on('click', () => {
     $('#custom_url').val(generateRandomString())
   });
+  //additonal question clicked
   $('#add_question').on('click', () => {
     numberOfQuestions++
     let $addedQuestion = createAdditionalQuestion(numberOfQuestions)
     $('#Questions').append($addedQuestion);
-    console.log(numberOfQuestions)
-
-
+    //console.log(numberOfQuestions)
   });
+
+  //remove questions clicked, removes if there is more than one question
   $('#remove_question').on('click', () => {
-    console.log("?")
+    //console.log("?")
     if (numberOfQuestions > 1 ){
       let removed = `quiz_question_${numberOfQuestions}`
       $('#' + removed).remove()
       numberOfQuestions--
-      console.log(numberOfQuestions)
-
+      //console.log(numberOfQuestions)
     }
   });
 });

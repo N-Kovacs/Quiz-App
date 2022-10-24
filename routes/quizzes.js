@@ -20,11 +20,11 @@ router.get('/new', (req, res) => {
 
 router.post('/new', (req, res) => {
   let count = Math.round(((Object.keys(req.body).length - 4) /5))
-  console.log(count)
-  console.log(req.body);
+  //console.log(count)
+  //console.log(req.body);
   quizQueries.postQuizzes(req.body)
   .then((quizvalue) =>
-  questionsQueries.postQuestionsMultipleChoice(quizvalue, 1, req.body)
+  questionsQueries.postQuestionsMultipleChoice(quizvalue, count, req.body)
   .then(res.redirect("/api/quizzes"))
   )
 

@@ -1,11 +1,12 @@
 const db = require('../connection');
 
+//async recursive function to fill all questions into the database
 const postQuestionsMultipleChoice = async (quiz_id, questionNum, questions) => {
 
   let count = Math.round(((Object.keys(questions).length - 4) /5))
-  if (questionNum < count) {
-    console.log("I was here")
-    await postQuestionsMultipleChoice(quiz_id, questionNum+1, questions)
+  if (questionNum > 1) {
+    //console.log("I was here")
+    await postQuestionsMultipleChoice(quiz_id, questionNum-1, questions)
   }
 
   let path1 = "question_" + questionNum;
@@ -21,7 +22,6 @@ const postQuestionsMultipleChoice = async (quiz_id, questionNum, questions) => {
   RETURNING *;
   `, [quiz_id, questions[path1], questions[path2], questions[path3], questions[path4], questions[path5]])
   .then((result) => {
-    console.log("cool")
     return result.rows[0].id
   })
   .catch((err) => {
