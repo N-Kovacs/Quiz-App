@@ -4,16 +4,18 @@
 const createAdditionalQuestion = function(numOfQuestion) {
   const markup = `
   <div class="form-group" id = "quiz_question_${numOfQuestion}">
-  <input type="text" class="form-control" name = "question_${numOfQuestion}" placeholder="Question ${numOfQuestion}">
-  <input type="text" class="form-control" name = "correct_answer_${numOfQuestion}" placeholder="Correct Answer">
-  <input type="text" class="form-control" name = "first_incorrect_answer_${numOfQuestion}" placeholder="Incorrect Answer">
-  <input type="text" class="form-control" name = "second_incorrect_answer_${numOfQuestion}" placeholder="Incorrect Answer">
-  <input type="text" class="form-control" name = "third_incorrect_answer_${numOfQuestion}" placeholder="Incorrect Answer">
+  <input type="text" required maxlength="255" class="form-control" name = "question_${numOfQuestion}" placeholder="Question ${numOfQuestion}">
+  <input type="text" required maxlength="255" class="form-control" name = "correct_answer_${numOfQuestion}" placeholder="Correct Answer">
+  <input type="text" required maxlength="255" class="form-control" name = "first_incorrect_answer_${numOfQuestion}" placeholder="Incorrect Answer">
+  <input type="text" required maxlength="255" class="form-control" name = "second_incorrect_answer_${numOfQuestion}" placeholder="Incorrect Answer">
+  <input type="text" required maxlength="255" class="form-control" name = "third_incorrect_answer_${numOfQuestion}" placeholder="Incorrect Answer">
   </div>
   `
   return markup;
 };
 
+
+//random url string
 const generateRandomString = function () {
   let poschar = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
   let result = "";
@@ -22,6 +24,8 @@ const generateRandomString = function () {
   }
   return result;
 };
+
+
 
 $(() => {
   //append first question
