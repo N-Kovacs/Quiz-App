@@ -19,55 +19,60 @@
 
 <body>
   <%- include('partials/nav'); %>
-  <main>
-    <div class="explore-quizzes">
-      <header class="welcome-header">
-        <h1>Welcome!&nbsp;</h1>
-        <h1>&nbsp;Explore Quizzes</h1>
-      </header>
-      <button>Make A New Quiz</button>
-    </div>
+    <main>
+      <div class="explore-quizzes">
+        <header class="welcome-header">
+          <h1>Welcome!&nbsp;</h1>
+          <h1>Explore<br>Quizzes</h1>
+          <i></i>
+        </header>
+        <div class="make-new">
+          <button>Make New Quiz</button>
+        </div>
+      </div>
 
-    <div class="quiz-container">
-      <% for (let q in quizzes) { %>
-        <article class="quiz">
-          <header class="quiz-header">
-            <h3>
-              <%= quizzes[q].title %>
-            </h3>
-          </header>
-          <div class="quiz-image">
-            image here...
-            <img />
-          </div>
-          <div class="quiz-info">
-            <ul>
-            <li>Topic:&nbsp;<strong>&nbsp;<%= quizzes[q].subject %></strong></li>
-            <li><strong><%= quizzes[q].total_questions %>&nbsp;</strong>&nbsp;questions</li>
-            <li>Average Score:&nbsp;<strong>&nbsp;<%= quizzes[q].avg %>%</strong>
-            </li>
-          </ul>
-          </div>
-
-          <footer class="quiz-footer
-          ">
-            <div class="tweet-icons">
-              <i class="fa-solid fa-flag">.</i>
-              <i class="fa-solid fa-retweet">.</i>
-              <i class="fa-solid fa-heart">.</i>
+      <div class="quiz-container">
+        <% for (let q in quizzes) { %>
+          <article class="quiz">
+            <header class="quiz-header">
+              <h3>
+                <%= quizzes[q].title %>
+              </h3>
+            </header>
+            <div class="quiz-image">
+              image here...
+              <img />
             </div>
-          </footer>
+            <div class="quiz-info">
+              <ul>
+                <li>Topic:&nbsp;<strong>&nbsp;<%= quizzes[q].subject %></strong></li>
+                <li><strong>
+                    <%= quizzes[q].total_questions %>&nbsp;
+                  </strong>&nbsp;questions</li>
+                <li>Average Score:&nbsp;<strong>&nbsp;<%= quizzes[q].avg %>%</strong>
+                </li>
+              </ul>
+            </div>
 
-        </article>
-        <% } %>
-    </div>
+            <footer class="quiz-footer
+          ">
+              <div class="tweet-icons">
+                <i class="fa-solid fa-flag">.</i>
+                <i class="fa-solid fa-retweet">.</i>
+                <i class="fa-solid fa-heart">.</i>
+              </div>
+            </footer>
 
-    <div class="my-quizzes">
-    </div>
-  </main>
+          </article>
+          <% } %>
+      </div>
+
+      <div class="my-quizzes">
+      </div>
+    </main>
 
 
-  <!-- <h1>Quizzes</h1>
+    <!-- <h1>Quizzes</h1>
   <button id="fetch-quizzes">Fetch Quizzes -> AJAX</button>
   <ul id="quizzes"></ul> -->
 </body>

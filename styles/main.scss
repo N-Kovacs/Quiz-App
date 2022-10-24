@@ -1,8 +1,8 @@
 body {
-  display: flex;
-  flex-direction: column;
+  // display: flex;
+  // flex-direction: column;
   // justify-content: center;
-  align-items: center;
+  // align-items: center;
   min-height: 100vh;
 
   background: rgb(163, 208, 219);
@@ -21,26 +21,48 @@ main {
 }
 
 .nav-header {
+  font-size: 14px;
+  height: 80px;
+  width: 100%;
+  background: rgb(184, 213, 221);
   padding-top: 5px;
   border-bottom: 5px solid rgb(66, 66, 66);
-  height: 90px;
-  width: 100%;
   position: fixed;
   display: flex;
-  background: rgb(184, 213, 221);
+  justify-content: space-evenly;
   z-index: 1;
 }
+
 .navbar-top {
+  width: 90%;
   display: flex;
-  width: 100%;
-  justify-content: space-around;
+  justify-content: space-between;
 }
+
+.navbar-top>h1 {
+  margin: 0;
+  margin-top: 10px;
+  letter-spacing: 5px;
+  width: 150px;
+  height: fit-content;
+  display: flex;
+  justify-content: center;
+}
+
 .nav-container {
   display: flex;
-  align-items: center;
+  align-items: end;
+  padding-bottom: 10px;
 }
+
 .inner-nav {
   display: flex;
+  align-items: flex-end;
+}
+
+.nav-menu {
+  display: flex;
+  flex-direction: column;
   align-items: flex-end;
 }
 
@@ -49,19 +71,21 @@ main {
   display: flex;
   align-items: baseline;
   justify-content: space-between;
+  width: 90%;
+}
+
+.welcome-header h1:nth-child(2) {
+  margin-bottom: 0em;
+  text-align: center;
+  color: rgb(61, 34, 195);
 }
 
 .explore-quizzes {
-  margin-top: 100px;
+  margin-top: 85px;
+  margin-left: 1em;
+  padding: 10px;
   display: flex;
-  flex-wrap: inherit;
   flex-direction: column;
-}
-
-.explore-quizzes>button {
-  margin-bottom: 1em;
-  width: 150px;
-  height: 35px;
 }
 
 .login-form-container {
@@ -80,15 +104,22 @@ main {
   justify-content: space-evenly;
 }
 
+.make-new>button {
+  margin-top: 10px;
+  width: 150px;
+  height: 45px;
+}
+
 .quiz-container {
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  flex-wrap: wrap;
 }
 
 .quiz {
-  width: 30em;
+  width: 90%;
   padding: 10px;
   border: 3px solid #282860;
   margin-top: 15px;
@@ -101,7 +132,7 @@ main {
   flex-direction: row;
   display: flex;
   align-items: center;
-  justify-content: center;
+  justify-content: flex-start;
   height: 40px;
 }
 
@@ -118,7 +149,7 @@ main {
   background-color: rgba(182, 227, 227, 0.532);
   position: absolute;
   align-self: flex-end;
-  z-index:0
+  z-index: 0
 }
 
 .quiz-footer {
