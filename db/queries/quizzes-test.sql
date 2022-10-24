@@ -1,6 +1,13 @@
-SELECT quizzes.*, ROUND(AVG(quiz_results.score))*10 AS avg,
-  COUNT(questions_multiple_choice.*) AS total_questions
-  FROM quizzes
-  JOIN quiz_results ON quiz_id = quizzes.id
-  JOIN questions_multiple_choice ON questions_multiple_choice.quiz_id = quizzes.id
-  GROUP BY quizzes.id;
+-- your score
+SELECT COUNT(question_results.*) as correct_answers
+FROM question_results
+JOIN quiz_results ON quiz_results.id = quiz_results_id
+WHERE correct = TRUE
+GROUP BY quiz_results.id
+HAVING quiz_results.id = 1;
+
+
+-- total questions
+-- individual questions
+-- quiz title, quiz subject
+-- global attempts, with average results
