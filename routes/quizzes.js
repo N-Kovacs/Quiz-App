@@ -18,15 +18,46 @@ router.get('/new', (req, res) => {
   res.render('quizzes_new');
 });
 
+// router.get('/new/:id', (req, res) => {
+//   console.log("here")
+//   let titlevalue
+//   let quiz_id
+//   quizQueries.getQuizByID(req.params.id)
+//     .then(data => {
+//       console.log("1")
+//       titlevalue = data[0].title
+//       quiz_id = data[0].id;
+//       quizQueries.getQuizQuestionCountByID(data[0].id);
+//     })
+//     .then(data2 => {
+//       console.log("2")
+//       console.log(data2)
+//       const templateQuizVars = {
+//         quiz_id,
+//         title: titlevalue,
+//         email: data2[0],
+//       };
+//       res.render('quizzes_new_success', templateQuizVars);
+
+//     })
+//     .catch(err => {
+//       console.log("caught error here")
+//       res
+//         .status(500)
+//         .json({ error: err.message });
+//     });
+// });
+
+
 router.post('/new', (req, res) => {
-  let count = Math.round(((Object.keys(req.body).length - 4) /5))
+  let count = Math.round(((Object.keys(req.body).length - 4) / 5));
   //console.log(count)
   //console.log(req.body);
   quizQueries.postQuizzes(req.body)
-  .then((quizvalue) =>
-  questionsQueries.postQuestionsMultipleChoice(quizvalue, count, req.body)
-  .then(res.redirect("/api/quizzes"))
-  )
+    .then((quizvalue) =>
+      questionsQueries.postQuestionsMultipleChoice(quizvalue, count, req.body)
+        .then(res.redirect("/quizzes/new/" + quizvalue))
+    );
 
 }
 );
