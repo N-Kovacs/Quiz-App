@@ -3,6 +3,8 @@ const router = express.Router();
 
 
 router.get('/:id', (req, res) => {
+  res.render('result');
+
 });
 
 

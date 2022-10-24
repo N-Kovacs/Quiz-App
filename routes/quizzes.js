@@ -43,7 +43,7 @@ router.get('/new', (req, res) => {
 });
 
 
-//webpage shown after creating quizzes
+//webpage shown after creating quizzes will need default templatevars data
 router.get('/new/:id', (req, res) => {
   let dataStore;
   quizQueries.getQuizByID(req.params.id)
@@ -52,12 +52,12 @@ router.get('/new/:id', (req, res) => {
       return quizQueries.getQuizQuestionCountByID(data[0].id);
     })
     .then(data2 => {
-      const templateQuizVars = {
+      const templateVars = {
         title: dataStore[0].title,
         questions_num: data2[0].count,
         custom_url:dataStore[0].url
       };
-      res.render('quizzes_new_success', templateQuizVars);
+      res.render('quizzes_new_success', templateVars);
 
     })
     .catch(err => {
@@ -69,7 +69,7 @@ router.get('/new/:id', (req, res) => {
 
 ////    Take the Quiz!
 router.get('/:id', (req, res) => {
-  
+
 })
 // grab req.params.id <---
 // fetch the quiz from DB
