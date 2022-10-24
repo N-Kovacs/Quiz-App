@@ -136,19 +136,27 @@ main {
 }
 
 .quiz-header {
+  width: 65%;
+  padding-left: 10px;
+  height: fit-content;
   flex-direction: row;
   display: flex;
   align-items: center;
   justify-content: flex-start;
-  height: 40px;
+}
+
+.quiz-info {
+  width: 70%;
+  font-size: 14px;
 }
 
 .quiz-info>ul {
-  list-style: none;
   padding-left: 10px;
+  margin-top: 5px;
+  line-height: 2em;
+  list-style: none;
   display: flex;
   flex-direction: column;
-  line-height: 2em;
 }
 
 .quiz-image {
@@ -156,7 +164,12 @@ main {
   background-color: rgba(182, 227, 227, 0.532);
   position: absolute;
   align-self: flex-end;
-  z-index: 0
+  z-index: 0;
+
+  img {
+    max-height: 100%;
+    max-width: 100%;
+  }
 }
 
 .quiz-footer {

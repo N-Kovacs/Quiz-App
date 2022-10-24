@@ -11,10 +11,16 @@ const quizQueries = require('../db/queries/quizzes');
 router.get('/', (req, res) => {
   quizQueries.getQuizzes()
   .then(quizzes => {
-    const templateVars = { quizzes };
+    const templateVars = {
+      quizzes
+      //user_id: req.session.user_name
+      // TO DISPLAY NAME
+    };
+
     if (!quizzes) {
       return res.status(404).send("Error! Nothing found.")
     }
+    console.log(quizzes);
     res.render('quizzes', templateVars)
     })
     .catch(err => {

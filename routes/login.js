@@ -27,8 +27,10 @@ router.post('/', (req, res) => {
       if (!verifyPass) {
         res.status(401).send("Unauthorized!");
       }
-      // res.json(data[0]); //return json obj?
-      res.redirect(`/users/${user[0].id}`);
+      // SET COOKIE req.session.user_id = user[0];
+      // SET COOKIE req.session.user_name = 
+      // res.redirect(`/users/${user[0].id}`);
+      res.redirect('quizzes')
     })
     .catch(err => {
       res
