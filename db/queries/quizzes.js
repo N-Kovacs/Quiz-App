@@ -27,6 +27,7 @@ const getQuizQuestionCountByID = (id) => {
   having quizzes.id = $1;
   `, [id])
   .then(quizzes => {
+    console.log("me")
     console.log(quizzes.rows)
     return quizzes.rows;
   })
