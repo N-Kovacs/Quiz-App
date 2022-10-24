@@ -6,6 +6,10 @@ CREATE TABLE quizzes (
   public BOOLEAN NOT NULL DEFAULT FALSE,
   title VARCHAR(255),
   subject VARCHAR(225),
+<<<<<<< HEAD
   image_url VARCHAR(255),
+=======
+  image_url VARCHAR(225),
+>>>>>>> master
   url VARCHAR(225)
 );

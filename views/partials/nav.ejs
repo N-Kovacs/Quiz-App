@@ -1,33 +1,29 @@
 <!--this code is rendered on multiple pages-->
-<header>
+<header class="nav-header">
   <nav class="navbar-top">
-    <h1>Q U I Z A P P</h1>
-    <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
-      <div class="navbar-nav">
-        <a class="nav-item nav-link" href="/urls">My Quizzes</a>
-        <a class="nav-item nav-link" href="/urls/new">Create New Quiz</a>
+    <h1>QUIZAPP</h1>
+    <div class="nav-container">
+      <div class="inner-nav">
+        <a href="">My Quizzes&nbsp;</a>
+        <!-- <a href="">Create New Quiz</a> -->
 
-        <form class="form-inline" action="/logout" method="POST">
-          <div>
+        <form action="/logout" method="POST">
+          <div class="nav-menu">
 
-            <% if (user_id) { %>
-                <h7 style="font-size: 15px">
-                  <%= `Welcome, ${name}!` %>
-                </h7>
-                <button formaction="/logout" class="btn btn-primary btn-sm">Logout</button>
+            <h7>
 
-                <% } else { %>
-                  <div class="btn-group btn-group-sm" role="group" aria-label="Basic example">
-                    <a class="nav-item nav-link" href="/login">
-                      Login</a>
-                    <a class="nav-item nav-link" href="/register">
-                      Register</a>
+            </h7>
 
-                  </div>
-              <% } %>
+              <button formaction="/logout">Logout</button>
+
+            <div>
+              <a href="/login">Login</a>
+              <a href="/register">Register</a>
+            </div>
 
           </div>
         </form>
+
       </div>
     </div>
   </nav>

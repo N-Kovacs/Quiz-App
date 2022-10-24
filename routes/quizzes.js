@@ -4,14 +4,36 @@
  *   these routes are mounted onto /users
  * See: https://expressjs.com/en/guide/using-middleware.html#middleware.router
  */
-
 const express = require('express');
+<<<<<<< HEAD
 const router = express.Router();
 const quizQueries = require('../db/queries/quizzes');
 const questionsQueries = require('../db/queries/questions_multiple_choice');
+=======
+const router  = express.Router();
+const quizQueries = require('../db/queries/quizzes');
+>>>>>>> master
 
 router.get('/', (req, res) => {
-  res.render('quizzes');
+  quizQueries.getQuizzes()
+  .then(quizzes => {
+    const templateVars = {
+      quizzes
+      //user_id: req.session.user_name
+      // TO DISPLAY NAME
+    };
+
+    if (!quizzes) {
+      return res.status(404).send("Error! Nothing found.")
+    }
+    console.log(quizzes);
+    res.render('quizzes', templateVars)
+    })
+    .catch(err => {
+      res
+        .status(500)
+        .json({ error: err.message });
+    });
 });
 
 
