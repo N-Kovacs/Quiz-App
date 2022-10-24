@@ -19,7 +19,7 @@ const getQuizByID = (id) => {
 }
 
 const getQuizQuestionCountByID = (id) => {
-  console.log(id)
+
   return db.query(`
   SELECT COUNT(questions_multiple_choice.*) FROM quizzes
   JOIN questions_multiple_choice ON quiz_id = quizzes.id
@@ -27,8 +27,7 @@ const getQuizQuestionCountByID = (id) => {
   having quizzes.id = $1;
   `, [id])
   .then(quizzes => {
-    console.log("me")
-    console.log(quizzes.rows)
+
     return quizzes.rows;
   })
 }
@@ -56,7 +55,7 @@ const postQuizzes = (quiz) => {
     return result.rows[0].id
   })
   .catch((err) => {
-    //console.log("hot")
+
     console.log(err.message);
   });
 }

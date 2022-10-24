@@ -19,7 +19,6 @@ router.get('/new', (req, res) => {
 });
 
 router.get('/new/:id', (req, res) => {
-  console.log("here");
   let dataStore;
   quizQueries.getQuizByID(req.params.id)
     .then(data => {
@@ -27,8 +26,6 @@ router.get('/new/:id', (req, res) => {
       return quizQueries.getQuizQuestionCountByID(data[0].id);
     })
     .then(data2 => {
-      console.log("2");
-      console.log(data2);
       const templateQuizVars = {
         title: dataStore[0].title,
         questions_num: data2[0].count,
@@ -38,7 +35,6 @@ router.get('/new/:id', (req, res) => {
 
     })
     .catch(err => {
-      console.log("caught error here");
       res
         .status(500)
         .json({ error: err.message });
@@ -54,8 +50,6 @@ router.post('/new', (req, res) => {
   quizQueries.postQuizzes(req.body)
     .then((quizvalue) => {
       temp = quizvalue;
-      console.log("temp");
-      console.log(temp);
       return questionsQueries.postQuestionsMultipleChoice(quizvalue, count, req.body);
     })
     .then(() => {
