@@ -18,17 +18,17 @@
 </head>
 
 <body>
+  <%- include('partials/nav'); %>
   <main>
     <div class="explore-quizzes">
       <header class="welcome-header">
         <h1>Welcome!&nbsp;</h1>
-        <h2>&nbsp;Explore Quizzes</h1>
+        <h1>&nbsp;Explore Quizzes</h1>
       </header>
       <button>Make A New Quiz</button>
     </div>
 
     <div class="quiz-container">
-
       <% for (let q in quizzes) { %>
         <article class="quiz">
           <header class="quiz-header">
