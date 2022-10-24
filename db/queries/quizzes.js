@@ -1,13 +1,14 @@
 const db = require('../connection');
 
-//returns quizzes
+//returns all quizzes
 const getQuizzes = () => {
   return db.query(`SELECT quizzes.*, ROUND(AVG(quiz_results.score))*10 AS avg,
   COUNT(questions_multiple_choice.*) AS total_questions
   FROM quizzes
-  JOIN quiz_results ON quiz_id = quizzes.id
+  LEFT JOIN quiz_results ON quiz_id = quizzes.id
   LEFT JOIN questions_multiple_choice ON questions_multiple_choice.quiz_id = quizzes.id
-  GROUP BY quizzes.id;`)
+  GROUP BY quizzes.id
+  ORDER BY quizzes.id DESC;`)
     .then(data => {
       return data.rows;
     });
@@ -53,21 +54,20 @@ const postQuizzes = (quiz) => {
   }
   return db
   .query(`
-  INSERT INTO quizzes (owner_id, public, title, subject, url)
-  VALUES ($1, $2, $3, $4, $5)
+  INSERT INTO quizzes (owner_id, public, title, subject, url, image_url)
+  VALUES ($1, $2, $3, $4, $5, $6)
   RETURNING *;
-  `, [1, public, quiz.title, quiz.subject, customURLTrim ])
+  `, [1, public, quiz.title, quiz.subject, customURLTrim, quiz.image_url])
   .then((result) => {
 
     console.log(result.rows[0].id)
     return result.rows[0].id
   })
   .catch((err) => {
-
     console.log(err.message);
   });
 }
 
-
-
-module.exports = { getQuizzes, postQuizzes, getQuizByID, getQuizQuestionCountByID };
+module.exports = {
+  getQuizzes, postQuizzes, getQuizByID, getQuizQuestionCountByID
+};

@@ -41,7 +41,7 @@ main {
 
 .navbar-top>h1 {
   margin: 0;
-  margin-top: 10px;
+  margin-top: 15px;
   letter-spacing: 5px;
   width: 150px;
   height: fit-content;
@@ -111,10 +111,10 @@ main {
   justify-content: space-evenly;
 }
 
-.make-new>button {
+.make-new>a>button {
   margin-top: 10px;
-  width: 150px;
-  height: 45px;
+  width: 140px;
+  height: 40px;
 }
 
 .quiz-container {

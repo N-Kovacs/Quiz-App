@@ -9,6 +9,10 @@ const router = express.Router();
 const quizQueries = require('../db/queries/quizzes');
 const questionsQueries = require('../db/queries/questions_multiple_choice');
 
+/////////////////////////////////////////////////
+////    GET ROUTES
+///////////////////////////////////////////////
+
 ////    Render All Quizzes to Page
 router.get('/', (req, res) => {
   quizQueries.getQuizzes()
@@ -63,6 +67,21 @@ router.get('/new/:id', (req, res) => {
     });
 });
 
+////    Take the Quiz!
+router.get('/:id', (req, res) => {
+  
+})
+// grab req.params.id <---
+// fetch the quiz from DB
+
+// inside templateVars creating key: values
+//      quiz:  quiz (entire quiz),
+//
+//      define the indiv questions in object
+
+/////////////////////////////////////////////////
+////    POST ROUTES
+///////////////////////////////////////////////
 
 //posting data to database
 router.post('/new', (req, res) => {
@@ -79,5 +98,7 @@ router.post('/new', (req, res) => {
 
 }
 );
+
+
 
 module.exports = router;
