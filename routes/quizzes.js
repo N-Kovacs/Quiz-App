@@ -5,14 +5,9 @@
  * See: https://expressjs.com/en/guide/using-middleware.html#middleware.router
  */
 const express = require('express');
-<<<<<<< HEAD
 const router = express.Router();
 const quizQueries = require('../db/queries/quizzes');
 const questionsQueries = require('../db/queries/questions_multiple_choice');
-=======
-const router  = express.Router();
-const quizQueries = require('../db/queries/quizzes');
->>>>>>> master
 
 router.get('/', (req, res) => {
   quizQueries.getQuizzes()
