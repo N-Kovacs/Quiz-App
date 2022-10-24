@@ -14,10 +14,14 @@ router.get('/', (req, res) => {
   res.render('quizzes');
 });
 
+
+//webpage shown for creating new quizzes. Will need a template vars at some point
 router.get('/new', (req, res) => {
   res.render('quizzes_new');
 });
 
+
+//webpage shown after creating quizzes
 router.get('/new/:id', (req, res) => {
   let dataStore;
   quizQueries.getQuizByID(req.params.id)
@@ -42,11 +46,10 @@ router.get('/new/:id', (req, res) => {
 });
 
 
+//posting data to database
 router.post('/new', (req, res) => {
   let count = Math.round(((Object.keys(req.body).length - 4) / 5));
   let temp;
-  //console.log(count)
-  //console.log(req.body);
   quizQueries.postQuizzes(req.body)
     .then((quizvalue) => {
       temp = quizvalue;

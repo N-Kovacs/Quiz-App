@@ -1,5 +1,6 @@
 const db = require('../connection');
 
+//returns quizzes
 const getQuizzes = () => {
   return db.query('SELECT * FROM quizzes;')
     .then(data => {
@@ -7,7 +8,7 @@ const getQuizzes = () => {
     });
 };
 
-
+//returns quiz deatils given an id
 const getQuizByID = (id) => {
   return db.query(`
   SELECT * FROM quizzes
@@ -18,6 +19,7 @@ const getQuizByID = (id) => {
   })
 }
 
+//returns the count of quiz questions given the id of a quiz
 const getQuizQuestionCountByID = (id) => {
 
   return db.query(`
@@ -33,6 +35,7 @@ const getQuizQuestionCountByID = (id) => {
 }
 
 //post quizes to database
+//returns just the id of the posted quiz
 // NOTE OWNER ID IS DUMMY 1 AT THE MOMENT
 const postQuizzes = (quiz) => {
   let public = false
