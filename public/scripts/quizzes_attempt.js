@@ -1,43 +1,47 @@
 ////
-
 // Make createQuestionElement function with template literals HTML
 
 let currentQuestionIndex = 0;
 let questions = undefined;
 
-let question_results = []; //fill that with answers
+let question_results = []; //fill with answers
 //
 
 $(() => {
-  //.get.then(don't need ajax params object)
   loadQuestions();
-  $('#next-question').on('click', getNextQuestion);
+  // $('#next-question').on('click', getNextQuestion);
+  $('#next-question').on('click', () => {
+    alert('boomie');
+  });
   console.log("* INSIDE doc ready()");
-    //fetch questions inside click
-    
+  //fetch questions inside click
 
 });
 
 const loadQuestions = () => {
+  //.get.then(don't need ajax params object)
   $.get("/api/questions")
       .then(data => {
         questions = data // Questions is an ARRAY
+
         console.log("* INSIDE loadQuestions()", questions);
+
         showCurrentQuestion();
       })
-  };
+    };
 
-const showCurrentQuestion = () => {
-  const question = questions[currentQuestionIndex];
-  console.log(question);
-  let makeQuiz = makeQuiz(question);
-  $('quiz-attempt').append(makeQuiz);
-  $('quiz-attempt').empty(makeQuiz);
+    const showCurrentQuestion = () => {
+      const question = questions[currentQuestionIndex];
 
+      console.log("* INSIDE showCurrentQuestion()", question);
+
+      const renderQuiz = makeQuiz(question);
+      $('#quiz-attempt').append(renderQuiz);
+      // $('.quiz-header').css('background-image', question.image_url);
+      // $('#quiz-attempt').empty(renderQuiz);
 }
 
 const getNextQuestion = () => {
-  console.log("* INSIDE getNextQuestion()");
   currentQuestionIndex++
   if (currentQuestionIndex > questions.length-1) return;
   showCurrentQuestion();
@@ -48,53 +52,28 @@ const makeQuiz = (quiz) => {
   $(`
   <section class="make-quiz">
         <div class="question">
-          <h3 id="question">QUESTION.......</h3>
+          <p>Question ${quiz.id}</p>
+          <h3 id="question">${quiz.question}</h3>
         </div>
 
         <div>
-          <img src="" />
+          <img src=""/>
         </div>
-
-
         <div class="quiz-dyn-buttons">
-          <h4>correct!/ nope!</h4>
+          <div class="true-false">
+            <h4>You are correct!</h4>
+            <h4>Nope, incorrect!</h4>
+          </div>
           <button id="next-question">Next</button>
         </div>
 
         <div class="answers">
-          <button id="asnwer_1">ANSWERs and more text 1 - ANSWER</button>
-          <button id="asnwer_1">ANSWER 2 - ANSWER</button>
-          <button id="asnwer_1">ANSWER 3 - ANSWER</button>
-          <button id="asnwer_1">ANSWER 4 - ANSWER</button>
+          <button id="answer_1">${quiz.incorrect_answer_one}</button>
+          <button id="answer_2">${quiz.incorrect_answer_two}</button>
+          <button id="answer_3">${quiz.incorrect_answer_three}</button>
+          <button id="answer_4">${quiz.correct_answer}</button>
         </div>
       </section>
-  `)
+  `);
+  return $quizStructure;
 };
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-    // $.get('/quizzes/3')
-    //   .then((questions) => {
-
-    //   // createQuestionElement(questions[currentQuestionsIndex]);
-    //   console.log("********", questions);
-
-    //   // const $questionList = $('#question');
-    //   // $quizList.empty();
-
-    //   // for(const qu in response.quizzes) {
-    //   //   $(`<li class="question">`).text(quiz.title).appendTo($quizList);
-    //   // }
-    // });

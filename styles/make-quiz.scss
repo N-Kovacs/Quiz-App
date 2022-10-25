@@ -4,10 +4,14 @@
 
 .quiz-header {
   width: 100%;
+  height: 200px;
   padding-left: 0;
-  margin-top: 2.5em;
-  margin-bottom: 2.5em;
+  margin-bottom: 1.5em;
   flex-direction: column;
+  justify-content: center;
+  background-image: url('https://images.pexels.com/photos/11308623/pexels-photo-11308623.jpeg?auto=compress&cs=tinysrgb&w=400');
+  background-position: center;
+  background-size: cover;
 }
 
 .quiz-attempt {
@@ -25,27 +29,40 @@
   align-items: center;
 }
 
-.quiz-dyn-buttons {
-  flex-direction: row;
+.question {
+  padding: 10px;
+  width: 100%;
   display: flex;
-  align-items: center;
+  flex-direction: column;
+
+  h3 {
+    display: flex;
+    justify-content: center;
+  }
+}
+
+.quiz-dyn-buttons {
+  flex-direction: column;
+  display: flex;
 }
 
 .answers {
-  padding: 10px;
+  width: 100%;
+  padding: 5px;
   display: flex;
   flex-direction: row;
-  justify-content: space-between;
+  justify-content: space-evenly;
   flex-wrap: wrap;
 
   button {
     min-height: 100px;
+    min-width: 48%;
     max-width: 48%;
     margin: 3px;
     display: flex;
     flex-wrap: wrap;
     align-content: center;
     word-break: break-word;
-
+    justify-content: center;
   }
 }
