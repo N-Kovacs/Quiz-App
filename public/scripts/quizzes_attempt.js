@@ -1,16 +1,17 @@
-////    Take the Quiz Functions and jQuery!
+////    Take the Quiz Client Side Functions and jQuery!
 ////
 let currentQuestionIndex = 0;
 let questions = undefined;
-
-let question_results = []; //fill with answers
-//
+let question_results = [];
+//questions_multiple_choice_id, BOOLEAN
 
 $(() => {
   loadQuestions();
   console.log("* INSIDE doc ready()");
 });
 
+////    Fetch JSON Quizzes
+////
 const loadQuestions = () => {
   //.get.then(don't need ajax params object)
   $.get("/api/questions")
@@ -45,11 +46,19 @@ const showCurrentQuestion = () => {
 
     if ($buttonTxt === question.correct_answer) {
       $('.quiz-dyn-buttons > h4').html('Yes! You are correct!');
+      question_results.push({
+        questions_multiple_choice_id: question.id,
+        correct: TRUE
+      });
     }
     $('.quiz-dyn-buttons > h4').html('Sorry. That is incorrect!');
     $('#next-question').show();
+    // $('.quiz-header').css('background-image', question.image_url);
+    question_results.push({
+      questions_multiple_choice_id: question.id,
+      correct: TRUE
+    });
   });
-  // $('.quiz-header').css('background-image', question.image_url);
 };
 
 const getNextQuestion = () => {
