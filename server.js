@@ -45,6 +45,7 @@ const questionsApiRoutes = require('./routes/questions-api')
 // Note: Endpoints that return data (eg. JSON) usually start with `/api`
 app.use('/api/users', userApiRoutes);
 app.use('/api/quizzes', quizApiRoutes);
+
 app.use('/api/questions', questionsApiRoutes);
 app.use('/users', usersRoutes);
 app.use('/user/:id', usersRoutes);
