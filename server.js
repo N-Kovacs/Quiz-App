@@ -5,15 +5,15 @@ require('dotenv').config();
 const sassMiddleware = require('./lib/sass-middleware');
 const express = require('express');
 const morgan = require('morgan');
-// const cookieSession = require('cookie-session');
+const cookieSession = require('cookie-session');
 
 const PORT = process.env.PORT || 8080;
 const app = express();
 
-// app.use(cookieSession({
-//   name: 'session',
-//   keys: ['key1']
-// }));
+app.use(cookieSession({
+  name: 'session',
+  keys: ['key1']
+}));
 
 app.set('view engine', 'ejs');
 // Load the logger first so all (static) HTTP requests are logged to STDOUT
@@ -39,12 +39,15 @@ const usersRoutes = require('./routes/users');
 const quizzesRoutes = require('./routes/quizzes')
 const loginRoutes = require('./routes/login')
 const resultRoutes = require('./routes/result')
+const questionsApiRoutes = require('./routes/questions-api')
 
 // Mount all resource routes
 // Note: Feel free to replace the example routes below with your own
 // Note: Endpoints that return data (eg. JSON) usually start with `/api`
 app.use('/api/users', userApiRoutes);
 app.use('/api/quizzes', quizApiRoutes);
+
+app.use('/api/questions', questionsApiRoutes);
 app.use('/users', usersRoutes);
 app.use('/user/:id', usersRoutes);
 app.use('/quizzes', quizzesRoutes);

@@ -2,13 +2,15 @@ const db = require('../connection');
 
 //returns all quizzes
 const getQuizzes = () => {
-  return db.query(`SELECT quizzes.*, ROUND(AVG(quiz_results.score))*10 AS avg,
+  return db.query(`
+  SELECT quizzes.*, ROUND(AVG(quiz_results.score))*10 AS avg,
   COUNT(questions_multiple_choice.*) AS total_questions
-  FROM quizzes
+    FROM quizzes
   LEFT JOIN quiz_results ON quiz_id = quizzes.id
   LEFT JOIN questions_multiple_choice ON questions_multiple_choice.quiz_id = quizzes.id
   GROUP BY quizzes.id
-  ORDER BY quizzes.id DESC;`)
+  ORDER BY quizzes.id DESC;
+  `)
     .then(data => {
       return data.rows;
     });
@@ -21,7 +23,7 @@ const getQuizByID = (id) => {
   WHERE id = $1;
   `, [id])
     .then(quizzes => {
-      return quizzes.rows;
+      return quizzes.rows[0];
     });
 };
 
@@ -55,7 +57,7 @@ const getTitleSubjectByResultsID = (id) => {
 };
 
 
-//post quizes to database
+//INSERT Quizzes to Database
 //returns just the id of the posted quiz
 // NOTE OWNER ID IS DUMMY 1 AT THE MOMENT
 const postQuizzes = (quiz) => {

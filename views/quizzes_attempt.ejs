@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <title>Home Page</title>
+
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <!-- App CSS -->
+  <link rel="stylesheet" href="/vendor/normalize-4.1.1.css" />
+  <link rel="stylesheet" href="/vendor/border-box.css" />
+  <link rel="stylesheet" href="/styles/main.css" />
+  <link rel="stylesheet" href="/styles/layout.css" />
+  <link rel="stylesheet" href="/styles/make-quiz.css" />
+
+  <!-- External JS -->
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
+  <script src="/vendor/jquery-3.0.0.js"></script>
+
+  <!-- App JS -->
+  <script defer src="/scripts/quizzes_attempt.js"></script>
+</head>
+
+<body>
+
+  <main>
+    <header class="quiz-header">
+      <h1><%= quiz.title %></h1>
+      <h2>Topic: <%= quiz.subject %>
+      </h2>
+    </header>
+
+    <div class="quiz-attempt container-lg">
+      <section class="make-quiz">
+        <div class="question">
+          <h3 id="question">QUESTION.......</h3>
+        </div>
+
+        <div>
+          <img src="" />
+        </div>
+
+
+        <div class="quiz-dyn-buttons">
+          <h4>correct!/ nope!</h4>
+          <button id="next-question">Next</button>
+        </div>
+
+        <div class="answers">
+          <button id="asnwer_1">ANSWERs and more text 1 - ANSWER</button>
+          <button id="asnwer_1">ANSWER 2 - ANSWER</button>
+          <button id="asnwer_1">ANSWER 3 - ANSWER</button>
+          <button id="asnwer_1">ANSWER 4 - ANSWER</button>
+        </div>
+      </section>
+
+
+    </div>
+
+
+    </section>
+  </main>
+
+
+
+
+
+
+
+
+
+
+
+  <!-- CDNs jQuery & BS-->
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
+    integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
+    crossorigin="anonymous"></script>
+</body>
+
+</html>

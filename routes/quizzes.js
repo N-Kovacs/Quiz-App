@@ -6,14 +6,20 @@
  */
 const express = require('express');
 const router = express.Router();
+
 const quizQueries = require('../db/queries/quizzes');
 const questionsQueries = require('../db/queries/questions_multiple_choice');
+
+// const fetchQuestionsHelper = require()
+
 
 /////////////////////////////////////////////////
 ////    GET ROUTES
 ///////////////////////////////////////////////
 
-////    Render All Quizzes to Page
+
+////    All Quizzes render to Explore Page
+////
 router.get('/', (req, res) => {
   quizQueries.getQuizzes()
   .then(quizzes => {
@@ -26,6 +32,7 @@ router.get('/', (req, res) => {
     if (!quizzes) {
       return res.status(404).send("Error! Nothing found.")
     }
+    // console.log(quizzes);
     res.render('quizzes', templateVars)
     })
     .catch(err => {
@@ -36,53 +43,75 @@ router.get('/', (req, res) => {
 });
 
 
-//webpage shown for creating new quizzes. Will need a template vars at some point
+////    Create New Quiz Form
+////  Will need a template vars at some point
 router.get('/new', (req, res) => {
   res.render('quizzes_new');
 });
 
 
 //webpage shown after creating quizzes will need default templatevars data
+////    Quiz Form Completed
+////
 router.get('/new/:id', (req, res) => {
-  let dataStore;
+  let quiz;
   quizQueries.getQuizByID(req.params.id)
-    .then(data => {
-      dataStore = data;
-      return quizQueries.getQuizQuestionCountByID(data[0].id);
+  .then(data => {
+      quiz = data
+      return quizQueries.getQuizQuestionCountByID(data.id);
     })
     .then(data2 => {
       const templateVars = {
-        title: dataStore[0].title,
+        title: quiz.title,
         questions_num: data2[0].count,
-        custom_url:dataStore[0].url
+        custom_url:quiz.url
       };
       res.render('quizzes_new_success', templateVars);
 
     })
     .catch(err => {
+      console.log(err.message);
       res
         .status(500)
         .json({ error: err.message });
     });
 });
 
-////    Take the Quiz!
+
+////    Take Quiz - Get Questions
+////
 router.get('/:id', (req, res) => {
+  console.log("quizzes/:id ROUTE *********")
+  // grab req.params.id <---
+  const id = req.params.id;
+  // fetch the quiz from DB
+  quizQueries.getQuizByID(id)
+  .then(quiz => {
+    // getQuizQuestions(questions);
+    // if (!quiz) {
+    //   return res.status(404).send("Error! Nothing found.")
+    // }
+    //Save Current quiz_id as cookie
+    //if no cookie, it's first question
+    console.log(quiz); // log current quiz_id
+    req.session.quiz_id = id;
+    res.render('quizzes_attempt', { quiz });
+  })
+  .catch(err => {
+    res
+      .status(500)
+      .json({ error: err.message });
+  });
+});
 
-})
-// grab req.params.id <---
-// fetch the quiz from DB
-
-// inside templateVars creating key: values
-//      quiz:  quiz (entire quiz),
-//
-//      define the indiv questions in object
 
 /////////////////////////////////////////////////
 ////    POST ROUTES
 ///////////////////////////////////////////////
 
-//posting data to database
+
+////    Insert New Quiz to Database
+////
 router.post('/new', (req, res) => {
   let count = Math.round(((Object.keys(req.body).length - 4) / 5));
   let temp;
@@ -93,11 +122,15 @@ router.post('/new', (req, res) => {
     })
     .then(() => {
       res.redirect("/quizzes/new/" + temp);
+    })
+    //***   I added a catch   ***
+    .catch(err => {
+      res
+        .status(500)
+        .json({ error: err.message });
     });
-
 }
 );
-
 
 
 module.exports = router;
