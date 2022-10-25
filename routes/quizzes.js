@@ -6,13 +6,17 @@
  */
 const express = require('express');
 const router = express.Router();
+
 const quizQueries = require('../db/queries/quizzes');
 const questionsQueries = require('../db/queries/questions_multiple_choice');
+
+// const fetchQuestionsHelper = require()
 
 
 /////////////////////////////////////////////////
 ////    GET ROUTES
 ///////////////////////////////////////////////
+
 
 ////    All Quizzes render to Explore Page
 ////
@@ -49,47 +53,60 @@ router.get('/new', (req, res) => {
 ////    Quiz Form Completed
 ////
 router.get('/new/:id', (req, res) => {
-  let dataStore;
+  let quiz;
   quizQueries.getQuizByID(req.params.id)
-    .then(data => {
-      dataStore = data;
-      return quizQueries.getQuizQuestionCountByID(data[0].id);
+  .then(data => {
+      quiz = data
+      return quizQueries.getQuizQuestionCountByID(data.id);
     })
     .then(data2 => {
       const templateQuizVars = {
-        title: dataStore[0].title,
+        title: quiz.title,
         questions_num: data2[0].count,
-        custom_url:dataStore[0].url
+        custom_url:quiz.url
       };
       res.render('quizzes_new_success', templateQuizVars);
-
     })
     .catch(err => {
+      console.log(err.message);
       res
         .status(500)
         .json({ error: err.message });
     });
 });
 
-////    Take the Quiz!
+
+////    Take Quiz - Get Questions
 ////
 router.get('/:id', (req, res) => {
+  console.log("QUIZZES ROUTE *********")
   // grab req.params.id <---
-  const quiz_id = req.params.id
+  const id = req.params.id;
   // fetch the quiz from DB
-  quizQueries.getQuiz()
-
-})
-
-// inside templateVars creating key: values
-//      quiz:  quiz (entire quiz),
-//
-//      define the indiv questions in object
+  quizQueries.getQuizByID(id)
+  .then(quiz => {
+    // getQuizQuestions(questions);
+    // if (!quiz) {
+    //   return res.status(404).send("Error! Nothing found.")
+    // }
+    //Save Current QuizID as cookie
+    //if no cookie, it's first question
+    console.log(quiz);
+    req.session.quiz_id = id;
+    res.render('quizzes_attempt', { quiz });
+  })
+  .catch(err => {
+    res
+      .status(500)
+      .json({ error: err.message });
+  });
+});
 
 
 /////////////////////////////////////////////////
 ////    POST ROUTES
 ///////////////////////////////////////////////
+
 
 ////    Insert New Quiz to Database
 ////

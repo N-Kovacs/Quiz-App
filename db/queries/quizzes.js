@@ -2,21 +2,19 @@ const db = require('../connection');
 
 //returns all quizzes
 const getQuizzes = () => {
-  return db.query(`SELECT quizzes.*, ROUND(AVG(quiz_results.score))*10 AS avg,
+  return db.query(`
+  SELECT quizzes.*, ROUND(AVG(quiz_results.score))*10 AS avg,
   COUNT(questions_multiple_choice.*) AS total_questions
-  FROM quizzes
+    FROM quizzes
   LEFT JOIN quiz_results ON quiz_id = quizzes.id
   LEFT JOIN questions_multiple_choice ON questions_multiple_choice.quiz_id = quizzes.id
   GROUP BY quizzes.id
-  ORDER BY quizzes.id DESC;`)
+  ORDER BY quizzes.id DESC;
+  `)
     .then(data => {
       return data.rows;
     });
 };
-
-const getQuizAttempt = () => {
-  
-}
 
 //returns quiz deatils given an id
 const getQuizByID = (id) => {
@@ -24,10 +22,10 @@ const getQuizByID = (id) => {
   SELECT * FROM quizzes
   WHERE id = $1;
   `, [id])
-  .then(quizzes => {
-    return quizzes.rows;
-  })
-}
+    .then(quizzes => {
+      return quizzes.rows[0];
+    });
+};
 
 //returns the count of quiz questions given the id of a quiz
 const getQuizQuestionCountByID = (id) => {
@@ -38,40 +36,43 @@ const getQuizQuestionCountByID = (id) => {
   GROUP BY quizzes.id
   having quizzes.id = $1;
   `, [id])
-  .then(quizzes => {
+    .then(quizzes => {
 
-    return quizzes.rows;
-  })
-}
+      return quizzes.rows;
+    });
+};
 
-//post quizes to database
+//INSERT Quizzes to Database
 //returns just the id of the posted quiz
 // NOTE OWNER ID IS DUMMY 1 AT THE MOMENT
 const postQuizzes = (quiz) => {
-  let public = false
+  let public = false;
   //trim url input to allow only valid url
   let customURLTrim = quiz.custom_url.replace(/\s/g, '');
   //console.log(quiz.title)
   //console.log(quiz.owner_id)
   if (quiz.public === "on") {
-    public = true
+    public = true;
   }
   return db
-  .query(`
+    .query(`
   INSERT INTO quizzes (owner_id, public, title, subject, url, image_url)
   VALUES ($1, $2, $3, $4, $5, $6)
   RETURNING *;
   `, [1, public, quiz.title, quiz.subject, customURLTrim, quiz.image_url])
-  .then((result) => {
+    .then((result) => {
 
-    console.log(result.rows[0].id)
-    return result.rows[0].id
-  })
-  .catch((err) => {
-    console.log(err.message);
-  });
-}
+      console.log(result.rows[0].id);
+      return result.rows[0].id;
+    })
+    .catch((err) => {
+      console.log(err.message);
+    });
+};
 
 module.exports = {
-  getQuizzes, postQuizzes, getQuizByID, getQuizQuestionCountByID
+  getQuizzes,
+  postQuizzes,
+  getQuizByID,
+  getQuizQuestionCountByID
 };
