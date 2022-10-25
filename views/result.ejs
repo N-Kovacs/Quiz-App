@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <title>Results</title>
+
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <link rel="stylesheet" href="/vendor/normalize-4.1.1.css" />
+  <link rel="stylesheet" href="/vendor/border-box.css" />
+  <link rel="stylesheet" href="/styles/main.css" />
+  <link rel="stylesheet" href="/styles/layout.css" />
+
+  <script src="/vendor/jquery-3.0.0.js"></script>
+  <script defer src="/scripts/quizzes_new_success.js"></script>
+
+  <!-- Bootstrap CSS -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
+    integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
+    crossorigin="anonymous"></script>
+
+</head>
+
+<body>
+  <!-- css should be able to make this match storyboard. I think -->
+  <header>
+    <h2>Congrats!</h2>
+    <h2>These are your results:</h2>
+  </header>
+  <section class="results_box">
+    <header class="results_header quiz-header">
+      <section>
+        <div><%= `${title}` %></div>
+        <div class = "quiz-info"><%= `${subject}` %></div>
+      </section>
+      <aside>
+      <img class = "quiz-image" src=<%= image_url %>/>
+    </aside>
+    </header>
+
+    <article class="score_info">
+      <div>Score: <%= `${correct_answers}` %> / <%= `${total_questions} (${(correct_answers/total_questions *100)}%)` %></div>
+      <div>Average Quiz Score: 60%</div>
+      <div>User Rating: 7/10</div>
+    </article>
+    <aside class="answers">
+      <% let increment = 1 %>
+      <% for (let answer of answers) { %>
+      <div>  <%=`Question ${increment}:  ${answer}` %></div>
+      <% increment++ %>
+      <% } %>
+    </aside>
+    <footer class="quiz_stats">
+      <div>Global Number of Attempts <%= `${global_attempts}` %></div>
+      <div>Global Average Result <%= `${average_score}` %></div>
+    </footer>
+  </section>
+  <footer>
+    <section> Share this result:
+    <input type="text" value= <%= `${thisurl}` %>  id="copytexts">
+    <button class="btn btn-primary" id="copy">copy</button>
+    <a class="btn btn-primary" href="http://localhost:8080/quizzes" target="_blank">HOME»</a>
+  </section>
+  </footer>
+
+
+
+
+
+  <!-- Bootstrap JS -->
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
+  <!-- <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-OERcA2EqjJCMA+/3y+gxIOqMEjwtxJY7qPCqsdltbNJuaOe923+mo//f6V8Qbsw3" crossorigin="anonymous"></script> -->
+
+</body>
+
+</html>

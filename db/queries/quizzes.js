@@ -41,6 +41,21 @@ const getQuizQuestionCountByID = (id) => {
       return quizzes.rows;
     });
 };
+//
+const getTitleSubjectByResultsID = (id) => {
+
+  return db.query(`
+  SELECT title, subject, image_url, quiz_id
+  FROM quizzes
+  JOIN quiz_results ON quiz_results.quiz_id = quizzes.id
+  WHERE quiz_results.id = $1;
+  `, [id])
+    .then(quizzes => {
+
+      return quizzes.rows;
+    })
+};
+
 
 //INSERT Quizzes to Database
 //returns just the id of the posted quiz
@@ -71,8 +86,5 @@ const postQuizzes = (quiz) => {
 };
 
 module.exports = {
-  getQuizzes,
-  postQuizzes,
-  getQuizByID,
-  getQuizQuestionCountByID
+  getQuizzes, postQuizzes, getQuizByID, getQuizQuestionCountByID, getTitleSubjectByResultsID
 };

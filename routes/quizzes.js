@@ -50,6 +50,7 @@ router.get('/new', (req, res) => {
 });
 
 
+//webpage shown after creating quizzes will need default templatevars data
 ////    Quiz Form Completed
 ////
 router.get('/new/:id', (req, res) => {
@@ -60,12 +61,13 @@ router.get('/new/:id', (req, res) => {
       return quizQueries.getQuizQuestionCountByID(data.id);
     })
     .then(data2 => {
-      const templateQuizVars = {
+      const templateVars = {
         title: quiz.title,
         questions_num: data2[0].count,
         custom_url:quiz.url
       };
-      res.render('quizzes_new_success', templateQuizVars);
+      res.render('quizzes_new_success', templateVars);
+
     })
     .catch(err => {
       console.log(err.message);
