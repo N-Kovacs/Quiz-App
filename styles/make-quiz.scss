@@ -30,16 +30,15 @@
 }
 
 .question {
-  padding: 10px;
+  padding: 25px;
   width: 100%;
   display: flex;
   flex-direction: column;
 
-  p {
-    padding-left: 20px;
-  }
-
   h3 {
+    height: 70px;
+    padding-top: 0.25em;
+    margin-bottom: 0;
     display: flex;
     justify-content: center;
   }
@@ -49,9 +48,13 @@
   padding-bottom: 1em;
   flex-direction: column;
   display: flex;
+  align-items: center;
 
   .quiz-dyn-next {
     height: 2.15em;
+  }
+  h4 {
+    font-size: 26px;
   }
   #next-question {
     height: 35px;
