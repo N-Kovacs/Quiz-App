@@ -32,22 +32,27 @@
     <h2>These are your results:</h2>
   </header>
   <section class="results_box">
-    <header class="results_header">
+    <header class="results_header quiz-header">
       <section>
-        <div>Title</div>
-        <div>Subject</div>
+        <div><%= `${title}` %></div>
+        <div class = "quiz-info"><%= `${subject}` %></div>
       </section>
-      <div>Image</div>
+      <aside>
+      <img class = "quiz-image" src=<%= image_url %>/>
+    </aside>
     </header>
 
     <article class="score_info">
-      <div>Score</div>
-      <div><%= `${correct_answers}` %> / <%= `${total_questions}` %></div>
-      <div>AVG: 60%</div>
+      <div>Score: <%= `${correct_answers}` %> / <%= `${total_questions} (${(correct_answers/total_questions *100)}%)` %></div>
+      <div>Average Quiz Score: 60%</div>
       <div>User Rating: 7/10</div>
     </article>
     <aside class="answers">
-      <div>#1 - Correct</div>
+      <% let increment = 1 %>
+      <% for (let answer of answers) { %>
+      <div>  <%=`Question ${increment}:  ${answer}` %></div>
+      <% increment++ %>
+      <% } %>
     </aside>
     <footer class="quiz_stats">
       <div>number of attempts</div>

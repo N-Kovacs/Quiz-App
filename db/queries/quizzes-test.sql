@@ -7,7 +7,18 @@ GROUP BY quiz_results.id
 HAVING quiz_results.id = 1;
 
 
--- total questions
+-- total questions done
+
 -- individual questions
+SELECT id, correct
+FROM question_results
+WHERE quiz_results_id = 1;
+
+
 -- quiz title, quiz subject
+SELECT title, subject
+FROM quizzes
+JOIN quiz_results ON quiz_results.quiz_id = quizzes.id
+WHERE quiz_results.id = $1;
+
 -- global attempts, with average results

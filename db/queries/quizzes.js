@@ -20,10 +20,10 @@ const getQuizByID = (id) => {
   SELECT * FROM quizzes
   WHERE id = $1;
   `, [id])
-  .then(quizzes => {
-    return quizzes.rows;
-  })
-}
+    .then(quizzes => {
+      return quizzes.rows;
+    });
+};
 
 //returns the count of quiz questions given the id of a quiz
 const getQuizQuestionCountByID = (id) => {
@@ -34,40 +34,55 @@ const getQuizQuestionCountByID = (id) => {
   GROUP BY quizzes.id
   having quizzes.id = $1;
   `, [id])
-  .then(quizzes => {
+    .then(quizzes => {
 
-    return quizzes.rows;
-  })
-}
+      return quizzes.rows;
+    });
+};
+//
+const getTitleSubjectByResultsID = (id) => {
+
+  return db.query(`
+  SELECT title, subject, image_url
+  FROM quizzes
+  JOIN quiz_results ON quiz_results.quiz_id = quizzes.id
+  WHERE quiz_results.id = $1;
+  `, [id])
+    .then(quizzes => {
+
+      return quizzes.rows;
+    })
+};
+
 
 //post quizes to database
 //returns just the id of the posted quiz
 // NOTE OWNER ID IS DUMMY 1 AT THE MOMENT
 const postQuizzes = (quiz) => {
-  let public = false
+  let public = false;
   //trim url input to allow only valid url
   let customURLTrim = quiz.custom_url.replace(/\s/g, '');
   //console.log(quiz.title)
   //console.log(quiz.owner_id)
   if (quiz.public === "on") {
-    public = true
+    public = true;
   }
   return db
-  .query(`
+    .query(`
   INSERT INTO quizzes (owner_id, public, title, subject, url, image_url)
   VALUES ($1, $2, $3, $4, $5, $6)
   RETURNING *;
   `, [1, public, quiz.title, quiz.subject, customURLTrim, quiz.image_url])
-  .then((result) => {
+    .then((result) => {
 
-    console.log(result.rows[0].id)
-    return result.rows[0].id
-  })
-  .catch((err) => {
-    console.log(err.message);
-  });
-}
+      console.log(result.rows[0].id);
+      return result.rows[0].id;
+    })
+    .catch((err) => {
+      console.log(err.message);
+    });
+};
 
 module.exports = {
-  getQuizzes, postQuizzes, getQuizByID, getQuizQuestionCountByID
+  getQuizzes, postQuizzes, getQuizByID, getQuizQuestionCountByID, getTitleSubjectByResultsID
 };
