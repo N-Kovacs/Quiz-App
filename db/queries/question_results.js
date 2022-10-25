@@ -5,7 +5,6 @@ const getAnswersForQuizResultsID = (id) => {
   FROM question_results
   WHERE quiz_results_id = $1;`, [id])
     .then(data => {
-      console.log(data.rows)
       return data.rows;
     });
 }

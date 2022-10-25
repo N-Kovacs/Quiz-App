@@ -22,3 +22,9 @@ JOIN quiz_results ON quiz_results.quiz_id = quizzes.id
 WHERE quiz_results.id = $1;
 
 -- global attempts, with average results
+SELECT COUNT(quiz_results.*) as global_attempts, AVG(score) as average_score, max_score
+FROM quiz_results
+JOIN quizzes ON quiz_results.quiz_id = quizzes.id
+GROUP BY quizzes.id, score, max_score
+HAVING quizzes.id = 1;
+

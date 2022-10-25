@@ -43,7 +43,7 @@ const getQuizQuestionCountByID = (id) => {
 const getTitleSubjectByResultsID = (id) => {
 
   return db.query(`
-  SELECT title, subject, image_url
+  SELECT title, subject, image_url, quiz_id
   FROM quizzes
   JOIN quiz_results ON quiz_results.quiz_id = quizzes.id
   WHERE quiz_results.id = $1;

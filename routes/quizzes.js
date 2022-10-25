@@ -26,7 +26,6 @@ router.get('/', (req, res) => {
     if (!quizzes) {
       return res.status(404).send("Error! Nothing found.")
     }
-    console.log(quizzes);
     res.render('quizzes', templateVars)
     })
     .catch(err => {

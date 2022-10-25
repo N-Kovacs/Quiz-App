@@ -55,14 +55,16 @@
       <% } %>
     </aside>
     <footer class="quiz_stats">
-      <div>number of attempts</div>
-      <div>average result</div>
+      <div>Global Number of Attempts <%= `${global_attempts}` %></div>
+      <div>Global Average Result <%= `${average_score}` %></div>
     </footer>
   </section>
   <footer>
-    <button class="btn btn-primary" id ="cancel">SHARE</button>
-    <button class="btn btn-primary" id ="cancel">See All Results</button>
-    <button class="btn btn-primary" id ="cancel">HOME</button>
+    <section> Share this result:
+    <input type="text" value= <%= `${thisurl}` %>  id="copytexts">
+    <button class="btn btn-primary" id="copy">copy</button>
+    <a class="btn btn-primary" href="http://localhost:8080/quizzes" target="_blank">HOME»</a>
+  </section>
   </footer>
 
 
