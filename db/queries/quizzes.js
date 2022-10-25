@@ -61,13 +61,15 @@ const getTitleSubjectByResultsID = (id) => {
 //returns just the id of the posted quiz
 // NOTE OWNER ID IS DUMMY 1 AT THE MOMENT
 const postQuizzes = (quiz) => {
-  let public = false;
+  let public = true;
   //trim url input to allow only valid url
   let customURLTrim = quiz.custom_url.replace(/\s/g, '');
   //console.log(quiz.title)
   //console.log(quiz.owner_id)
-  if (quiz.public === "on") {
-    public = true;
+  console.log(quiz)
+  if (quiz.private === "on") {
+
+    public = false;
   }
   return db
     .query(`

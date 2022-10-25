@@ -17,6 +17,8 @@
   <link rel="stylesheet" href="/styles/main.css" />
   <link rel="stylesheet" href="/styles/layout.css" />
 
+  <script defer src="/scripts/quizzes.js"></script>
+
   <!-- External JS -->
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
   <script src="/vendor/jquery-3.0.0.js"></script>
@@ -36,11 +38,14 @@
         </header>
         <div class="make-new">
           <a href="/quizzes/new"><button>Make New Quiz</button></a>
+          <button class="btn btn-primary" id="test">copy</button>
         </div>
+
       </div>
 
       <div class="quiz-container">
         <% for (let q in quizzes) { %>
+          <% if (quizzes[q].public) { %>
           <article class="quiz">
             <header class="quiz-header">
               <h3>
@@ -48,7 +53,9 @@
               </h3>
             </header>
             <div class="quiz-image">
+              <% if (quizzes[q].image_url) { %>
               <img src=<%= quizzes[q].image_url %>/>
+              <% } %>
             </div>
             <div class="quiz-info">
               <ul>
@@ -70,7 +77,7 @@
             </footer>
 
           </article>
-          <% } %>
+          <%  } } %>
       </div>
 
       <div class="my-quizzes">
