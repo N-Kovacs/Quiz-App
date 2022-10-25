@@ -35,6 +35,10 @@
   display: flex;
   flex-direction: column;
 
+  p {
+    padding-left: 20px;
+  }
+
   h3 {
     display: flex;
     justify-content: center;
@@ -42,8 +46,17 @@
 }
 
 .quiz-dyn-buttons {
+  padding-bottom: 1em;
   flex-direction: column;
   display: flex;
+
+  .quiz-dyn-next {
+    height: 2.15em;
+  }
+  #next-question {
+    height: 35px;
+    width: 117px;
+  }
 }
 
 .answers {
