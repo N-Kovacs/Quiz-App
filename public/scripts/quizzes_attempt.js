@@ -2,13 +2,15 @@
 ////
 let currentQuestionIndex = 0;
 let questions = undefined;
-let question_results = [];
+export let question_results = [];
 //questions_multiple_choice_id, BOOLEAN
 
 $(() => {
   loadQuestions();
+
   console.log("* INSIDE doc ready()");
 });
+
 
 ////    Fetch JSON Quizzes
 ////
@@ -24,6 +26,7 @@ const loadQuestions = () => {
     });
 };
 
+
 const showCurrentQuestion = () => {
   const question = questions[currentQuestionIndex];
   console.log("* INSIDE showCurrentQuestion()", question);
@@ -32,6 +35,7 @@ const showCurrentQuestion = () => {
   const renderQuiz = makeQuiz(question, randomAnswers);
   $('#quiz-attempt').empty(renderQuiz);
   $('#quiz-attempt').append(renderQuiz);
+  // $('.quiz-header').css('background-image', question.image_url);
   $('#next-question').hide();
   $('#next-question').on('click', getNextQuestion);
 
@@ -39,27 +43,28 @@ const showCurrentQuestion = () => {
     const btnVal = event.target.value;
     const $buttonTxt = $(`button[value="${btnVal}"]`).text();
 
-    console.log("* * * * * * * * * * * * * ", $buttonTxt);
-    console.log("* * * * * * * * * * * * * ", question.correct_answer);
-
-    console.log("TEST", scrambleAnswers(question));
-
-    if ($buttonTxt === question.correct_answer) {
+    if ($buttonTxt.trim() === question.correct_answer) {
       $('.quiz-dyn-buttons > h4').html('Yes! You are correct!');
+      $('#next-question').show();
       question_results.push({
         questions_multiple_choice_id: question.id,
-        correct: TRUE
+        correct: true
       });
+    } else {
+      $('.quiz-dyn-buttons > h4').html('Sorry. That is incorrect!');
+      $('#next-question').show();
+      question_results.push(
+        { questions_multiple_choice_id: question.id,
+        correct: false }
+      );
     }
-    $('.quiz-dyn-buttons > h4').html('Sorry. That is incorrect!');
-    $('#next-question').show();
-    // $('.quiz-header').css('background-image', question.image_url);
-    question_results.push({
-      questions_multiple_choice_id: question.id,
-      correct: TRUE
-    });
+    if (question.id === questions.length) {
+      $('#next-question').replaceWith('<button id="next-question">See Results!</button>').show();
+    }
   });
+  // console.log("Q_RESULTS", question_results);
 };
+
 
 const getNextQuestion = () => {
   console.log("* INSIDE getNextQuestion()");
@@ -67,6 +72,7 @@ const getNextQuestion = () => {
   if (currentQuestionIndex > questions.length - 1) return;
   showCurrentQuestion();
 };
+
 
 const scrambleAnswers = (answers) => {
   const answerArr = [

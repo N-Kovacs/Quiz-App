@@ -9,7 +9,7 @@ router.get('/', (req, res) => {
       res.json(questions); //return ARRAY here not obj
     })
     .catch(err => {
-      console.log("INSIDE GET /questions-api", err.message)
+      console.log("INSIDE GET questions-api/", err.message)
       res
         .status(500)
         .json({ error: err.message });

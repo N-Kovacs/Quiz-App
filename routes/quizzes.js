@@ -81,16 +81,13 @@ router.get('/new/:id', (req, res) => {
 ////    Take Quiz - Get Questions
 ////
 router.get('/:id', (req, res) => {
-  console.log("quizzes/:id ROUTE *********")
-  // grab req.params.id <---
   const id = req.params.id;
   // fetch the quiz from DB
   quizQueries.getQuizByID(id)
   .then(quiz => {
-    // getQuizQuestions(questions);
-    // if (!quiz) {
-    //   return res.status(404).send("Error! Nothing found.")
-    // }
+    if (!quiz) {
+      return res.status(404).send("Error! Nothing found.")
+    }
     //Save Current quiz_id as cookie
     //if no cookie, it's first question
     console.log(quiz); // log current quiz_id
@@ -98,6 +95,7 @@ router.get('/:id', (req, res) => {
     res.render('quizzes_attempt', { quiz });
   })
   .catch(err => {
+    console.log("INSIDE GET quizzes/:id", err.message)
     res
       .status(500)
       .json({ error: err.message });
@@ -125,6 +123,7 @@ router.post('/new', (req, res) => {
     })
     //***   I added a catch   ***
     .catch(err => {
+      console.log("INSIDE POST quizzes/new", err.message)
       res
         .status(500)
         .json({ error: err.message });

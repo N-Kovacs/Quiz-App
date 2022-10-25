@@ -44,3 +44,14 @@ router.get('/:id', (req, res) => {
 
 
 module.exports = router;
+
+//////////////////////////////////
+////    POST
+
+// router.post('/'),
+
+// INSERT to DB (make query, quiz_results)
+
+// INSERT for each question in question_results
+
+// score, max_score
