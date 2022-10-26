@@ -27,6 +27,16 @@ const getQuizByID = (id) => {
     });
 };
 
+const getQuizByOwnerID = (id) => {
+  return db.query(`
+  SELECT * FROM quizzes
+  WHERE owner_id = $1;
+  `, [id])
+    .then(quizzes => {
+      return quizzes.rows[0];
+    });
+};
+
 //returns the count of quiz questions given the id of a quiz
 const getQuizQuestionCountByID = (id) => {
 
@@ -88,5 +98,5 @@ const postQuizzes = (quiz) => {
 };
 
 module.exports = {
-  getQuizzes, postQuizzes, getQuizByID, getQuizQuestionCountByID, getTitleSubjectByResultsID
+  getQuizzes, postQuizzes, getQuizByID, getQuizQuestionCountByID, getTitleSubjectByResultsID, getQuizByOwnerID
 };

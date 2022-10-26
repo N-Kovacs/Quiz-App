@@ -7,25 +7,32 @@
 const express = require('express');
 const router  = express.Router();
 const userQueries = require('../db/queries/users');
-
+const quizQueries = require('../db/queries/quizzes');
 
 router.get('/', (req, res) => {
   res.render('users');
 });
 
 router.get('/:id', (req, res) => {
+  let templateVars ={}
   userQueries.getUserByID(req.params.id)
   .then(user => {
     const user_id = user[0].id;
-    const templateVars = {
+    templateVars = {
       user_id,
       name: user[0].name,
       email: user[0].email,
-      rating: user[0].rating
+      rating: user[0].rating,
+      queries : req.query
     }
     if (!user_id) {
       return res.status(422).send("Invalid User ID!")
     }
+    return quizQueries.getQuizByOwnerID(req.params.id)
+  })
+  .then(results => {
+    templateVars.quizzes = results
+    console.log(templateVars)
     res.render('user', templateVars);
   })
   .catch(err => {
