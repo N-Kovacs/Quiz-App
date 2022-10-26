@@ -11,8 +11,8 @@ const getQuizzes = () => {
   GROUP BY quizzes.id
   ORDER BY quizzes.id DESC;
   `)
-    .then(data => {
-      return data.rows;
+    .then(quizzes => {
+      return quizzes.rows;
     });
 };
 

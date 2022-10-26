@@ -4,11 +4,12 @@ let currentQuestionIndex = 0;
 let counter = 1;
 let questions = undefined;
 let question_results = [];
+let quiz_results = [];
 //questions_multiple_choice_id, BOOLEAN
+
 
 $(() => {
   loadQuestions();
-
   console.log("* INSIDE doc ready()");
 });
 
@@ -20,10 +21,12 @@ const loadQuestions = () => {
   $.get("/api/questions")
     .then(data => {
       questions = data; // Questions is an ARRAY
-
+      // quiz_results.push({
+      //   
+      //   quiz_id: questions[0].quiz_id
+      // })
       showCurrentQuestion();
-
-      console.log("* INSIDE loadQuestion()", data);
+      console.log("* INSIDE loadQuestion()", );
     });
 };
 
@@ -35,9 +38,11 @@ const showCurrentQuestion = () => {
 
   const randomAnswers = scrambleAnswers(question);
   const renderQuiz = makeQuiz(question, randomAnswers);
+
   $('#quiz-attempt').empty(renderQuiz);
   $('#quiz-attempt').append(renderQuiz);
-  // $('.quiz-header').css('background-image', question.image_url);
+  $('.quiz-header').css((
+    {'background-image': 'linear-gradient(to bottom, transparent 0%, #19191963 25%, #1d1d20 95%), url(' + question.image_url + ')'}));
   $('#next-question').hide();
   $('#next-question').on('click', () => { counter++; });
   $('#next-question').on('click', getNextQuestion);
@@ -47,27 +52,38 @@ const showCurrentQuestion = () => {
     const $buttonTxt = $(`button[value="${btnVal}"]`).text();
 
     if ($buttonTxt.trim() === question.correct_answer) {
-      $('.quiz-dyn-buttons > h4').html('Yes! You are correct!');
+      $('.quiz-dyn-buttons > h4').html('Yes, you are correct!');
+      $('.answers button').prop('disabled', true);
+      $(`button[value="${btnVal}"]`).css('background-color', 'green');
       $('#next-question').show();
+
       question_results.push({
         questions_multiple_choice_id: question.id,
         correct: true
       });
     } else {
-      $('.quiz-dyn-buttons > h4').html('Sorry. That is incorrect!');
+      $('.quiz-dyn-buttons > h4').html('Sorry, that is incorrect!');
+      $('.answers button').prop('disabled', true);
+      $(`button[value="${btnVal}"]`).css('background-color', 'firebrick');
       $('#next-question').show();
-      question_results.push(
-        {
-          questions_multiple_choice_id: question.id,
-          correct: false
-        });
+
+      question_results.push({
+        questions_multiple_choice_id: question.id,
+        correct: false,
+      });
     }
     if (counter === questions.length) {
-      $('#next-question').replaceWith('<form action="/results" method="post"><button id="next-question">See Results!</button></form>').show();
+      $('#next-question').replaceWith('<button id="next-question">See Results!</button>').show();
+      //AJAX post the array of obj key:values
+      $('#next-question').on('click', () => {
+        $.post('/results/', {data: question_results})
+          .then((res) => {
+            $.get('results/:id');
+          });
+      })
     }
   });
-  // console.log("Q_RESULTS", question_results);
-  console.log(question, "===", questions.length);
+  console.log("Q_RESULTS", quiz_results);
 };
 
 
@@ -118,6 +134,15 @@ const makeQuiz = (quiz, randomAnswers) => {
   return $quizStructure;
 };
 
+// .then()
+// data = questions_results aray
+
 /* <div>
   <img src="" />
 </div> */
+
+// $.ajax({
+//   type: 'POST',
+//   url: '/result',
+//   data:  question_results
+// }).then((res) => $.ajax('/results/:id', { method: 'GET }))

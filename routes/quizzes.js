@@ -30,7 +30,7 @@ router.get('/', (req, res) => {
       if (!quizzes) {
         return res.status(404).send("Not Found");
       }
-      console.log("/",req.session);
+      console.log("* * * GET quizzes/", quizzes);
       res.render('quizzes', templateVars);
     })
     .catch(err => {
@@ -79,17 +79,17 @@ router.get('/new/:id', (req, res) => {
 ////    Take Quiz - Get Questions
 ////
 router.get('/:id', (req, res) => {
-  const id = req.params.id;
+  const quiz_id = req.params.id;
   // fetch the quiz from DB
-  quizQueries.getQuizByID(id)
+  quizQueries.getQuizByID(quiz_id)
     .then(quiz => {
       if (!quiz) {
         return res.status(404).send("Not Found");
       }
       //Save Current quiz_id as cookie
       //if no cookie, it's first question
-      console.log(quiz); // log current quiz_id
-      req.session.quiz_id = id;
+      console.log("* * * GET quizzes/id", quiz); // log current quiz_id
+      req.session.quiz_id = quiz_id;
       res.render('quizzes_attempt', { quiz });
     })
     .catch(err => {
@@ -111,6 +111,7 @@ router.get('/:id', (req, res) => {
 router.post('/new', (req, res) => {
   let count = Math.round(((Object.keys(req.body).length - 4) / 5));
   let temp;
+  console.log("* * * POST quizzes/new", req.body);
   quizQueries.postQuizzes(req.body)
     .then((quizvalue) => {
       temp = quizvalue;
