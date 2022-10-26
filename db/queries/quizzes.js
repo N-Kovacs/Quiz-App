@@ -29,8 +29,15 @@ const getQuizByID = (id) => {
 
 const getQuizByOwnerID = (id) => {
   return db.query(`
-  SELECT * FROM quizzes
-  WHERE owner_id = $1;
+  SELECT quizzes.*, ROUND(AVG(quiz_results.score))*10 AS avg,
+  COUNT(questions_multiple_choice.*) AS total_questions
+    FROM quizzes
+  LEFT JOIN quiz_results ON quiz_id = quizzes.id
+  LEFT JOIN questions_multiple_choice ON questions_multiple_choice.quiz_id = quizzes.id
+  WHERE owner_id = $1
+  GROUP BY quizzes.id
+  ORDER BY quizzes.id DESC;
+
   `, [id])
     .then(quizzes => {
       return quizzes.rows;
