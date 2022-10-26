@@ -22,18 +22,17 @@ const questionsQueries = require('../db/queries/questions_multiple_choice');
 ////
 router.get('/', (req, res) => {
   quizQueries.getQuizzes()
-  .then(quizzes => {
-    const templateVars = {
-      quizzes
-      //user_id: req.session.user_name
-      // TO DISPLAY NAME
-    };
-
-    if (!quizzes) {
-      return res.status(404).send("Error! Nothing found.")
-    }
-    // console.log(quizzes);
-    res.render('quizzes', templateVars)
+    .then(quizzes => {
+      const templateVars = {
+        quizzes
+        //user_id: req.session.user_name
+        // TO DISPLAY NAME
+      };
+      if (!quizzes) {
+        return res.status(404).send("Error! Nothing found.");
+      }
+      // console.log(quizzes);
+      res.render('quizzes', templateVars);
     })
     .catch(err => {
       res
@@ -56,15 +55,15 @@ router.get('/new', (req, res) => {
 router.get('/new/:id', (req, res) => {
   let quiz;
   quizQueries.getQuizByID(req.params.id)
-  .then(data => {
-      quiz = data
+    .then(data => {
+      quiz = data;
       return quizQueries.getQuizQuestionCountByID(data.id);
     })
     .then(data2 => {
       const templateVars = {
         title: quiz.title,
         questions_num: data2[0].count,
-        custom_url:quiz.url
+        custom_url: quiz.url
       };
       res.render('quizzes_new_success', templateVars);
 
@@ -84,22 +83,22 @@ router.get('/:id', (req, res) => {
   const id = req.params.id;
   // fetch the quiz from DB
   quizQueries.getQuizByID(id)
-  .then(quiz => {
-    if (!quiz) {
-      return res.status(404).send("Error! Nothing found.")
-    }
-    //Save Current quiz_id as cookie
-    //if no cookie, it's first question
-    console.log(quiz); // log current quiz_id
-    req.session.quiz_id = id;
-    res.render('quizzes_attempt', { quiz });
-  })
-  .catch(err => {
-    console.log("INSIDE GET quizzes/:id", err.message)
-    res
-      .status(500)
-      .json({ error: err.message });
-  });
+    .then(quiz => {
+      if (!quiz) {
+        return res.status(404).send("Error! Nothing found.");
+      }
+      //Save Current quiz_id as cookie
+      //if no cookie, it's first question
+      console.log(quiz); // log current quiz_id
+      req.session.quiz_id = id;
+      res.render('quizzes_attempt', { quiz });
+    })
+    .catch(err => {
+      console.log("INSIDE GET quizzes/:id", err.message);
+      res
+        .status(500)
+        .json({ error: err.message });
+    });
 });
 
 
@@ -121,9 +120,8 @@ router.post('/new', (req, res) => {
     .then(() => {
       res.redirect("/quizzes/new/" + temp);
     })
-    //***   I added a catch   ***
     .catch(err => {
-      console.log("INSIDE POST quizzes/new", err.message)
+      console.log("INSIDE POST quizzes/new", err.message);
       res
         .status(500)
         .json({ error: err.message });

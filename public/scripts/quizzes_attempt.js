@@ -2,7 +2,7 @@
 ////
 let currentQuestionIndex = 0;
 let questions = undefined;
-export let question_results = [];
+let question_results = [];
 //questions_multiple_choice_id, BOOLEAN
 
 $(() => {
@@ -55,14 +55,15 @@ const showCurrentQuestion = () => {
       $('#next-question').show();
       question_results.push(
         { questions_multiple_choice_id: question.id,
-        correct: false }
-      );
-    }
-    if (question.id === questions.length) {
-      $('#next-question').replaceWith('<button id="next-question">See Results!</button>').show();
-    }
+          correct: false }
+          );
+        }
+        if (question.id === questions.length) {
+          $('#next-question').replaceWith('<button id="next-question">See Results!</button>').show();
+        }
   });
   // console.log("Q_RESULTS", question_results);
+  console.log(question, "===", questions.length);
 };
 
 

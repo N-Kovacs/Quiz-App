@@ -1,20 +1,5 @@
 // CLIENT facing SCRIPTS here - - QUIZZES
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 // $(() => {
 //   $('#fetch-quizzes').on('click', () => {
 //     $.ajax({
