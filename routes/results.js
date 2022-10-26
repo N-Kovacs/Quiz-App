@@ -8,7 +8,7 @@ const questionResultsQueries = require('../db/queries/question_results');
 
 router.get('/:id', (req, res) => {
   let templateVars = {
-    thisurl: ("http://localhost:8080/result/"+req.params.id)
+    thisurl: ("http://localhost:8080/results/"+req.params.id)
   };
 
   questionResultsQueries.getAnswersForQuizResultsID(req.params.id)
@@ -38,7 +38,7 @@ router.get('/:id', (req, res) => {
   .then(results=>{
     templateVars.global_attempts = results[0].global_attempts
     templateVars.average_score = Math.round(results[0].average_score * 100) / 100
-    res.render('result', templateVars);
+    res.render('results', templateVars);
   })
 });
 

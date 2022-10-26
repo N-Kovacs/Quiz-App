@@ -1,6 +1,7 @@
 ////    Take the Quiz Client Side Functions and jQuery!
 ////
 let currentQuestionIndex = 0;
+let counter = 1;
 let questions = undefined;
 let question_results = [];
 //questions_multiple_choice_id, BOOLEAN
@@ -28,6 +29,7 @@ const loadQuestions = () => {
 
 
 const showCurrentQuestion = () => {
+
   const question = questions[currentQuestionIndex];
   console.log("* INSIDE showCurrentQuestion()", question);
 
@@ -37,6 +39,7 @@ const showCurrentQuestion = () => {
   $('#quiz-attempt').append(renderQuiz);
   // $('.quiz-header').css('background-image', question.image_url);
   $('#next-question').hide();
+  $('#next-question').on('click', () => { counter++; });
   $('#next-question').on('click', getNextQuestion);
 
   $('.answers').on('click', (event) => {
@@ -54,13 +57,14 @@ const showCurrentQuestion = () => {
       $('.quiz-dyn-buttons > h4').html('Sorry. That is incorrect!');
       $('#next-question').show();
       question_results.push(
-        { questions_multiple_choice_id: question.id,
-          correct: false }
-          );
-        }
-        if (question.id === questions.length) {
-          $('#next-question').replaceWith('<button id="next-question">See Results!</button>').show();
-        }
+        {
+          questions_multiple_choice_id: question.id,
+          correct: false
+        });
+    }
+    if (counter === questions.length) {
+      $('#next-question').replaceWith('<form action="/results" method="post"><button id="next-question">See Results!</button></form>').show();
+    }
   });
   // console.log("Q_RESULTS", question_results);
   console.log(question, "===", questions.length);
@@ -88,7 +92,7 @@ const makeQuiz = (quiz, randomAnswers) => {
     $(`
   <section class="make-quiz">
         <div class="question">
-          <p>Question ${quiz.id}</p>
+          <p>Question ${counter}</p>
           <h3 id="question">${quiz.question}</h3>
         </div>
 

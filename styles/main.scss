@@ -72,6 +72,9 @@ main {
   align-items: baseline;
   justify-content: space-between;
   width: 90%;
+  >h1 {
+    font-style: italic;
+  }
 }
 
 .welcome-header div:nth-child(2) {

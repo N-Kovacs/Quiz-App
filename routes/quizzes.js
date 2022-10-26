@@ -24,14 +24,13 @@ router.get('/', (req, res) => {
   quizQueries.getQuizzes()
     .then(quizzes => {
       const templateVars = {
-        quizzes
-        //user_id: req.session.user_name
-        // TO DISPLAY NAME
+        quizzes,
+        user_id: req.session.user_id
       };
       if (!quizzes) {
-        return res.status(404).send("Error! Nothing found.");
+        return res.status(404).send("Not Found");
       }
-      // console.log(quizzes);
+      console.log("/",req.session);
       res.render('quizzes', templateVars);
     })
     .catch(err => {
@@ -85,7 +84,7 @@ router.get('/:id', (req, res) => {
   quizQueries.getQuizByID(id)
     .then(quiz => {
       if (!quiz) {
-        return res.status(404).send("Error! Nothing found.");
+        return res.status(404).send("Not Found");
       }
       //Save Current quiz_id as cookie
       //if no cookie, it's first question
