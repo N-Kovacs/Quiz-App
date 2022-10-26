@@ -33,7 +33,7 @@ const getQuizByOwnerID = (id) => {
   WHERE owner_id = $1;
   `, [id])
     .then(quizzes => {
-      return quizzes.rows[0];
+      return quizzes.rows;
     });
 };
 
