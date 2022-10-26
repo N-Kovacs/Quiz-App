@@ -23,10 +23,27 @@ const getAttemptsAverageScoreFromQuizID = (id) => {
     });
 };
 
+// INSERT to quiz_results
+// quiz_id, user_id, score, max_score
 
+const postQuizResults = (quiz) => {
+  console.log(quiz);
+  return db.query(`
+  INSERT INTO quiz_results (quiz_id, user_id, score, max_score)
+  VALUES ($1, $2, $3, $4)
+  RETURNING *;
+  `, [quiz.quiz_id, quiz.user_id, quiz.score, quiz.max_score])
+  .then((result) => {
+    console.log(result.rows)
+    return result.rows[0].quiz_id
+  })
+  .catch((err) => {
+    console.log(err.message);
+  });
 
+}
 
 
 module.exports = {
-  getCorrectAnswersForQuizResults, getAttemptsAverageScoreFromQuizID
+  getCorrectAnswersForQuizResults, getAttemptsAverageScoreFromQuizID, postQuizResults
 };

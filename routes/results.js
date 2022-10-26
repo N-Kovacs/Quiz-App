@@ -1,9 +1,10 @@
 const express = require('express');
 const router = express.Router();
 const quizResultsQueries = require('../db/queries/quiz_results');
-const questionsQueries = require('../db/queries/questions_multiple_choice');
+// const questionsQueries = require('../db/queries/questions_multiple_choice');
 const quizQueries = require('../db/queries/quizzes');
 const questionResultsQueries = require('../db/queries/question_results');
+
 
 
 router.get('/:id', (req, res) => {
@@ -42,13 +43,39 @@ router.get('/:id', (req, res) => {
     });
 });
 
-
 module.exports = router;
+
 
 /////////////////////////////////////////////////
 ////    POST ROUTES
 ///////////////////////////////////////////////
 
 router.post('/', (req, res) => {
-  console.log("POST results/", req.body);
-})
+  let temp;
+  let counter = 0;
+  const qResults = req.body.data.question_results;
+  for (const c of qResults) {
+    if (c.correct === "true") {
+      counter++;
+    }
+  }
+  const passIn = {
+    quiz_id: req.body.data.quiz_results[0].quiz_id,
+    //dummy user_id
+    user_id: 1, //GET USER COOKIE
+    max_score: qResults.length,
+    score: counter
+  };
+
+  quizResultsQueries.postQuizResults(passIn)
+  .then((resultsid) => {
+    temp = resultsid;
+    return questionResultsQueries.postQuestionResultsbyID(qResults, 1, resultsid) // <<< 1 = usercookie
+  })
+  .then(() => {
+    res.redirect("/results/" + temp);
+  })
+
+
+
+});

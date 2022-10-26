@@ -21,12 +21,12 @@ const loadQuestions = () => {
   $.get("/api/questions")
     .then(data => {
       questions = data; // Questions is an ARRAY
-      // quiz_results.push({
-      //   
-      //   quiz_id: questions[0].quiz_id
-      // })
+      quiz_results.push({
+
+        quiz_id: questions[0].quiz_id
+      })
       showCurrentQuestion();
-      console.log("* INSIDE loadQuestion()", );
+      console.log("* INSIDE loadQuestion()", quiz_results);
     });
 };
 
@@ -42,7 +42,7 @@ const showCurrentQuestion = () => {
   $('#quiz-attempt').empty(renderQuiz);
   $('#quiz-attempt').append(renderQuiz);
   $('.quiz-header').css((
-    {'background-image': 'linear-gradient(to bottom, transparent 0%, #19191963 25%, #1d1d20 95%), url(' + question.image_url + ')'}));
+    { 'background-image': 'linear-gradient(to bottom, transparent 0%, #19191963 25%, #1d1d20 95%), url(' + question.image_url + ')' }));
   $('#next-question').hide();
   $('#next-question').on('click', () => { counter++; });
   $('#next-question').on('click', getNextQuestion);
@@ -76,14 +76,16 @@ const showCurrentQuestion = () => {
       $('#next-question').replaceWith('<button id="next-question">See Results!</button>').show();
       //AJAX post the array of obj key:values
       $('#next-question').on('click', () => {
-        $.post('/results/', {data: question_results})
-          .then((res) => {
-            $.get('results/:id');
-          });
-      })
+
+        $.post('/results',
+        { data: { quiz_results, question_results } })
+        .then((res) => {
+          $.get('results/:id');
+        });
+      });
     }
   });
-  console.log("Q_RESULTS", quiz_results);
+  console.log("Q_RESULTS", quiz_results, question_results);
 };
 
 
