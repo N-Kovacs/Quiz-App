@@ -28,10 +28,12 @@ router.get('/:id', (req, res) => {
     if (!user_id) {
       return res.status(422).send("Invalid User ID!")
     }
-    return quizQueries.getQuizByOwnerID(req.params.id)
+    return userQueries.getUserStats(req.params.id)
   })
   .then(results => {
-    templateVars.quizzes = results
+    console.log(results)
+    templateVars.quizzes_taken = results[0].quizzes_taken
+    templateVars.quizzes_made = results[0].quizzes_made
     console.log(templateVars)
     res.render('user', templateVars);
   })

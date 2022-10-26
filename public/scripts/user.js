@@ -4,6 +4,37 @@ const escapeFunc = function(str) {
   return div.innerHTML;
 };
 
+const createResultElement = function(resultObject) {
+  let markup = `
+  <article class="result">
+  <header class="result-header">
+  <h3>
+  ${escapeFunc(resultObject.title)}
+  </h3>
+  <div class="result-info">
+  <ul>
+    <li><strong>
+        Score: ${resultObject.score} / ${resultObject.max_score}&nbsp;
+      </strong>
+      </li>
+      <li>
+      <div> Detailed Results page:
+      <a href=${"/result/" + resultObject.id}><button class="btn btn-primary">Go</button></a>
+      </div>
+      </li>
+      <li>
+      <div> Retake Quiz:
+      <a href=${"/quizzes/" + resultObject.quiz_url}><button class="btn btn-primary">Go</button></a>
+      </div>
+      </li>
+  </ul>
+</div>
+
+
+`;
+  return markup;
+
+};
 
 const createQuizElement = function(quizObject) {
   let markup = `
@@ -22,7 +53,7 @@ const createQuizElement = function(quizObject) {
   </div>
   <div class="quiz-info">
     <ul>
-      <li>Topic:&nbsp;<strong>&nbsp;${quizObject.subject}</strong></li>
+      <li>Topic:&nbsp;<strong>&nbsp;${escapeFunc(quizObject.subject)}</strong></li>
       <li><strong>
           ${quizObject.total_questions}&nbsp;
         </strong>&nbsp;questions</li>
@@ -49,23 +80,44 @@ const createQuizElement = function(quizObject) {
 const renderUserQuizzes =(quizzes)=>{
   $("#user_quizzes").addClass("btn-primary");
   $("#user_quizzes").removeClass("btn-outline-primary");
-  $("#user_results").removeClass("btn-primary");
-  console.log(quizzes)
+  $("#my_results").addClass("btn-outline-primary");
+  $("#my_results").removeClass("btn-primary");
+  resultsRendered = false
+  quizzesRendered = true
+
+  $('#button_fill').empty()
   for (quiz of quizzes.quizzes){
     $quizelements = createQuizElement(quiz)
     $('#button_fill').append($quizelements);
   }
 }
 
+const renderUserResults =(results)=>{
+  $("#my_results").addClass("btn-primary");
+  $("#my_results").removeClass("btn-outline-primary");
+  $("#user_quizzes").addClass("btn-outline-primary");
+  $("#user_quizzes").removeClass("btn-primary");
+  resultsRendered = true
+  quizzesRendered = false
+  $('#button_fill').empty()
+  for (result of results.results){
+    $resultelements = createResultElement(result)
+    $('#button_fill').append($resultelements);
+  }
+}
+let quizzesRendered = true
+let resultsRendered = false
 
 $(() => {
-  let quizzesRendered = false
-  let resultsRendered = false
+
+  $.ajax("/api/quizzes/?user=" + (window.location.pathname).split("/users/")[1] , { method: "GET" })
+  .then((res) => renderUserQuizzes(res))
+
+
   console.log(window.location.pathname)
   $("#user_quizzes").on("click", () => {
     console.log(quizzesRendered); //should only fetch private quizzes if owner
     if (quizzesRendered === false){
-      quizzesRendered = true
       $.ajax("/api/quizzes/?user=" + (window.location.pathname).split("/users/")[1] , { method: "GET" })
       .then((res) => renderUserQuizzes(res))
     } else if (quizzesRendered === true) {
@@ -75,5 +127,19 @@ $(() => {
       $("#user_quizzes").removeClass("btn-primary");
       $("#user_quizzes").addClass("btn-outline-primary");
     }
+  });
+  $("#my_results").on("click", () => {
+    console.log("my")
+    if (resultsRendered === false){
+      $.ajax("/api/results/?user=" + (window.location.pathname).split("/users/")[1] , { method: "GET" })
+      .then((res) => renderUserResults(res))
+    } else if (resultsRendered === true){
+      console.log("Huh?")
+      $('#button_fill').empty()
+      resultsRendered = false;
+      $("#my_results").removeClass("btn-primary");
+      $("#my_results").addClass("btn-outline-primary");
+    }
+
   });
 });

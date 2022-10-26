@@ -23,10 +23,21 @@ const getAttemptsAverageScoreFromQuizID = (id) => {
     });
 };
 
-
+const getResultsByOwnerID = (id) => {
+  return db.query(`
+  SELECT score, max_score, quizzes.title, quizzes.url as quiz_url, quiz_results.id as id
+  FROM quiz_results
+  JOIN quizzes ON quiz_results.quiz_id = quizzes.id
+  JOIN users ON quiz_results.user_id = users.id
+  WHERE users.id = $1;
+  `, [id])
+    .then(quizzes => {
+      return quizzes.rows;
+    });
+};
 
 
 
 module.exports = {
-  getCorrectAnswersForQuizResults, getAttemptsAverageScoreFromQuizID
+  getCorrectAnswersForQuizResults, getAttemptsAverageScoreFromQuizID, getResultsByOwnerID
 };

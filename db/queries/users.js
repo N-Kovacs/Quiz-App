@@ -29,4 +29,31 @@ const getUserByID = (id) => {
   })
 }
 
-module.exports = { getUsers, getUser, getUserByID };
+const getUserStats = (id) => {
+  let output = []
+  return db.query(`
+  SELECT
+  (SELECT COUNT(quiz_results.*) as quizzes_taken
+  FROM users
+  JOIN quiz_results on quiz_results.user_id = users.id
+  GROUP BY users.id, quiz_results
+  HAVING users.id = $1),
+
+  (SELECT COUNT(quizzes.*) as quizzes_made
+  FROM users
+  JOIN quizzes on quizzes.owner_id = users.id
+  GROUP BY users.id
+  HAVING users.id = $1);
+`, [id])
+  .then(user => {
+    console.log(user.rows)
+
+    return user.rows;
+
+  })
+  .catch((err) => {
+    console.log(err.message);
+  });
+}
+
+module.exports = { getUsers, getUser, getUserByID, getUserStats };
