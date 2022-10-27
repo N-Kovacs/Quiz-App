@@ -39,8 +39,8 @@ VALUES `;
   postquery += `
   RETURNING *;`;
 
-  // console.log("* * * * * * ", postquery);
-  // console.log("* * * * * * ", values);
+  console.log("* * * * * * ", postquery);
+  console.log("* * * * * * ", values);
 
   return db.query(postquery, values)
     .then((result) => {

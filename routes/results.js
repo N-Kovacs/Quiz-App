@@ -59,7 +59,7 @@ module.exports = router;
 router.post('/', (req, res) => {
 
 
-  let temp;
+  let temp = "";
   let counter = 0;
   const qResults = req.body.data.question_results;
   for (const c of qResults) {
@@ -78,6 +78,7 @@ router.post('/', (req, res) => {
   quizResultsQueries.postQuizResults(passIn)
     .then((resultsID) => {
       temp = resultsID;
+      console.log("RESID >>>", resultsID)
       return questionResultsQueries.postQuestionResultsbyID(
         qResults, 1, resultsID
       ); // <<< 1 = usercookie

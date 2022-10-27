@@ -48,7 +48,7 @@ const postQuizResults = (quiz) => {
   `, [quiz.quiz_id, quiz.user_id, quiz.score, quiz.max_score])
   .then((result) => {
     console.log(result.rows)
-    return result.rows[0].quiz_id
+    return result.rows[0].id
   })
   .catch((err) => {
     console.log(err.message);
