@@ -42,7 +42,8 @@ router.get('/', (req, res) => {
 ////    Create New Quiz Form
 ////  Will need a template vars at some point
 router.get('/new', (req, res) => {
-  res.render('quizzes_new');
+  const user_id = req.session.user_id;
+  res.render('quizzes_new', { user_id });
 });
 
 
@@ -57,8 +58,9 @@ router.get('/new/:id', (req, res) => {
       return quizQueries.getQuizQuestionCountByID(data.id);
     })
     .then(data2 => {
-      console.log("IN HERRRRRR", quiz);
+      const user_id = req.session.user_id;
       const templateVars = {
+        user_id,
         title: quiz.title,
         questions_num: data2[0].count,
         custom_url: quiz.url,

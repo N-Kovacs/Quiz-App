@@ -1,0 +1,23 @@
+.make-quiz {
+  padding-top: 91px;
+}
+#Entries {
+  width: 85%;
+    padding-top: 20px;
+}
+
+#add_question, #remove_question {
+  margin-top: 5px;
+  margin-bottom: 5px;
+
+}
+.make-success {
+  padding-top: 243px;
+    width: 90%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    h1 {
+      text-align: center;
+    }
+}
