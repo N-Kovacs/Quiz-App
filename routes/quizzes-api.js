@@ -18,6 +18,16 @@ router.get('/', (req, res) => {
         .status(500)
         .json({ error: err.message });
     });
+  } else if (req.query.filter){
+    console.log("filter found")
+    quizQueries.getQuizBy(["subject", req.query.filter])
+    .then(quizzes => res.json({ quizzes }))
+    .catch(err => {
+      res
+        .status(500)
+        .json({ error: err.message });
+    });
+
   }
   else {quizQueries.getQuizzes()
     .then(quizzes => {

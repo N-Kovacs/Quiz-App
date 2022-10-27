@@ -20,12 +20,15 @@ const questionsQueries = require('../db/queries/questions_multiple_choice');
 ////    All Quizzes render to Explore Page
 ////
 router.get('/', (req, res) => {
-  quizQueries.getQuizzes()
+  quizQueries.getQuizTopics()
     .then(quizzes => {
+      console.log(quizzes);
       const user_id = req.session.user_id;
-      let valCount = 0;
-      // console.log("* * * GET quizzes/", req.session.user_id);
-      const templateVars = { quizzes, user_id, valCount };
+
+
+      console.log("* * * GET quizzes/", req.session.user_id);
+      const templateVars = { quizzes, user_id };
+
       if (!quizzes) {
         return res.status(404).send("Not Found");
       }
@@ -44,6 +47,11 @@ router.get('/', (req, res) => {
 router.get('/new', (req, res) => {
   const user_id = req.session.user_id;
   res.render('quizzes_new', { user_id });
+});
+
+router.get('/new/failed', (req, res) => {
+  templateVars = { reason: req.query.reason };
+  res.render('quizzes_new_failed', templateVars);
 });
 
 
@@ -81,20 +89,20 @@ router.get('/new/:id', (req, res) => {
 ////    Take Quiz - Get Questions
 ////
 router.get('/:id', (req, res) => {
-  const quiz_id = req.params.id;
+  const quiz_url = req.params.id;
 
   // fetch the quiz from DB
-  quizQueries.getQuizByID(quiz_id)
-  .then(quiz => {
-    if (!quiz) {
-      return res.status(404).send("Not Found");
-    }
-    //Save Current quiz_id as cookie
-    //if no cookie, it's first question
-    req.session.quiz_id = quiz_id; // ** CHANGE THIS.. will OVERRIDE **
-    res.render('quizzes_attempt', { quiz });
-    console.log("* * * GET quizzes/id", quiz); // log current quiz_id
-  })
+  quizQueries.getQuizByURL(quiz_url)
+    .then(quiz => {
+      if (!quiz) {
+        return res.status(404).send("Not Found");
+      }
+      //Save Current quiz_id as cookie
+      //if no cookie, it's first question
+      console.log("* * * GET quizzes/id", quiz); // log current quiz_id
+      req.session.quiz_id = quiz.id; // ** CHANGE THIS.. will OVERRIDE **
+      res.render('quizzes_attempt', { quiz });
+    })
     .catch(err => {
       console.log("GET quizzes/:id", err.message);
       res
@@ -113,23 +121,32 @@ router.get('/:id', (req, res) => {
 ////
 router.post('/new', (req, res) => {
   let count = Math.round(((Object.keys(req.body).length - 4) / 5));
+  let reqBody = req.body;
   let temp;
   console.log("* * * POST quizzes/new", req.body);
-  quizQueries.postQuizzes(req.body)
-    .then((quizvalue) => {
-      temp = quizvalue;
-      return questionsQueries.postQuestionsMultipleChoice(quizvalue, count, req.body);
-    })
-    .then(() => {
-      res.redirect("/quizzes/new/" + temp);
-    })
-    .catch(err => {
-      console.log("INSIDE POST /quizzes/new", err.message);
-      res
-        .status(500)
-        .json({ error: err.message });
-    });
-}
+  quizQueries.getQuizByURL(req.body.custom_url)
+  .then((result) => {
+    if (!result) {
+      quizQueries.postQuizzes(req.body)
+      .then((quizvalue) => {
+        temp = quizvalue;
+        return questionsQueries.postQuestionsMultipleChoice(quizvalue, count, req.body);
+      })
+      .then(() => {
+        res.redirect("/quizzes/new/" + temp);
+      })
+      .catch(err => {
+        console.log("INSIDE POST quizzes/new", err.message);
+        res
+          .status(500)
+          .json({ error: err.message });
+      });
+    } else {
+      res.redirect("/quizzes/new/failed?reason=usedurl")
+    }
+  });
+
+ }
 );
 
 

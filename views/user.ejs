@@ -37,38 +37,26 @@
 
   <!-- <script defer src="/scripts/app.js"></script>
   <script defer src="/scripts/quizzes.js"></script> -->
-</head>
+  </head>
 
-<body>
-  <%- include('partials/nav'); %>
-    <main>
-      <header class="user-header">
-        <h1>Profile of <%= name %>
-        </h1>
-        <div class="user_stats">
-          <h4>Quizzes Made: <%= quizzes_made %>
-          </h4>
-          <h4>Quizzes Taken: <%= quizzes_taken %>
-          </h4>
-          <h4>Average Score: <%= average_score %> %</h4>
-        </div>
-        <div class="user-quiz-result-select">
-          <button class="btn btn-outline-primary" id="user_quizzes">Quizzes</button>
-          <!-- Only Show if logged In? -->
-          <button class="btn btn-outline-primary" id="my_results">My Results</button>
-        </div>
-      </header>
-      <%= queries.cool %>
-        <div class="quiz-container">
+  <body>
 
-        </div>
+    <h1>Profile of: <%= name %></h1>
+    <div class = "user_stats">
+    <h4>Quizzes Made: <%= quizzes_made %>  </h4>
+    <h4>Quizzes Taken: <%= quizzes_taken %> </h4>
+    <h4>Average Score: <%= average_score %> %</h4>
+  </div>
+    <button class="btn btn-outline-primary" id="user_quizzes">Quizzes</button>
+    <!-- Only Show if logged In? -->
+    <button class="btn btn-outline-primary" id="my_results">My Results </button>
+    <%= queries.cool %>
 
-        <!-- jQuery & BS JS -->
-        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
-        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
-          integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
-          crossorigin="anonymous"></script>
-    </main>
-</body>
-
+     <!-- jQuery & BS JS -->
+     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
+     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
+       integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
+       crossorigin="anonymous"></script>
+    </div>
+  </body>
 </html>
