@@ -34,6 +34,7 @@ router.get('/:id', (req, res) => {
     console.log(results)
     templateVars.quizzes_taken = results[0].quizzes_taken
     templateVars.quizzes_made = results[0].quizzes_made
+    templateVars.average_score = results[0].average_score
     console.log(templateVars)
     res.render('user', templateVars);
   })

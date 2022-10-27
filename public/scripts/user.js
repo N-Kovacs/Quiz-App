@@ -37,6 +37,7 @@ const createResultElement = function(resultObject) {
 };
 
 const createQuizElement = function(quizObject) {
+
   let markup = `
   <article class="quiz">
   <header class="quiz-header">
@@ -45,7 +46,7 @@ const createQuizElement = function(quizObject) {
     </h3>
   </header>
   <div class="quiz-image"> `
-  if (quizObject.imgageURL){
+  if (quizObject.image_url){
     markup += `<img src= ${quizObject.image_url} />`
 
   }

@@ -35,8 +35,11 @@
 
   <body>
     <h1>Profile of: <%= name %></h1>
+    <div class = "user_stats">
     <h4>Quizzes Made: <%= quizzes_made %>  </h4>
     <h4>Quizzes Taken: <%= quizzes_taken %> </h4>
+    <h4>Average Score: <%= average_score %> %</h4>
+  </div>
     <button class="btn btn-outline-primary" id="user_quizzes">Quizzes</button>
     <!-- Only Show if logged In? -->
     <button class="btn btn-outline-primary" id="my_results">My Results </button>
