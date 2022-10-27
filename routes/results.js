@@ -85,7 +85,7 @@ router.post('/', (req, res) => {
     })
     .then(() => {
       console.log("* * * * * POST /results/", temp);
-      res.redirect("/results/" + temp);
+      res.send("/results/" + temp);
     })
     .catch(err => {
       console.log("INSIDE POST /results/", err.message);
