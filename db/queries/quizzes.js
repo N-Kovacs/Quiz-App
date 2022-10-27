@@ -3,13 +3,8 @@ const db = require('../connection');
 //returns all quizzes
 const getQuizzes = () => {
   return db.query(`
-<<<<<<< HEAD
   SELECT quizzes.*, ROUND(AVG(quiz_results.score*100/quiz_results.max_score)) AS avg,
-  COUNT(questions_multiple_choice.*) AS total_questions
-=======
-  SELECT quizzes.*, ROUND(AVG(quiz_results.score))*10 AS avg,
   COUNT(questions_multiple_choice.*) AS total_questions, users.name
->>>>>>> master
     FROM quizzes
   LEFT JOIN quiz_results ON quiz_id = quizzes.id
   LEFT JOIN questions_multiple_choice ON questions_multiple_choice.quiz_id = quizzes.id
