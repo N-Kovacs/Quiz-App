@@ -53,12 +53,7 @@ const renderQuizzes = (quizzes) => {
   }
 };
 
-// const getId = (click) => {
-//   let extension = click.parent().id
-//   if (!extension){
-//     getId(extension)
-//   }
-// }
+
 
 $(() => {
   $.ajax("/api/quizzes/", { method: "GET" }).then((res) => {
@@ -68,12 +63,16 @@ $(() => {
 
   $(document).on("click", '.quiz',  (el) => {
     console.log("click");
-    extension = (el.target.closest('.quiz').id)
-
+    let extension = (el.target.closest('.quiz').id)
     let url = "/quizzes/" + extension
     console.log(url)
     window.location.href = window.location.origin + url;
   });
+  $("#filter").on("click", () => {
+    const filter = ($('#topic-filter').val())
+    $.ajax("/api/quizzes/?filter=" + filter , { method: "GET" })
+    .then((res) => renderQuizzes(res))
+  })
 
   // console.log(window.location.pathname)
   // $("#user_quizzes").on("click", () => {

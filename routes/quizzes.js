@@ -20,8 +20,9 @@ const questionsQueries = require('../db/queries/questions_multiple_choice');
 ////    All Quizzes render to Explore Page
 ////
 router.get('/', (req, res) => {
-  quizQueries.getQuizzes()
+  quizQueries.getQuizTopics()
     .then(quizzes => {
+      console.log(quizzes)
       const user_id = req.session.user_id;
 
       console.log("* * * GET quizzes/", req.session.user_id);

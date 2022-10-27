@@ -41,6 +41,15 @@
         <div class="make-new">
           <a href="/quizzes/new"><button>Make New Quiz</button></a>
         </div>
+        <div class="form-group">
+          <label for="exampleFormControlSelect1">Topic Filter</label>
+          <select class="form-control" id="topic-filter">
+            <% for (let q of quizzes) { %>
+              <option><%= q.subject %></option>
+            <% } %>
+          </select>
+          <button class="btn btn-primary" id="filter">filter</button>
+        </div>
 
       </div>
 
