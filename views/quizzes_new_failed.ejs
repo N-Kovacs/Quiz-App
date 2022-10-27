@@ -24,9 +24,12 @@
 <body>
   <section class = "details">
     <h5>Creation of quiz failed</h5>
-    <h5>Reason: <%= `${reason}` %></h5>
+    <% if (reason = "usedurl") { %>
+      <h5>The custom URL you set is already in use %></h5>
+    <% } %>
 
-    <a href="/quizzes/new"><button>Return</button></a>
+
+    <button class="btn btn-primary" id="return">Return</button>
   </section>
 
 
