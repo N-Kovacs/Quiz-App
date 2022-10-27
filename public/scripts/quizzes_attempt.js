@@ -75,7 +75,7 @@ const showCurrentQuestion = () => {
       });
     }
     if (counter === questions.length) {
-      $('#next-question').replaceWith(`<a href="/results/${quiz_results[0].quiz_id}"><button id="next-question">See Results!</button><a>`).show();
+      $('#next-question').replaceWith(`<a href="/results/${question.quiz_id}"><button id="next-question">See Results!</button><a>`).show();
       //AJAX post the array of obj key:values
       $('#next-question').on('click', () => {
         $.post('/results',

@@ -18,7 +18,7 @@ router.post('/', (req, res) => {
     .then(user => {
 
       const verifyPass =
-      verifyPassword(req.body.password, user[0])
+        verifyPassword(req.body.password, user[0]);
 
       if (!user[0]) {
         res.status(400).send("Sorry, couldn't that.");
@@ -26,10 +26,10 @@ router.post('/', (req, res) => {
       if (!verifyPass) {
         res.status(401).send("Unauthorized!");
       }
-      // SET COOKIE 
+      // SET COOKIE
       req.session.user_id = user[0].id;
       console.log(req.session);
-      res.redirect('quizzes')
+      res.redirect('quizzes');
     })
     .catch(err => {
       res
