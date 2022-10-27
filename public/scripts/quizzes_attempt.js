@@ -72,13 +72,16 @@ const showCurrentQuestion = () => {
       });
     }
     if (counter === questions.length) {
+      $('#next-question').replaceWith(`<button id="next-question">See Results!</button>`).show();
       //AJAX post the array of obj key:values
       $('#next-question').replaceWith(`<a href="/results/${quiz_results[0].quiz_id}"><button id="next-question">See Results!</button><a>`).show();
       $('#next-question').on('click', () => {
+        console.log("done?")
         $.post('/results',
         { data: { quiz_results, question_results } })
         .then((res) => {
-          $.get(`/results/${quiz_results[0].quiz_id}`);
+
+          window.location.href = window.location.origin + res
         })
         .catch((err) => {
           alert("Error!");
