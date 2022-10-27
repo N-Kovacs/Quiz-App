@@ -8,9 +8,8 @@ const express = require('express');
 const router = express.Router();
 
 const quizQueries = require('../db/queries/quizzes');
+const userQueries = require('../db/queries/users');
 const questionsQueries = require('../db/queries/questions_multiple_choice');
-
-// const fetchQuestionsHelper = require()
 
 
 /////////////////////////////////////////////////
@@ -23,14 +22,13 @@ const questionsQueries = require('../db/queries/questions_multiple_choice');
 router.get('/', (req, res) => {
   quizQueries.getQuizzes()
     .then(quizzes => {
-      const templateVars = {
-        quizzes,
-        user_id: req.session.user_id
-      };
+      const user_id = req.session.user_id;
+
+      console.log("* * * GET quizzes/", req.session.user_id);
+      const templateVars = { quizzes, user_id };
       if (!quizzes) {
         return res.status(404).send("Not Found");
       }
-      console.log("* * * GET quizzes/", quizzes);
       res.render('quizzes', templateVars);
     })
     .catch(err => {
@@ -64,10 +62,12 @@ router.get('/new/:id', (req, res) => {
       return quizQueries.getQuizQuestionCountByID(data.id);
     })
     .then(data2 => {
+      console.log("IN HERRRRRR", quiz);
       const templateVars = {
         title: quiz.title,
         questions_num: data2[0].count,
-        custom_url: quiz.url
+        custom_url: quiz.url,
+        quiz_id: quiz.id
       };
       res.render('quizzes_new_success', templateVars);
 
@@ -99,7 +99,7 @@ router.get('/:id', (req, res) => {
       res.render('quizzes_attempt', { quiz });
     })
     .catch(err => {
-      console.log("INSIDE GET quizzes/:id", err.message);
+      console.log("GET quizzes/:id", err.message);
       res
         .status(500)
         .json({ error: err.message });

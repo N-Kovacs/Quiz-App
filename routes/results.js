@@ -11,6 +11,7 @@ router.get('/:id', (req, res) => {
   let templateVars = {
     thisurl: ("http://localhost:8080/results/" + req.params.id)
   };
+  console.log("* * * GET /results/:id", req.params.id);
   questionResultsQueries.getAnswersForQuizResultsID(req.params.id)
     .then(results => {
       let increment = 0;

@@ -5,24 +5,26 @@
  * See: https://expressjs.com/en/guide/using-middleware.html#middleware.router
  */
 
+// Not Using this......
+
+
 const express = require('express');
-const router  = express.Router();
+const router = express.Router();
 const resultsQueries = require('../db/queries/quiz_results');
 
 router.get('/', (req, res) => {
-  console.log("yoyo")
-  if(req.query.user){
-    console.log("yo")
+  if (req.query.user) {
     resultsQueries.getResultsByOwnerID(req.query.user)
-    .then(results => res.json({results}))
-    .catch(err => {
-      res
-        .status(500)
-        .json({ error: err.message });
-    });
+      .then(results => res.json({ results }))
+      .catch(err => {
+        console.log("ERROR INSIDE GET /api/results", err.message);
+        res
+          .status(500)
+          .json({ error: err.message });
+      });
   }
-
-  // else {quizQueries.getQuizzes()
+  // else {
+  //   quizQueries.getQuizzes()
   //   .then(quizzes => {
   //     res.json({ quizzes });
   //   })
@@ -32,6 +34,7 @@ router.get('/', (req, res) => {
   //       .json({ error: err.message });
   //   });
   // }
+  /* * * * * * * * * * * * * * * * * * * * * * * * * * */
 });
 
 module.exports = router;

@@ -4,23 +4,26 @@
     <h1>QUIZAPP</h1>
     <div class="nav-container">
       <div class="inner-nav">
+<<<<<<< HEAD
         <a href="/users/1">My Quizzes&nbsp;</a>
         <!-- <a href="">Create New Quiz</a> -->
+=======
+        <a href="">My Quizzes&nbsp;</a>
+
+>>>>>>> master
 
         <form action="/logout" method="POST">
           <div class="nav-menu">
-
+            <% if (user_id) { %>
             <h7>
-
             </h7>
-
               <button formaction="/logout">Logout</button>
-
             <div>
+              <% } else { %>
               <a href="/login">Login</a>
               <a href="/register">Register</a>
             </div>
-
+            <% } %>
           </div>
         </form>
 

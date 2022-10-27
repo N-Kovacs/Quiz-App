@@ -9,14 +9,10 @@ const getAnswersForQuizResultsID = (id) => {
     });
 };
 
-
-// let data = [{ question_id: 3, correct: true }, { question_id: 4, correct: false }, { question_id: 4, correct: false }, { question_id: 4, correct: false }, { question_id: 4, correct: false }];
-// let user_id = 1;
-// let id = 2;
-
 const postQuestionResultsbyID = (data, user_id, quiz_results_id) => {
   let postquery = `
-INSERT INTO question_results (questions_multiple_choice_id, user_id, quiz_results_id, correct)
+INSERT INTO question_results
+(questions_multiple_choice_id, user_id, quiz_results_id, correct)
 VALUES `;
   let x = 1;
   let values = [];
@@ -39,8 +35,8 @@ VALUES `;
   postquery += `
   RETURNING *;`;
 
-  console.log("* * * * * * ", postquery);
-  console.log("* * * * * * ", values);
+  console.log("* * * postQuestionResultbyID", postquery);
+  console.log("* * * postQuestionResultbyID", values);
 
   return db.query(postquery, values)
     .then((result) => {
@@ -55,4 +51,3 @@ VALUES `;
 module.exports = {
   getAnswersForQuizResultsID, postQuestionResultsbyID
 };
-

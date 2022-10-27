@@ -38,7 +38,7 @@ const quizApiRoutes = require('./routes/quizzes-api');
 const usersRoutes = require('./routes/users');
 const quizzesRoutes = require('./routes/quizzes')
 const loginRoutes = require('./routes/login')
-const resultRoutes = require('./routes/results')
+const resultsRoutes = require('./routes/results')
 const questionsApiRoutes = require('./routes/questions-api')
 const resultsApiRoutes = require('./routes/results-api')
 
@@ -48,13 +48,13 @@ const resultsApiRoutes = require('./routes/results-api')
 app.use('/api/users', userApiRoutes);
 app.use('/api/quizzes', quizApiRoutes);
 app.use('/api/results', resultsApiRoutes);
-
 app.use('/api/questions', questionsApiRoutes);
+
 app.use('/users', usersRoutes);
 app.use('/user/:id', usersRoutes);
 app.use('/quizzes', quizzesRoutes);
 app.use('/login', loginRoutes);
-app.use('/results', resultRoutes);
+app.use('/results', resultsRoutes);
 
 // Note: mount other resources here, using the same pattern above
 

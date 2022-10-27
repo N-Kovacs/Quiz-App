@@ -5,7 +5,7 @@ let counter = 1;
 let questions = undefined;
 let question_results = [];
 let quiz_results = [];
-
+let quiz_id;
 // const quizID =
 // window.location.pathname.slice(window.location.pathname.lastIndexOf("/")+1);
 
@@ -18,26 +18,23 @@ $(() => {
 ////    Fetch JSON Quizzes
 ////
 const loadQuestions = () => {
-  //.get.then(don't need ajax params object)
-  $.get("/api/questions")
+
+  $.get("/api/questions") //get json array
     .then(data => {
-      questions = data; // Questions is an ARRAY
+      questions = data;
       quiz_results.push({
 
         quiz_id: questions[0].quiz_id //OVERRDIDE problem with cookie
       })
       showCurrentQuestion();
-      console.log("* INSIDE loadQuestion()", quiz_results);
+      // console.log("* INSIDE loadQuestion()", questions[0].quiz_id);
     })
-
 };
 
 
 const showCurrentQuestion = () => {
-
   const question = questions[currentQuestionIndex];
-  console.log("* INSIDE showCurrentQuestion()", question);
-
+  // console.log("* INSIDE showCurrentQuestion()", question.quiz_id);
   const randomAnswers = scrambleAnswers(question);
   const renderQuiz = makeQuiz(question, randomAnswers);
 
@@ -77,6 +74,7 @@ const showCurrentQuestion = () => {
     if (counter === questions.length) {
       $('#next-question').replaceWith(`<button id="next-question">See Results!</button>`).show();
       //AJAX post the array of obj key:values
+      $('#next-question').replaceWith(`<a href="/results/${quiz_results[0].quiz_id}"><button id="next-question">See Results!</button><a>`).show();
       $('#next-question').on('click', () => {
         console.log("done?")
         $.post('/results',
@@ -89,9 +87,10 @@ const showCurrentQuestion = () => {
           alert("Error!");
         });
       });
+      console.log("INSIDE SHOW CURRENT", quiz_results, question_results);
     }
   });
-  console.log("Q_RESULTS", quiz_results, question_results);
+  // console.log("Q_RESULTS", quiz_results, question_results);
 };
 
 
