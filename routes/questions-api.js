@@ -7,7 +7,7 @@ const { getQuizQuestions } = require('../db/queries/questions');
 
 router.get('/', (req, res) => {
   const id = req.session.quiz_id;
-  getQuizQuestions(id)
+  getQuizQuestions(id)  // ***** SAME< quize cookie bad OVERRIDE
     .then(questions => {
       res.json(questions); //return ARRAY here not obj
     })

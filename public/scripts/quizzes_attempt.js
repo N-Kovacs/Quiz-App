@@ -5,8 +5,9 @@ let counter = 1;
 let questions = undefined;
 let question_results = [];
 let quiz_results = [];
-//questions_multiple_choice_id, BOOLEAN
 
+// const quizID =
+// window.location.pathname.slice(window.location.pathname.lastIndexOf("/")+1);
 
 $(() => {
   loadQuestions();
@@ -23,11 +24,12 @@ const loadQuestions = () => {
       questions = data; // Questions is an ARRAY
       quiz_results.push({
 
-        quiz_id: questions[0].quiz_id
+        quiz_id: questions[0].quiz_id //OVERRDIDE problem with cookie
       })
       showCurrentQuestion();
       console.log("* INSIDE loadQuestion()", quiz_results);
-    });
+    })
+
 };
 
 
@@ -73,14 +75,16 @@ const showCurrentQuestion = () => {
       });
     }
     if (counter === questions.length) {
-      $('#next-question').replaceWith('<button id="next-question">See Results!</button>').show();
+      $('#next-question').replaceWith(`<a href="/results/${quiz_results[0].quiz_id}"><button id="next-question">See Results!</button><a>`).show();
       //AJAX post the array of obj key:values
       $('#next-question').on('click', () => {
-
         $.post('/results',
         { data: { quiz_results, question_results } })
         .then((res) => {
-          $.get('results/:id');
+          $.get(`/results/${quiz_results[0].quiz_id}`);
+        })
+        .catch((err) => {
+          alert("Error!");
         });
       });
     }
@@ -135,16 +139,3 @@ const makeQuiz = (quiz, randomAnswers) => {
   `);
   return $quizStructure;
 };
-
-// .then()
-// data = questions_results aray
-
-/* <div>
-  <img src="" />
-</div> */
-
-// $.ajax({
-//   type: 'POST',
-//   url: '/result',
-//   data:  question_results
-// }).then((res) => $.ajax('/results/:id', { method: 'GET }))

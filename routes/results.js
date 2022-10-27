@@ -11,12 +11,12 @@ router.get('/:id', (req, res) => {
   let templateVars = {
     thisurl: ("http://localhost:8080/results/" + req.params.id)
   };
-
   questionResultsQueries.getAnswersForQuizResultsID(req.params.id)
     .then(results => {
       let increment = 0;
       templateVars.answers = [];
       templateVars.correct_answers = 0;
+
       for (let result of results) {
 
         if (result.correct) {
@@ -40,6 +40,12 @@ router.get('/:id', (req, res) => {
       templateVars.global_attempts = results[0].global_attempts;
       templateVars.average_score = Math.round(results[0].average_score * 100) / 100;
       res.render('results', templateVars);
+    })
+    .catch(err => {
+      console.log("INSIDE GET /results/:id", err.message);
+      res
+        .status(500)
+        .json({ error: err.message });
     });
 });
 
@@ -51,6 +57,8 @@ module.exports = router;
 ///////////////////////////////////////////////
 
 router.post('/', (req, res) => {
+
+
   let temp;
   let counter = 0;
   const qResults = req.body.data.question_results;
@@ -68,14 +76,20 @@ router.post('/', (req, res) => {
   };
 
   quizResultsQueries.postQuizResults(passIn)
-  .then((resultsid) => {
-    temp = resultsid;
-    return questionResultsQueries.postQuestionResultsbyID(qResults, 1, resultsid) // <<< 1 = usercookie
-  })
-  .then(() => {
-    res.redirect("/results/" + temp);
-  })
-
-
-
+    .then((resultsID) => {
+      temp = resultsID;
+      return questionResultsQueries.postQuestionResultsbyID(
+        qResults, 1, resultsID
+      ); // <<< 1 = usercookie
+    })
+    .then(() => {
+      console.log("* * * * * POST /results/", temp);
+      res.redirect("/results/" + temp);
+    })
+    .catch(err => {
+      console.log("INSIDE POST /results/", err.message);
+      res
+        .status(500)
+        .json({ error: err.message });
+    });
 });
