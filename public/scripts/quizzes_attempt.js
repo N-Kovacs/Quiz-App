@@ -80,8 +80,8 @@ const showCurrentQuestion = () => {
         $.post('/results',
         { data: { quiz_results, question_results } })
         .then((res) => {
-
           window.location.href = window.location.origin + res
+          //OLD $.get(`/results/${quiz_results[0].quiz_id}`);
         })
         .catch((err) => {
           alert("Error!");

@@ -32,14 +32,15 @@
     <main>
       <div class="explore-quizzes">
         <header class="welcome-header">
-          <h1>Welcome,<br>&nbsp;&nbsp;&nbsp;User!</h1>
+          <h1>Welcome,<br>&nbsp;Gale Hawkins!</h1>
           <div>
             <h1>Explore<br>Quizzes</h1>
-            <img src="../public/images/down-arrow.png">arrow</i>
+            <!-- <img src="../public/images/down-arrow.png"/> -->
+            <i class="fa-sharp fa-solid fa-down-long fa-4x"></i>
           </div>
         </header>
         <div class="make-new">
-          <a href="/quizzes/new"><button>Make New Quiz</button></a>
+          <a href="/quizzes/new"><button class="btn btn-primary">Make New Quiz</button></a>
         </div>
 
       </div>
@@ -55,7 +56,7 @@
               </header>
               <div class="quiz-image">
                 <% if (quizzes[q].image_url) { %>
-                  <img src=<%=quizzes[q].image_url %>/>
+                  <img src=<%= quizzes[q].image_url %>/>
                   <% } %>
               </div>
               <div class="quiz-info">

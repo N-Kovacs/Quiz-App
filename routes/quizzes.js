@@ -23,9 +23,9 @@ router.get('/', (req, res) => {
   quizQueries.getQuizzes()
     .then(quizzes => {
       const user_id = req.session.user_id;
-      
-      console.log("* * * GET quizzes/", req.session.user_id);
-      const templateVars = { quizzes, user_id };
+      let valCount = 0;
+      // console.log("* * * GET quizzes/", req.session.user_id);
+      const templateVars = { quizzes, user_id, valCount };
       if (!quizzes) {
         return res.status(404).send("Not Found");
       }

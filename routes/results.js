@@ -1,7 +1,7 @@
 const express = require('express');
 const router = express.Router();
 const quizResultsQueries = require('../db/queries/quiz_results');
-// const questionsQueries = require('../db/queries/questions_multiple_choice');
+
 const quizQueries = require('../db/queries/quizzes');
 const questionResultsQueries = require('../db/queries/question_results');
 
@@ -11,7 +11,7 @@ router.get('/:id', (req, res) => {
   let templateVars = {
     thisurl: ("http://localhost:8080/results/" + req.params.id)
   };
-  console.log("* * * GET /results/:id", req.params.id);
+  // console.log("* * * GET /results/:id", req.params.id);
   questionResultsQueries.getAnswersForQuizResultsID(req.params.id)
     .then(results => {
       let increment = 0;
@@ -35,6 +35,7 @@ router.get('/:id', (req, res) => {
       templateVars.title = results[0].title;
       templateVars.subject = results[0].subject;
       templateVars.image_url = results[0].image_url;
+      // console.log("* * * GET /results/:id", templateVars.image_url);
       return quizResultsQueries.getAttemptsAverageScoreFromQuizID(results[0].quiz_id);
     })
     .then(results => {
