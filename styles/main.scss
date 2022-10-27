@@ -132,29 +132,37 @@ main {
 }
 
 .quiz {
+  height: 220px;
   width: 90%;
   padding: 10px;
   border: 3px solid #282860;
   margin-top: 15px;
   margin-bottom: 15px;
   display: flex;
-  flex-direction: column
+  flex-direction: column;
 }
 
 .quiz-header {
   width: 90%;
   height: 200px;
-  padding-left: 0;
+  padding-left: 3px;
+  padding-top: 3px;
   margin-bottom: 0.4em;
   flex-direction: column;
   justify-content: center;
   background-position: center;
   background-size: cover;
+
+  h3 {
+    font-size: 18px;
+  }
 }
 
 .quiz-info {
   width: 70%;
   font-size: 14px;
+  padding-right: 8px;
+
 }
 
 .quiz-info>ul {
