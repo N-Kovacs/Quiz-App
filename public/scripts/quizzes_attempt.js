@@ -19,7 +19,7 @@ $(() => {
 ////
 const loadQuestions = () => {
 
-  $.get("/api/questions")
+  $.get("/api/questions") //get json array
     .then(data => {
       questions = data;
       quiz_results.push({
@@ -72,8 +72,8 @@ const showCurrentQuestion = () => {
       });
     }
     if (counter === questions.length) {
-      $('#next-question').replaceWith(`<a href="/results/${question.quiz_id}"><button id="next-question">See Results!</button><a>`).show();
       //AJAX post the array of obj key:values
+      $('#next-question').replaceWith(`<a href="/results/${quiz_results[0].quiz_id}"><button id="next-question">See Results!</button><a>`).show();
       $('#next-question').on('click', () => {
         $.post('/results',
         { data: { quiz_results, question_results } })
@@ -84,6 +84,7 @@ const showCurrentQuestion = () => {
           alert("Error!");
         });
       });
+      console.log("INSIDE SHOW CURRENT", quiz_results, question_results);
     }
   });
   // console.log("Q_RESULTS", quiz_results, question_results);

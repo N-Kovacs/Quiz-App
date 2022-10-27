@@ -20,16 +20,12 @@ const questionsQueries = require('../db/queries/questions_multiple_choice');
 ////    All Quizzes render to Explore Page
 ////
 router.get('/', (req, res) => {
-  let user_name;
   quizQueries.getQuizzes()
     .then(quizzes => {
-      // userQueries.getUserByID(req.session.user_id)
-      // .then(user => {
-      //   user_name = user[0].name;
-      // })
-
-      // console.log("* * * GET quizzes/");
-      const templateVars = { quizzes };
+      const user_id = req.session.user_id;
+      
+      console.log("* * * GET quizzes/", req.session.user_id);
+      const templateVars = { quizzes, user_id };
       if (!quizzes) {
         return res.status(404).send("Not Found");
       }
@@ -87,18 +83,18 @@ router.get('/:id', (req, res) => {
 
   // fetch the quiz from DB
   quizQueries.getQuizByID(quiz_id)
-    .then(quiz => {
-      if (!quiz) {
-        return res.status(404).send("Not Found");
-      }
-      //Save Current quiz_id as cookie
-      //if no cookie, it's first question
-      console.log("* * * GET quizzes/id", quiz); // log current quiz_id
-      req.session.quiz_id = quiz_id; // ** CHANGE THIS.. will OVERRIDE **
-      res.render('quizzes_attempt', { quiz });
-    })
+  .then(quiz => {
+    if (!quiz) {
+      return res.status(404).send("Not Found");
+    }
+    //Save Current quiz_id as cookie
+    //if no cookie, it's first question
+    req.session.quiz_id = quiz_id; // ** CHANGE THIS.. will OVERRIDE **
+    res.render('quizzes_attempt', { quiz });
+    console.log("* * * GET quizzes/id", quiz); // log current quiz_id
+  })
     .catch(err => {
-      console.log("INSIDE GET quizzes/:id", err.message);
+      console.log("GET quizzes/:id", err.message);
       res
         .status(500)
         .json({ error: err.message });
