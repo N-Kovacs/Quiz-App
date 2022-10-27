@@ -6,7 +6,7 @@ const escapeFunc = function(str) {
 
 const createResultElement = function(resultObject) {
   let markup = `
-  <article class="result">
+  <article class="result quiz">
   <header class="result-header">
   <h3>
   ${escapeFunc(resultObject.title)}
@@ -65,9 +65,9 @@ const createQuizElement = function(quizObject) {
 
   <footer class="quiz-footer">
     <div class="tweet-icons">
-      <i class="fa-solid fa-flag">.</i>
-      <i class="fa-solid fa-retweet">.</i>
-      <i class="fa-solid fa-heart">.</i>
+    <i class="fa-sharp fa-solid fa-flag"></i>
+    <i class="fa-sharp fa-solid fa-share"></i>
+    <i class="fa-sharp fa-solid fa-thumbs-up"></i>
     </div>
   </footer>
 
@@ -86,10 +86,10 @@ const renderUserQuizzes =(quizzes)=>{
   resultsRendered = false
   quizzesRendered = true
 
-  $('#button_fill').empty()
+  $('.quiz-container').empty()
   for (quiz of quizzes.quizzes){
     $quizelements = createQuizElement(quiz)
-    $('#button_fill').append($quizelements);
+    $('.quiz-container').append($quizelements);
   }
 }
 
@@ -100,10 +100,10 @@ const renderUserResults =(results)=>{
   $("#user_quizzes").removeClass("btn-primary");
   resultsRendered = true
   quizzesRendered = false
-  $('#button_fill').empty()
+  $('.quiz-container').empty()
   for (result of results.results){
     $resultelements = createResultElement(result)
-    $('#button_fill').append($resultelements);
+    $('.quiz-container').append($resultelements);
   }
 }
 let quizzesRendered = true
@@ -123,7 +123,7 @@ $(() => {
       .then((res) => renderUserQuizzes(res))
     } else if (quizzesRendered === true) {
       console.log("hello")
-      $('#button_fill').empty()
+      $('.quiz-container').empty()
       quizzesRendered = false;
       $("#user_quizzes").removeClass("btn-primary");
       $("#user_quizzes").addClass("btn-outline-primary");
@@ -136,7 +136,7 @@ $(() => {
       .then((res) => renderUserResults(res))
     } else if (resultsRendered === true){
       console.log("Huh?")
-      $('#button_fill').empty()
+      $('.quiz-container').empty()
       resultsRendered = false;
       $("#my_results").removeClass("btn-primary");
       $("#my_results").addClass("btn-outline-primary");
