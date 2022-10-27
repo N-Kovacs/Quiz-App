@@ -47,6 +47,11 @@ router.get('/new', (req, res) => {
   res.render('quizzes_new');
 });
 
+router.get('/new/failed', (req, res) => {
+  templateVars = {reason: req.query.reason}
+  res.render('quizzes_new_failed', templateVars);
+});
+
 
 //webpage shown after creating quizzes will need default templatevars data
 ////    Quiz Form Completed
@@ -111,23 +116,32 @@ router.get('/:id', (req, res) => {
 ////
 router.post('/new', (req, res) => {
   let count = Math.round(((Object.keys(req.body).length - 4) / 5));
+  let reqBody = req.body
   let temp;
   console.log("* * * POST quizzes/new", req.body);
-  quizQueries.postQuizzes(req.body)
-    .then((quizvalue) => {
-      temp = quizvalue;
-      return questionsQueries.postQuestionsMultipleChoice(quizvalue, count, req.body);
-    })
-    .then(() => {
-      res.redirect("/quizzes/new/" + temp);
-    })
-    .catch(err => {
-      console.log("INSIDE POST quizzes/new", err.message);
-      res
-        .status(500)
-        .json({ error: err.message });
-    });
-}
+  quizQueries.getQuizByURL(req.body.custom_url)
+  .then((result) => {
+    if (!result) {
+      quizQueries.postQuizzes(req.body)
+      .then((quizvalue) => {
+        temp = quizvalue;
+        return questionsQueries.postQuestionsMultipleChoice(quizvalue, count, req.body);
+      })
+      .then(() => {
+        res.redirect("/quizzes/new/" + temp);
+      })
+      .catch(err => {
+        console.log("INSIDE POST quizzes/new", err.message);
+        res
+          .status(500)
+          .json({ error: err.message });
+      });
+    } else {
+      res.redirect("/quizzes/new/failed?reason=usedurl")
+    }
+  });
+
+ }
 );
 
 
