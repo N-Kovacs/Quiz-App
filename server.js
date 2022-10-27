@@ -48,8 +48,8 @@ const resultsApiRoutes = require('./routes/results-api')
 app.use('/api/users', userApiRoutes);
 app.use('/api/quizzes', quizApiRoutes);
 app.use('/api/results', resultsApiRoutes);
-
 app.use('/api/questions', questionsApiRoutes);
+
 app.use('/users', usersRoutes);
 app.use('/user/:id', usersRoutes);
 app.use('/quizzes', quizzesRoutes);

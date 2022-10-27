@@ -4,11 +4,12 @@ const db = require('../connection');
 const getQuizzes = () => {
   return db.query(`
   SELECT quizzes.*, ROUND(AVG(quiz_results.score))*10 AS avg,
-  COUNT(questions_multiple_choice.*) AS total_questions
+  COUNT(questions_multiple_choice.*) AS total_questions, users.name
     FROM quizzes
   LEFT JOIN quiz_results ON quiz_id = quizzes.id
   LEFT JOIN questions_multiple_choice ON questions_multiple_choice.quiz_id = quizzes.id
-  GROUP BY quizzes.id
+  JOIN users ON users.id = quizzes.owner_id
+  GROUP BY quizzes.id, users.name
   ORDER BY quizzes.id DESC;
   `)
     .then(quizzes => {
@@ -37,7 +38,6 @@ const getQuizByOwnerID = (id) => {
   WHERE owner_id = $1
   GROUP BY quizzes.id
   ORDER BY quizzes.id DESC;
-
   `, [id])
     .then(quizzes => {
       return quizzes.rows;
@@ -46,7 +46,6 @@ const getQuizByOwnerID = (id) => {
 
 //returns the count of quiz questions given the id of a quiz
 const getQuizQuestionCountByID = (id) => {
-
   return db.query(`
   SELECT COUNT(questions_multiple_choice.*) FROM quizzes
   JOIN questions_multiple_choice ON quiz_id = quizzes.id
@@ -60,7 +59,6 @@ const getQuizQuestionCountByID = (id) => {
 };
 //
 const getTitleSubjectByResultsID = (id) => {
-
   return db.query(`
   SELECT title, subject, image_url, quiz_id
   FROM quizzes

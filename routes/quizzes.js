@@ -8,9 +8,8 @@ const express = require('express');
 const router = express.Router();
 
 const quizQueries = require('../db/queries/quizzes');
+const userQueries = require('../db/queries/users');
 const questionsQueries = require('../db/queries/questions_multiple_choice');
-
-// const fetchQuestionsHelper = require()
 
 
 /////////////////////////////////////////////////
@@ -21,16 +20,19 @@ const questionsQueries = require('../db/queries/questions_multiple_choice');
 ////    All Quizzes render to Explore Page
 ////
 router.get('/', (req, res) => {
+  let user_name;
   quizQueries.getQuizzes()
     .then(quizzes => {
-      const templateVars = {
-        quizzes,
-        user_id: req.session.user_id
-      };
+      // userQueries.getUserByID(req.session.user_id)
+      // .then(user => {
+      //   user_name = user[0].name;
+      // })
+
+      // console.log("* * * GET quizzes/");
+      const templateVars = { quizzes };
       if (!quizzes) {
         return res.status(404).send("Not Found");
       }
-      console.log("* * * GET quizzes/", quizzes);
       res.render('quizzes', templateVars);
     })
     .catch(err => {
@@ -59,10 +61,12 @@ router.get('/new/:id', (req, res) => {
       return quizQueries.getQuizQuestionCountByID(data.id);
     })
     .then(data2 => {
+      console.log("IN HERRRRRR", quiz);
       const templateVars = {
         title: quiz.title,
         questions_num: data2[0].count,
-        custom_url: quiz.url
+        custom_url: quiz.url,
+        quiz_id: quiz.id
       };
       res.render('quizzes_new_success', templateVars);
 

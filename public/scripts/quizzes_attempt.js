@@ -5,7 +5,7 @@ let counter = 1;
 let questions = undefined;
 let question_results = [];
 let quiz_results = [];
-
+let quiz_id;
 // const quizID =
 // window.location.pathname.slice(window.location.pathname.lastIndexOf("/")+1);
 
@@ -18,26 +18,23 @@ $(() => {
 ////    Fetch JSON Quizzes
 ////
 const loadQuestions = () => {
-  //.get.then(don't need ajax params object)
+
   $.get("/api/questions")
     .then(data => {
-      questions = data; // Questions is an ARRAY
+      questions = data;
       quiz_results.push({
 
         quiz_id: questions[0].quiz_id //OVERRDIDE problem with cookie
       })
       showCurrentQuestion();
-      console.log("* INSIDE loadQuestion()", quiz_results);
+      // console.log("* INSIDE loadQuestion()", questions[0].quiz_id);
     })
-
 };
 
 
 const showCurrentQuestion = () => {
-
   const question = questions[currentQuestionIndex];
-  console.log("* INSIDE showCurrentQuestion()", question);
-
+  // console.log("* INSIDE showCurrentQuestion()", question.quiz_id);
   const randomAnswers = scrambleAnswers(question);
   const renderQuiz = makeQuiz(question, randomAnswers);
 
@@ -89,7 +86,7 @@ const showCurrentQuestion = () => {
       });
     }
   });
-  console.log("Q_RESULTS", quiz_results, question_results);
+  // console.log("Q_RESULTS", quiz_results, question_results);
 };
 
 

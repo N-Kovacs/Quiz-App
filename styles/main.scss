@@ -132,7 +132,7 @@ main {
 }
 
 .quiz {
-  height: 220px;
+  height: 224px;
   width: 90%;
   padding: 10px;
   border: 3px solid #282860;
@@ -143,11 +143,12 @@ main {
 }
 
 .quiz-header {
-  width: 90%;
+  width: 70%;
   height: 200px;
   padding-left: 3px;
   padding-top: 3px;
   margin-bottom: 0.4em;
+  text-align: center;
   flex-direction: column;
   justify-content: center;
   background-position: center;
@@ -162,12 +163,16 @@ main {
   width: 70%;
   font-size: 14px;
   padding-right: 8px;
+  li {
+    height: 27px;
+  }
 
 }
 
 .quiz-info>ul {
   padding-left: 10px;
   margin-top: 5px;
+  margin-bottom: 0px;
   line-height: 2em;
   list-style: none;
   display: flex;
@@ -190,4 +195,17 @@ main {
 
 .quiz-footer {
   align-self: flex-end;
+}
+
+.tweet-icons {
+  i {
+    padding: 2px;
+  }
+  i:first-child {
+    font-size: 14px;
+  }
+  :nth-child(3) {
+    font-size: 18px;
+  }
+
 }

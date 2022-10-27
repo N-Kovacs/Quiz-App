@@ -9,11 +9,6 @@ const getAnswersForQuizResultsID = (id) => {
     });
 };
 
-
-// let data = [{ question_id: 3, correct: true }, { question_id: 4, correct: false }, { question_id: 4, correct: false }, { question_id: 4, correct: false }, { question_id: 4, correct: false }];
-// let user_id = 1;
-// let id = 2;
-
 const postQuestionResultsbyID = (data, user_id, quiz_results_id) => {
   let postquery = `
 INSERT INTO question_results (questions_multiple_choice_id, user_id, quiz_results_id, correct)
@@ -55,4 +50,3 @@ VALUES `;
 module.exports = {
   getAnswersForQuizResultsID, postQuestionResultsbyID
 };
-
