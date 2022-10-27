@@ -79,10 +79,10 @@ router.get('/new/:id', (req, res) => {
 ////    Take Quiz - Get Questions
 ////
 router.get('/:id', (req, res) => {
-  const quiz_id = req.params.id;
+  const quiz_url = req.params.id;
 
   // fetch the quiz from DB
-  quizQueries.getQuizByID(quiz_id)
+  quizQueries.getQuizByURL(quiz_url)
     .then(quiz => {
       if (!quiz) {
         return res.status(404).send("Not Found");
@@ -90,7 +90,7 @@ router.get('/:id', (req, res) => {
       //Save Current quiz_id as cookie
       //if no cookie, it's first question
       console.log("* * * GET quizzes/id", quiz); // log current quiz_id
-      req.session.quiz_id = quiz_id; // ** CHANGE THIS.. will OVERRIDE **
+      req.session.quiz_id = quiz.id; // ** CHANGE THIS.. will OVERRIDE **
       res.render('quizzes_attempt', { quiz });
     })
     .catch(err => {

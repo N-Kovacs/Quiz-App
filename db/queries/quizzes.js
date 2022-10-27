@@ -27,6 +27,16 @@ const getQuizByID = (id) => {
     });
 };
 
+const getQuizByURL = (id) => {
+  return db.query(`
+  SELECT * FROM quizzes
+  WHERE url = $1;
+  `, [id])
+    .then(quizzes => {
+      return quizzes.rows[0];
+    });
+};
+
 const getQuizByOwnerID = (id) => {
   return db.query(`
   SELECT quizzes.*, ROUND(AVG(quiz_results.score))*10 AS avg,
@@ -105,5 +115,5 @@ const postQuizzes = (quiz) => {
 };
 
 module.exports = {
-  getQuizzes, postQuizzes, getQuizByID, getQuizQuestionCountByID, getTitleSubjectByResultsID, getQuizByOwnerID
+  getQuizzes, postQuizzes, getQuizByID, getQuizQuestionCountByID, getTitleSubjectByResultsID, getQuizByOwnerID, getQuizByURL
 };
