@@ -73,33 +73,9 @@ $(() => {
     $.ajax("/api/quizzes/?filter=" + filter , { method: "GET" })
     .then((res) => renderQuizzes(res))
   })
+  $("#clear-filter").on("click", () => {
+    $.ajax("/api/quizzes/" , { method: "GET" })
+    .then((res) => renderQuizzes(res))
+  })
 
-  // console.log(window.location.pathname)
-  // $("#user_quizzes").on("click", () => {
-  //   console.log(quizzesRendered); //should only fetch private quizzes if owner
-  //   if (quizzesRendered === false){
-  //     $.ajax("/api/quizzes/?user=" + (window.location.pathname).split("/users/")[1] , { method: "GET" })
-  //     .then((res) => renderUserQuizzes(res))
-  //   } else if (quizzesRendered === true) {
-  //     console.log("hello")
-  //     $('#button_fill').empty()
-  //     quizzesRendered = false;
-  //     $("#user_quizzes").removeClass("btn-primary");
-  //     $("#user_quizzes").addClass("btn-outline-primary");
-  //   }
-  // });
-  // $("#my_results").on("click", () => {
-  //   console.log("my")
-  //   if (resultsRendered === false){
-  //     $.ajax("/api/results/?user=" + (window.location.pathname).split("/users/")[1] , { method: "GET" })
-  //     .then((res) => renderUserResults(res))
-  //   } else if (resultsRendered === true){
-  //     console.log("Huh?")
-  //     $('#button_fill').empty()
-  //     resultsRendered = false;
-  //     $("#my_results").removeClass("btn-primary");
-  //     $("#my_results").addClass("btn-outline-primary");
-  //   }
-
-  // });
 });
