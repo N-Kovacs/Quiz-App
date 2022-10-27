@@ -15,6 +15,11 @@
     integrity="sha512-xh6O/CkQoPOWDdYTDqeRdPCVd1SpvCA9XXcUnZS2FmJNp1coAFzvtCN9BmamE+4aHK8yyUHUSCcJHgXloTyT2A=="
     crossorigin="anonymous" referrerpolicy="no-referrer" />
 
+ <!-- Fonts -->
+ <link rel="preconnect" href="https://fonts.googleapis.com">
+ <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+ <link href="https://fonts.googleapis.com/css2?family=Aclonica&family=Sarabun:ital,wght@0,300;0,500;1,300;1,500;1,600&family=Work+Sans:ital,wght@0,200;0,300;0,400;0,600;1,200;1,300&display=swap" rel="stylesheet">
+
   <!-- App CSS -->
   <link rel="stylesheet" href="/vendor/normalize-4.1.1.css" />
   <link rel="stylesheet" href="/vendor/border-box.css" />
@@ -61,29 +66,29 @@
           <div>User Rating: 7/10</div>
           <aside class="answers">
             <% let increment=1 %>
-            <% for (let answer of answers) { %>
-              <div>
-                <%=`Question ${increment}: ${answer}` %>
-              </div>
-              <% increment++ %>
-              <% } %>
-            </aside>
-            <footer class="quiz_stats">
-              <div>Global Number of Attempts <%= `${global_attempts}` %>
-              </div>
-              <div>Global Average Result <%= `${average_score}` %>
-              </div>
-            </footer>
-          </section>
-
-          <footer>
-            <section class="share-return"> Share this result:
-              <input type="text" value=<%=`${thisurl}` %> id="copytexts">
-              <button class="btn btn-primary btn-sm" id="copy">copy</button>
-              <a href="/quizzes/"><button class="btn btn-primary">Return</button></a>
-            </section>
+              <% for (let answer of answers) { %>
+                <div>
+                  <%=`Question ${increment}: ${answer}` %>
+                </div>
+                <% increment++ %>
+                  <% } %>
+          </aside>
+          <footer class="quiz_stats">
+            <div>Global Number of Attempts <%= `${global_attempts}` %>
+            </div>
+            <div>Global Average Result <%= `${average_score}` %>
+            </div>
           </footer>
-        </article>
+      </section>
+
+      <footer>
+        <section class="share-return"> Share this result:
+          <input type="text" value=<%=`${thisurl}` %> id="copytexts">
+          <button class="btn btn-primary btn-sm" id="copy">copy</button>
+          <a href="/quizzes/"><button class="btn btn-primary">Return</button></a>
+        </section>
+      </footer>
+      </article>
     </main>
 
 

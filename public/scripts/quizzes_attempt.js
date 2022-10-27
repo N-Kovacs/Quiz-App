@@ -41,7 +41,7 @@ const showCurrentQuestion = () => {
   $('#quiz-attempt').empty(renderQuiz);
   $('#quiz-attempt').append(renderQuiz);
   $('.quiz-header').css((
-    { 'background-image': 'linear-gradient(to bottom, transparent 0%, #19191963 25%, #1d1d20 95%), url(' + question.image_url + ')' }));
+    { 'background-image': 'linear-gradient(0deg, rgba(0,0,0,1) 0%, rgba(6,2,16,1) 21%, rgba(255,255,255,0) 100%), url(' + question.image_url + ')' }));
   $('#next-question').hide();
   $('#next-question').on('click', () => { counter++; });
   $('#next-question').on('click', getNextQuestion);
@@ -63,7 +63,7 @@ const showCurrentQuestion = () => {
     } else {
       $('.quiz-dyn-buttons > h4').html('Sorry, that is incorrect!');
       $('.answers button').prop('disabled', true);
-      $(`button[value="${btnVal}"]`).css('background-color', 'firebrick');
+      $(`button[value="${btnVal}"]`).css('background-color', '#c81a1a');
       $('#next-question').show();
 
       question_results.push({

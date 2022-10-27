@@ -25,7 +25,13 @@
   }
 }
 
-.user-quiz-result-select{}
+.user-quiz-result-select{
+  button {
+    background-color: #13006f;
+    border-color: #0036d0;
+    border-radius: 0;
+  }
+}
 
 .quiz {
   height: 175px;

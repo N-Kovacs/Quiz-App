@@ -15,6 +15,11 @@
     integrity="sha512-xh6O/CkQoPOWDdYTDqeRdPCVd1SpvCA9XXcUnZS2FmJNp1coAFzvtCN9BmamE+4aHK8yyUHUSCcJHgXloTyT2A=="
     crossorigin="anonymous" referrerpolicy="no-referrer" />
 
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Aclonica&family=Sarabun:ital,wght@0,300;0,500;1,300;1,500;1,600&family=Work+Sans:ital,wght@0,200;0,300;0,400;0,600;1,200;1,300&display=swap" rel="stylesheet">
+
   <!-- App CSS -->
   <link rel="stylesheet" href="/vendor/normalize-4.1.1.css" />
   <link rel="stylesheet" href="/vendor/border-box.css" />
@@ -57,7 +62,7 @@
               </header>
               <div class="quiz-image">
                 <% if (quizzes[q].image_url) { %>
-                  <img src=<%= quizzes[q].image_url %>/>
+                  <img src=<%=quizzes[q].image_url %>/>
                   <% } %>
               </div>
               <div class="quiz-info">

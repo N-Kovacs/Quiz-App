@@ -1,5 +1,20 @@
 .make-quiz {
   padding-top: 91px;
+  h1 {
+    font-family: system-ui, 'Segoe UI','Open Sans', 'Helvetica Neue', sans-serif;
+  }
+  input {
+    background-color: #18181b;
+    border-color: #4f435c;
+    margin: 2px;
+    color: rgb(209, 216, 222);
+  }
+  input:focus {
+    background-color: #55718e;
+  }
+}
+#customControlInline {
+  background-color: #18181b;
 }
 #Entries {
   width: 85%;
@@ -9,7 +24,7 @@
 #add_question, #remove_question {
   margin-top: 5px;
   margin-bottom: 5px;
-
+  border-radius: 0;
 }
 .make-success {
   padding-top: 243px;
@@ -20,4 +35,37 @@
     h1 {
       text-align: center;
     }
+}
+
+.succ-share {
+  padding-top: 5px;
+
+}
+
+.succ-btn-row {
+  padding-top: 10px;
+}
+
+#copy {
+  margin-bottom: 4px;
+}
+#try-it {
+  width: 164px;
+}
+#submit {
+  border-radius: 0;
+  margin-top: 5px;
+    margin-bottom: 5px;
+}
+#cancel {
+  border-radius: 0;
+  margin-top: 5px;
+    margin-bottom: 5px;
+}
+
+.form-group {
+  #random_url_button {
+    border-radius: 0;
+    margin-top: 5px;
+  }
 }

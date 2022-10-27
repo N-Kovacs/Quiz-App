@@ -1,18 +1,9 @@
 body {
-  // display: flex;
-  // flex-direction: column;
-  // justify-content: center;
-  // align-items: center;
   min-height: 100vh;
-
-  background: rgb(163, 208, 219);
-  background: linear-gradient(227deg,
-      rgba(163, 208, 219, 1) 0%,
-      rgba(163, 176, 219, 1) 20%,
-      rgba(163, 173, 219, 1) 34%,
-      rgba(163, 219, 208, 1) 59%,
-      rgba(163, 208, 219, 1) 74%,
-      rgba(163, 208, 219, 1) 100%);
+  background: rgb(19, 0, 44);
+  background: linear-gradient(81deg, rgb(0 0 0) 0%, rgba(21, 23, 125, 1) 20%, rgb(0 33 118) 22%, rgb(0 0 19) 52%, rgb(68 52 97) 82%, rgb(10 13 128) 100%);
+  color: #d7cddf;
+  font-family: 'Work Sans', sans-serif, 'Segoe UI', Tahoma, Verdana, sans-serif;
 }
 
 main {
@@ -25,9 +16,9 @@ main {
   font-size: 14px;
   height: 80px;
   width: 100%;
-  background: rgb(184, 213, 221);
+  background: #2c294c;
   padding-top: 5px;
-  border-bottom: 5px solid rgb(66, 66, 66);
+  border-bottom: 5px solid #430082;
   position: fixed;
   display: flex;
   justify-content: space-evenly;
@@ -41,10 +32,11 @@ main {
 }
 
 .navbar-top>h1 {
-  margin: 0;
-  margin-top: 15px;
+  margin-top: 17px;
+  margin-left: 12px;
   letter-spacing: 5px;
   width: 150px;
+  font-family: "Aclonica", sans-serif;
   height: fit-content;
   display: flex;
   justify-content: center;
@@ -57,13 +49,18 @@ main {
 }
 
 .inner-nav {
+  font-family: 'Sarabun', sans-serif;
   display: flex;
   align-items: flex-end;
+
   a {
+    font-family: system-ui, 'Segoe UI', 'Open Sans', 'Helvetica Neue', sans-serif;
+    color: #9693d5;
     padding-right: 5px;
     text-decoration: none;
 
   }
+
   form {
     text-decoration: none;
   }
@@ -73,6 +70,7 @@ main {
   display: flex;
   flex-direction: column;
   align-items: flex-end;
+
   button {
     height: 24px;
     display: flex;
@@ -88,14 +86,22 @@ main {
   justify-content: space-between;
 
   >h1 {
+    font-family: 'Sarabun', sans-serif;
+    font-weight: 300;
     font-style: italic;
   }
 }
 
+.fa-down-long {
+  color: #1000a39c;
+}
+
 .welcome-header div:nth-child(2) {
   margin-bottom: 0em;
+  font-family: 'Sarabun', sans-serif;
+  font-weight: 300;
   text-align: center;
-  color: #2717a3;
+  color: #ddbacb;
 }
 
 .explore-quizzes {
@@ -130,12 +136,14 @@ main {
 }
 
 .make-new>a>button {
+  font-family: "Sarabun", sans-serif;
   margin-top: 10px;
   width: 145px;
   height: 40px;
   border-radius: 0;
-  background-color: #131387;
-  border: 2px solid #1919ae;
+  background-color: #00009c;
+  border: 2px solid #1f1fbf;
+  color: #fafcfc;
 }
 
 .quiz-container {
@@ -151,11 +159,19 @@ main {
   height: 230px;
   width: 90%;
   padding: 10px;
-  border: 3px solid #282860;
+  background: #6f79a163;
+  border: 3px solid #05005fc4;
   margin-top: 15px;
   margin-bottom: 15px;
   display: flex;
   flex-direction: column;
+  box-shadow: -2px -2px 0px #4844859d;
+  transition: box-shadow 0.15s;
+}
+
+.quiz:hover {
+  box-shadow: 12px 12px 2px rgba(3, 3, 33, 0.649);
+  transition: box-shadow .3s;
 }
 
 .quiz-header {
@@ -218,12 +234,15 @@ main {
   i {
     padding: 2px 2px 2px 4px
   }
+
   i:first-child {
     font-size: 12px;
   }
+
   :nth-child(2) {
     font-size: 14px;
   }
+
   :nth-child(3) {
     font-size: 16px;
   }
