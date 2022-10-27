@@ -43,7 +43,7 @@
       <div class="quiz-container">
         <% for (let q in quizzes) { %>
           <% if (quizzes[q].public) { %>
-          <article class="quiz">
+          <article class="quiz" id= <%= quizzes[q].url %> >
             <header class="quiz-header">
               <h3>
                 <%= quizzes[q].title %>
