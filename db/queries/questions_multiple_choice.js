@@ -16,7 +16,7 @@ const postQuestionsMultipleChoice = async (quiz_id, questionNum, questions) => {
   return db
   .query(`
   INSERT INTO questions_multiple_choice (quiz_id, question, correct_answer, incorrect_answer_one, incorrect_answer_two, incorrect_answer_three)
-  VALUES ($1, $2, $3, $4, $5, $6 )
+  VALUES ($1, $2, $3, $4, $5, $6)
   RETURNING *;
   `, [quiz_id, questions[path1], questions[path2], questions[path3], questions[path4], questions[path5]])
   .then((result) => {

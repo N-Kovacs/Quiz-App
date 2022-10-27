@@ -1,5 +1,6 @@
 INSERT INTO question_results (user_id, quiz_results_id, questions_multiple_choice_id, correct)
-VALUES (1,1,1,TRUE),
+VALUES
+(1,1,1,TRUE),
 (1,1,2,TRUE),
 (1,1,3,FALSE),
 (1,1,4,TRUE),

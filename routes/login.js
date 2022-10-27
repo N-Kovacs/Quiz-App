@@ -14,7 +14,6 @@ router.get('/', (req, res) => {
 ////      POST    ////
 
 router.post('/', (req, res) => {
-
   userQueries.getUser(req.body.email)
     .then(user => {
 
@@ -27,9 +26,9 @@ router.post('/', (req, res) => {
       if (!verifyPass) {
         res.status(401).send("Unauthorized!");
       }
-      // SET COOKIE req.session.user_id = user[0];
-      // SET COOKIE req.session.user_name = 
-      // res.redirect(`/users/${user[0].id}`);
+      // SET COOKIE 
+      req.session.user_id = user[0].id;
+      console.log(req.session);
       res.redirect('quizzes')
     })
     .catch(err => {

@@ -18,6 +18,7 @@ body {
 main {
   display: flex;
   flex-direction: column;
+  align-items: center;
 }
 
 .nav-header {
@@ -67,11 +68,15 @@ main {
 }
 
 .welcome-header {
+  width: 88%;
+  padding-left: 1em;
   font-size: 12px;
   display: flex;
-  align-items: baseline;
   justify-content: space-between;
-  width: 90%;
+
+  >h1 {
+    font-style: italic;
+  }
 }
 
 .welcome-header div:nth-child(2) {
@@ -81,8 +86,8 @@ main {
 }
 
 .explore-quizzes {
+  width: 91%;
   margin-top: 85px;
-  margin-left: 1em;
   padding: 10px;
   display: flex;
   flex-direction: column;
@@ -118,6 +123,7 @@ main {
 }
 
 .quiz-container {
+  width: 100%;
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -126,28 +132,37 @@ main {
 }
 
 .quiz {
+  height: 220px;
   width: 90%;
   padding: 10px;
   border: 3px solid #282860;
   margin-top: 15px;
   margin-bottom: 15px;
   display: flex;
-  flex-direction: column
+  flex-direction: column;
 }
 
 .quiz-header {
-  width: 65%;
-  padding-left: 10px;
-  height: fit-content;
-  flex-direction: row;
-  display: flex;
-  align-items: center;
-  justify-content: flex-start;
+  width: 90%;
+  height: 200px;
+  padding-left: 3px;
+  padding-top: 3px;
+  margin-bottom: 0.4em;
+  flex-direction: column;
+  justify-content: center;
+  background-position: center;
+  background-size: cover;
+
+  h3 {
+    font-size: 18px;
+  }
 }
 
 .quiz-info {
   width: 70%;
   font-size: 14px;
+  padding-right: 8px;
+
 }
 
 .quiz-info>ul {
@@ -161,6 +176,7 @@ main {
 
 .quiz-image {
   height: 6em;
+  margin: 3px 3px 0 0;
   background-color: rgba(182, 227, 227, 0.532);
   position: absolute;
   align-self: flex-end;
