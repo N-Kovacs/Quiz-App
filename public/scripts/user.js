@@ -19,12 +19,12 @@ const createResultElement = function(resultObject) {
       </li>
       <li>
       <div> Detailed Results page:
-      <a href=${"/results/" + resultObject.id}><button class="btn btn-primary">Go</button></a>
+      <a href=${"/results/" + resultObject.id}><button class="btn btn-primary btn-sm">Go</button></a>
       </div>
       </li>
       <li>
       <div> Retake Quiz:
-      <a href=${"/quizzes/" + resultObject.quiz_url}><button class="btn btn-primary">Go</button></a>
+      <a href=${"/quizzes/" + resultObject.quiz_url}><button class="btn btn-primary btn-sm">Go</button></a>
       </div>
       </li>
   </ul>

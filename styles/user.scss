@@ -1,7 +1,31 @@
+.user-header {
+  width: 100%;
+  padding-left: 21px;
+  padding-bottom: 10px;
+  display: flex;
+  flex-direction: column;
+  padding-top: 95px;
+  font-size: 12px;
+}
+
 .result-header {
   padding: 5px;
   padding-left: 10px;
+  a {
+    padding-left: 10px;
+  }
 }
+
+.user_stats {
+  padding-top: 10px;
+  padding-bottom: 23px;
+
+  h4 {
+    font-size: 20px;
+  }
+}
+
+.user-quiz-result-select{}
 
 .quiz {
   height: 175px;

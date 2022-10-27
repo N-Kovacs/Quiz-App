@@ -17,6 +17,7 @@ router.get('/:id', (req, res) => {
       let increment = 0;
       templateVars.answers = [];
       templateVars.correct_answers = 0;
+      templateVars.user_id = req.session.user_id;
 
       for (let result of results) {
 

@@ -63,7 +63,7 @@ app.use('/results', resultsRoutes);
 // Separate them into separate routes files (see above).
 
 app.get('/', (req, res) => {
-  res.render('index');
+  res.redirect('/quizzes/');
 });
 
 app.listen(PORT, () => {

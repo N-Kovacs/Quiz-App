@@ -122,7 +122,7 @@ router.post('/new', (req, res) => {
       res.redirect("/quizzes/new/" + temp);
     })
     .catch(err => {
-      console.log("INSIDE POST quizzes/new", err.message);
+      console.log("INSIDE POST /quizzes/new", err.message);
       res
         .status(500)
         .json({ error: err.message });

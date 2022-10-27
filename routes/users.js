@@ -19,6 +19,7 @@ router.get('/:id', (req, res) => {
   .then(user => {
     const user_id = user[0].id;
     templateVars = {
+      onuserpage: true,
       user_id,
       name: user[0].name,
       email: user[0].email,
