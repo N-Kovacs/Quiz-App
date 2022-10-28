@@ -31,6 +31,7 @@ router.get('/', (req, res) => {
   }
   else {quizQueries.getQuizzes()
     .then(quizzes => {
+      console.log(quizzes)
       res.json({ quizzes });
     })
     .catch(err => {
