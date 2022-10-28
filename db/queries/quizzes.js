@@ -21,6 +21,7 @@ const getQuizTopics = (id) => {
   return db.query(`
   SELECT subject, COUNT(*) as count
   FROM quizzes
+  WHERE public = true
   GROUP BY subject
   ORDER BY count desc;
   `)

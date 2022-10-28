@@ -29,7 +29,8 @@ const getResultsByOwnerID = (id) => {
   FROM quiz_results
   JOIN quizzes ON quiz_results.quiz_id = quizzes.id
   JOIN users ON quiz_results.user_id = users.id
-  WHERE users.id = $1;
+  WHERE users.id = $1
+  ORDER BY quiz_results.id desc;
   `, [id])
     .then(quizzes => {
       return quizzes.rows;
