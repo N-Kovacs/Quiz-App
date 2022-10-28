@@ -4,12 +4,12 @@ const db = require('../connection');
 const getQuizzes = () => {
   return db.query(`
   SELECT quizzes.*, ROUND(AVG(quiz_results.score*100/quiz_results.max_score)) AS avg,
-  COUNT(questions_multiple_choice.*) AS total_questions, users.name
+  COUNT(DISTINCT questions_multiple_choice.*) AS total_questions
     FROM quizzes
-  LEFT JOIN quiz_results ON quiz_id = quizzes.id
-  LEFT JOIN questions_multiple_choice ON questions_multiple_choice.quiz_id = quizzes.id
+  JOIN quiz_results ON quiz_id = quizzes.id
+  JOIN questions_multiple_choice ON questions_multiple_choice.quiz_id = quizzes.id
   JOIN users ON users.id = quizzes.owner_id
-  GROUP BY quizzes.id, users.name
+  GROUP BY quizzes.id, questions_multiple_choice.quiz_id
   ORDER BY quizzes.id DESC;
   `)
     .then(quizzes => {
@@ -21,6 +21,7 @@ const getQuizTopics = (id) => {
   return db.query(`
   SELECT subject, COUNT(*) as count
   FROM quizzes
+  WHERE public = true
   GROUP BY subject
   ORDER BY count desc;
   `)
@@ -33,7 +34,7 @@ const getQuizBy = (id) => {
   console.log("here", id)
   return db.query(`
   SELECT quizzes.*, ROUND(AVG(quiz_results.score*100/quiz_results.max_score)) AS avg,
-  COUNT(questions_multiple_choice.*) AS total_questions, users.name
+  COUNT(DISTINCT questions_multiple_choice.*) AS total_questions, users.name
     FROM quizzes
   LEFT JOIN quiz_results ON quiz_id = quizzes.id
   LEFT JOIN questions_multiple_choice ON questions_multiple_choice.quiz_id = quizzes.id
