@@ -36,6 +36,7 @@ router.get('/:id', (req, res) => {
       templateVars.title = results[0].title;
       templateVars.subject = results[0].subject;
       templateVars.image_url = results[0].image_url;
+      templateVars.onuserpage = false;
       // console.log("* * * GET /results/:id", templateVars.image_url);
       return quizResultsQueries.getAttemptsAverageScoreFromQuizID(results[0].quiz_id);
     })

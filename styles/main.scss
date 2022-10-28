@@ -108,7 +108,7 @@ main {
   font-size: 15px;
 
   a[href="/quizzes/"] {
-    color: #ffc0cf;
+    color: #ffe9ef;
     text-decoration: none;
   }
 }
@@ -148,7 +148,7 @@ main {
   justify-content: space-evenly;
 }
 
-.make-new>a>button {
+.home-buttons {
   font-family: "Sarabun", sans-serif;
   margin-top: 10px;
   width: 145px;
@@ -163,6 +163,8 @@ main {
   background-color: rgb(13, 126, 255);
   color: white;
 }
+
+
 
 
 
@@ -289,7 +291,7 @@ main {
   }
 
   :nth-child(3) {
-    font-size: 16px;
+    font-size: 15px;
   }
 
 }
