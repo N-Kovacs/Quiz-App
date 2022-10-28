@@ -58,8 +58,10 @@ const createQuizElement = function (quizObject) {
 const renderQuizzes = (quizzes) => {
   $(".quiz-container").empty();
   for (quiz of quizzes.quizzes) {
-    $quizelements = createQuizElement(quiz);
-    $(".quiz-container").append($quizelements);
+    if (quiz.public){
+      $quizelements = createQuizElement(quiz);
+      $(".quiz-container").append($quizelements);
+    }
   }
 };
 
@@ -89,4 +91,3 @@ $(() => {
   })
 
 });
-

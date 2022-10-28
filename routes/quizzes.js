@@ -22,7 +22,7 @@ const questionsQueries = require('../db/queries/questions_multiple_choice');
 router.get('/', (req, res) => {
   quizQueries.getQuizTopics()
     .then(quizzes => {
-      console.log(quizzes)
+      console.log(quizzes);
       const user_id = req.session.user_id;
 
       console.log("* * * GET quizzes/", req.session.user_id);
@@ -122,10 +122,9 @@ router.get('/:id', (req, res) => {
 ////
 router.post('/new', (req, res) => {
   let count = Math.round(((Object.keys(req.body).length - 4) / 5));
-  let reqBody = req.body
+  let reqBody = req.body;
   let temp;
   console.log("* * * POST quizzes/new", req.body);
-
   quizQueries.getQuizByURL(req.body.custom_url)
   .then((result) => {
     if (!result) {
