@@ -69,6 +69,7 @@ router.get('/new/:id', (req, res) => {
     .then(data2 => {
       const user_id = req.session.user_id;
       const templateVars = {
+        onuserpage: false,
         user_id,
         title: quiz.title,
         questions_num: data2[0].count,
