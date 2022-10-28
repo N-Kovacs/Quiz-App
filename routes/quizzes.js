@@ -73,7 +73,8 @@ router.get('/new/:id', (req, res) => {
         title: quiz.title,
         questions_num: data2[0].count,
         custom_url: quiz.url,
-        quiz_id: quiz.id
+        quiz_id: quiz.id,
+        onuserpage: false
       };
       res.render('quizzes_new_success', templateVars);
 
