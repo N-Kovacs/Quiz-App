@@ -6,6 +6,8 @@ Quiz application website built as a midterm project for lighthouse labs by Nicho
 
 Creating, taking and sharing quizzes.
 
+## Screenshots
+
 
 ## Getting Started
 
