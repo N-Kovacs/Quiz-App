@@ -16,7 +16,9 @@ router.get('/', (req, res) => {
 router.get('/:id', (req, res) => {
   let templateVars ={}
   userQueries.getUserByID(req.params.id)
+
   .then(user => {
+
     const user_id = user[0].id;
     templateVars = {
       onuserpage: true,

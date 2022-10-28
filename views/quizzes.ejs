@@ -48,48 +48,20 @@
         <div class="make-new">
           <a href="/quizzes/new"><button class="btn btn-primary">Make New Quiz</button></a>
         </div>
+        <div class="form-group">
+          <label for="exampleFormControlSelect1">Topic Filter</label>
+          <select class="form-control" id="topic-filter">
+            <% for (let q of quizzes) { %>
+              <option><%= q.subject %></option>
+            <% } %>
+          </select>
+          <button class="btn btn-primary" id="filter">Filter</button>
+          <button class="btn btn-danger" id="clear-filter">Clear</button>
+        </div>
 
       </div>
 
       <div class="quiz-container">
-        <% for (let q in quizzes) { %>
-          <% if (quizzes[q].public) { %>
-            <article class="quiz">
-              <header class="quiz-header">
-                <h3>
-                  <%= quizzes[q].title %>
-                </h3>
-              </header>
-              <div class="quiz-image">
-                <% if (quizzes[q].image_url) { %>
-                  <img src=<%=quizzes[q].image_url %>/>
-                  <% } %>
-              </div>
-              <div class="quiz-info">
-                <ul>
-                  <li>Topic:&nbsp;<strong>&nbsp;<%= quizzes[q].subject %></strong></li>
-                  <li><strong>
-                      <%= quizzes[q].total_questions %>&nbsp;
-                    </strong>&nbsp;questions</li>
-                  <li>Average Score:&nbsp;<strong>&nbsp;<%= quizzes[q].avg %>%</strong>
-                  </li>
-                  <li>Created by&nbsp;<strong>&nbsp;<%= quizzes[q].name %></strong>
-                  </li>
-                  <li>1 more&nbsp;<strong>&nbsp;useful thing</strong>
-                  </li>
-                </ul>
-              </div>
-
-              <footer class="quiz-footer">
-                <div class="tweet-icons">
-                  <i class="fa-sharp fa-solid fa-flag"></i>
-                  <i class="fa-sharp fa-solid fa-share"></i>
-                  <i class="fa-sharp fa-solid fa-thumbs-up"></i>
-                </div>
-              </footer>
-
-            </article>
-            <% } } %>
       </div>
 
       <div class="my-quizzes">

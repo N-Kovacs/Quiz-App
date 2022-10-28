@@ -37,11 +37,13 @@
 </head>
 
 <body>
+
   <%- include('partials/nav'); %>
     <main class="make-quiz">
       <h1>Make a New Quiz</h1>
       <section id="Entries">
         <form action="/quizzes/new" method="POST">
+
 
           <div class="form-group">
             <input maxlength="255" class="form-control" id="Title" name="title" placeholder="Title" type="text"
@@ -56,9 +58,11 @@
             <label class="custom-control-label" for="customControlInline">Private?</label>
           </div>
           <div></div>
+          
           <section id="Questions">
 
           </section>
+
           <input class="btn btn-success" id="add_question" type="button" value="+">
           <input class="btn btn-danger" id="remove_question" type="button" value="-">
           <div class="form-group">
@@ -71,7 +75,8 @@
             <input class="btn btn-primary" id="random_url_button" type="button" value="Random URL">
           </div>
           <button type="submit" class="btn btn-primary" id="submit">Submit</button>
-          <button class="btn btn-primary" id="cancel">Cancel</button>
+          <button class="btn btn-primary" id="return">Return</button>
+
 
         </form>
       </section>

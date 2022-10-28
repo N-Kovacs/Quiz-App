@@ -3,7 +3,7 @@ const db = require('../connection');
 //returns all quizzes
 const getQuizzes = () => {
   return db.query(`
-  SELECT quizzes.*, ROUND(AVG(quiz_results.score))*10 AS avg,
+  SELECT quizzes.*, ROUND(AVG(quiz_results.score*100/quiz_results.max_score)) AS avg,
   COUNT(questions_multiple_choice.*) AS total_questions, users.name
     FROM quizzes
   LEFT JOIN quiz_results ON quiz_id = quizzes.id
@@ -17,11 +17,55 @@ const getQuizzes = () => {
     });
 };
 
+const getQuizTopics = (id) => {
+  return db.query(`
+  SELECT subject, COUNT(*) as count
+  FROM quizzes
+  GROUP BY subject
+  ORDER BY count desc;
+  `)
+    .then(quizzes => {
+      return quizzes.rows;
+    });
+};
+//combined below
+const getQuizBy = (id) => {
+  console.log("here", id)
+  return db.query(`
+  SELECT quizzes.*, ROUND(AVG(quiz_results.score*100/quiz_results.max_score)) AS avg,
+  COUNT(questions_multiple_choice.*) AS total_questions, users.name
+    FROM quizzes
+  LEFT JOIN quiz_results ON quiz_id = quizzes.id
+  LEFT JOIN questions_multiple_choice ON questions_multiple_choice.quiz_id = quizzes.id
+  JOIN users ON users.id = quizzes.owner_id
+  WHERE ${id[0]} = $1
+  GROUP BY quizzes.id, users.name
+  ORDER BY quizzes.id DESC;
+  `, [id[1]])
+    .then(quizzes => {
+      return quizzes.rows;
+    });
+};
+
+
+
+
 //returns quiz deatils given an id
 const getQuizByID = (id) => {
+  console.log(id)
   return db.query(`
   SELECT * FROM quizzes
   WHERE id = $1;
+  `, [id])
+    .then(quizzes => {
+      return quizzes.rows[0];
+    });
+};
+
+const getQuizByURL = (id) => {
+  return db.query(`
+  SELECT * FROM quizzes
+  WHERE url = $1;
   `, [id])
     .then(quizzes => {
       return quizzes.rows[0];
@@ -103,5 +147,5 @@ const postQuizzes = (quiz) => {
 };
 
 module.exports = {
-  getQuizzes, postQuizzes, getQuizByID, getQuizQuestionCountByID, getTitleSubjectByResultsID, getQuizByOwnerID
+  getQuizzes, postQuizzes, getQuizByID, getQuizQuestionCountByID, getTitleSubjectByResultsID, getQuizByOwnerID, getQuizByURL, getQuizTopics, getQuizBy
 };
