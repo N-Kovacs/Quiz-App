@@ -1,4 +1,13 @@
+$(() => {
+  $('.quiz-filter').hide()
+  $('.filter-toggle').on('click', () => {
+    $('.quiz-filter').slideToggle(450);
+  })
+  // $('.filter-toggle').on('click', () => {
+  //   $('.quiz-filter').slideUp();
+  // })
 
+});
 const escapeFunc = function (str) {
   let div = document.createElement("div");
   div.appendChild(document.createTextNode(str));
@@ -34,9 +43,9 @@ const createQuizElement = function (quizObject) {
 
   <footer class="quiz-footer">
     <div class="tweet-icons">
-      <i class="fa-solid fa-flag">.</i>
-      <i class="fa-solid fa-retweet">.</i>
-      <i class="fa-solid fa-heart">.</i>
+      <i class="fa-solid fa-flag"></i>
+      <i class="fa-solid fa-retweet"></i>
+      <i class="fa-solid fa-heart"></i>
     </div>
   </footer>
 

@@ -77,20 +77,20 @@
                   <% } %>
           </aside>
           <footer class="quiz_stats">
-            <div>Global Number of Attempts <%= `${global_attempts}` %>
+            <div>Global Attempts: <%= `${global_attempts}` %>
             </div>
-            <div>Global Average Result <%= `${average_score} / ${total_questions} ` %>
+            <div>Global Average Result: <%= `${average_score}` %>
             </div>
           </footer>
 
       </section>
 
-      <footer>
-        <section class="share-return"> Share this result:
+      <footer class="results-footer">
+        <section class="share-return"> <p>Share this result:</p>
           <input type="text" value=<%=`${thisurl}` %> id="copytexts">
           <button class="btn btn-primary btn-sm" id="copy">copy</button>
-          <a href="/quizzes/"><button class="btn btn-primary">Return</button></a>
         </section>
+        <a href="/quizzes/"><button class="btn btn-outline-primary">Return</button></a>
       </footer>
       </article>
     </main>

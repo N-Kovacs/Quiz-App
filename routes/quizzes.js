@@ -27,9 +27,7 @@ router.get('/', (req, res) => {
 
       console.log("* * * GET quizzes/", req.session.user_id);
       const templateVars = {
-        quizzes,
-        user_id,
-        onuserpage: false
+        quizzes, user_id, onuserpage: false
       };
 
       if (!quizzes) {
@@ -49,11 +47,11 @@ router.get('/', (req, res) => {
 ////  Will need a template vars at some point
 router.get('/new', (req, res) => {
   const user_id = req.session.user_id;
-  res.render('quizzes_new', { user_id });
+  res.render('quizzes_new', { user_id, onuserpage: false });
 });
 
 router.get('/new/failed', (req, res) => {
-  templateVars = { reason: req.query.reason };
+  templateVars = { reason: req.query.reason }
   res.render('quizzes_new_failed', templateVars);
 });
 

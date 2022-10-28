@@ -3,7 +3,8 @@ body {
   background: rgb(19, 0, 44);
   background: linear-gradient(81deg, rgb(0 0 0) 0%, rgba(21, 23, 125, 1) 20%, rgb(0 33 118) 22%, rgb(0 0 19) 52%, rgb(68 52 97) 82%, rgb(10 13 128) 100%);
   color: #d7cddf;
-  font-family: 'Work Sans', sans-serif, 'Segoe UI', Tahoma, Verdana, sans-serif;
+  font-family: 'Sarabun', sans-serif, 'Segoe UI', Tahoma, Verdana, sans-serif;
+  letter-spacing: 0.75px;
 }
 
 main {
@@ -18,7 +19,7 @@ main {
   width: 100%;
   background: #2c294c;
   padding-top: 5px;
-  border-bottom: 5px solid #430082;
+  border-bottom: rgb(21 0 48 / 45%);
   position: fixed;
   display: flex;
   justify-content: space-evenly;
@@ -32,7 +33,7 @@ main {
 }
 
 .navbar-top>h1 {
-  margin-top: 17px;
+  margin-top: 19px;
   margin-left: 12px;
   letter-spacing: 5px;
   width: 150px;
@@ -53,12 +54,15 @@ main {
   display: flex;
   align-items: flex-end;
 
+  :first-child {
+    color: #bab7e2;
+  }
+
   a {
     font-family: system-ui, 'Segoe UI', 'Open Sans', 'Helvetica Neue', sans-serif;
     color: #9693d5;
     padding-right: 5px;
     text-decoration: none;
-
   }
 
   form {
@@ -80,7 +84,9 @@ main {
 
 .welcome-header {
   width: 88%;
+  height: 120px;
   padding-left: 1em;
+  margin-top: 10px;
   font-size: 12px;
   display: flex;
   justify-content: space-between;
@@ -89,6 +95,7 @@ main {
     font-family: 'Sarabun', sans-serif;
     font-weight: 300;
     font-style: italic;
+    line-height: 38px;
   }
 }
 
@@ -97,15 +104,28 @@ main {
 }
 
 .welcome-header div:nth-child(2) {
+  margin-top: -4px;
   margin-bottom: 0em;
-  font-family: 'Sarabun', sans-serif;
-  font-weight: 300;
+  padding-bottom: 1em;
+  font-family: "Sarabun", sans-serif;
   text-align: center;
-  color: #ddbacb;
+  font-weight: 400;
+  font-size: 15px;
+
+  a[href="/quizzes/"] {
+    color: #ffe9ef;
+    text-decoration: none;
+  }
+}
+
+#explore {
+  line-height: 46px;
+  color: #fbf2f4;
+    text-decoration: none;
 }
 
 .explore-quizzes {
-  width: 95%;
+  width: 93%;
   margin-top: 85px;
   padding: 10px;
   display: flex;
@@ -135,7 +155,7 @@ main {
   justify-content: space-evenly;
 }
 
-.make-new>a>button {
+.home-buttons {
   font-family: "Sarabun", sans-serif;
   margin-top: 10px;
   width: 145px;
@@ -144,6 +164,16 @@ main {
   background-color: #00009c;
   border: 2px solid #1f1fbf;
   color: #fafcfc;
+
+}
+
+.filter-toggle:focus {
+  box-shadow: none !important
+}
+
+.home-buttons:hover {
+  background-color: rgb(13, 126, 255);
+  color: white;
 }
 
 .quiz-container {
@@ -156,7 +186,7 @@ main {
 }
 
 .quiz {
-  height: 230px;
+  height: 176px;
   width: 90%;
   padding: 10px;
   background: #6f79a163;
@@ -165,22 +195,23 @@ main {
   margin-bottom: 15px;
   display: flex;
   flex-direction: column;
-  box-shadow: -2px -2px 0px #4844859d;
+  box-shadow: -2px -2px 0px #54527936;
   transition: box-shadow 0.15s;
 }
 
 .quiz:hover {
   box-shadow: 12px 12px 2px rgba(3, 3, 33, 0.649);
   transition: box-shadow .3s;
+  background-color: rgb(63, 49, 193);
+  transition: 0.3s;
 }
 
 .quiz-header {
   width: 70%;
   height: 33px;
-  padding-left: 3px;
+  padding-left: 11px;
   padding-top: 3px;
   margin-bottom: 0.4em;
-  text-align: center;
   flex-direction: column;
   justify-content: center;
   background-position: center;
@@ -215,6 +246,7 @@ main {
   height: 6em;
   margin: 7px 7px 0 0;
   background-color: rgba(182, 227, 227, 0.532);
+  border-radius: 4px;
   position: absolute;
   align-self: flex-end;
   z-index: 0;
@@ -222,6 +254,30 @@ main {
   img {
     max-height: 100%;
     max-width: 100%;
+    border-radius: 4px;
+  }
+}
+
+.quiz-filter {
+  padding-top: 17px;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-self: center;
+
+  select {
+    color: rgb(209, 216, 222);
+    background-color: #18181b;
+  }
+
+  select:focus {
+    background-color: #55718e;
+    color: black;
+  }
+
+  button {
+    margin-top: 10px;
+    border-radius: 0;
   }
 }
 
@@ -244,7 +300,7 @@ main {
   }
 
   :nth-child(3) {
-    font-size: 16px;
+    font-size: 15px;
   }
 
 }
