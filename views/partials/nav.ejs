@@ -4,12 +4,12 @@
     <h1>QUIZAPP</h1>
     <div class="nav-container">
       <div class="inner-nav">
-        <a href="/users/1">My Quizzes&nbsp;</a>
-        <!-- <a href="">Create New Quiz</a> -->
-
+        <!-- <a href="">Explore</a> -->
+        <% if (onuserpage) { %>
+            <a href="/quizzes/">Explore&nbsp;</a>
+            <% } else { %>
             <a href="/users/1">My Quizzes&nbsp;</a>
-
-
+            <% } %>
               <form action="/logout" method="POST">
                 <div class="nav-menu">
 

@@ -8,7 +8,7 @@ const express = require('express');
 const router = express.Router();
 
 const quizQueries = require('../db/queries/quizzes');
-const userQueries = require('../db/queries/users');
+// const userQueries = require('../db/queries/users');
 const questionsQueries = require('../db/queries/questions_multiple_choice');
 
 
@@ -25,9 +25,12 @@ router.get('/', (req, res) => {
       console.log(quizzes);
       const user_id = req.session.user_id;
 
-
       console.log("* * * GET quizzes/", req.session.user_id);
-      const templateVars = { quizzes, user_id };
+      const templateVars = {
+        quizzes,
+        user_id,
+        onuserpage: false
+      };
 
       if (!quizzes) {
         return res.status(404).send("Not Found");
@@ -145,9 +148,7 @@ router.post('/new', (req, res) => {
       res.redirect("/quizzes/new/failed?reason=usedurl")
     }
   });
-
- }
-);
+ });
 
 
 module.exports = router;
