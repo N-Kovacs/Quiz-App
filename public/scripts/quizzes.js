@@ -36,7 +36,7 @@ const createQuizElement = function (quizObject) {
       <li><strong>
           ${quizObject.total_questions}&nbsp;
         </strong>&nbsp;questions</li>
-      <li>Average Score:&nbsp;${quizObject.avg}</strong>
+      <li>Average Score:&nbsp;${quizObject.avg}%</strong>
       </li>
     </ul>
   </div>
