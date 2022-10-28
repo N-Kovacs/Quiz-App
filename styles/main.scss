@@ -47,6 +47,7 @@ main {
   display: flex;
   align-items: end;
   padding-bottom: 10px;
+  font-size: 16px;
 }
 
 .inner-nav {
@@ -56,6 +57,9 @@ main {
 
   :first-child {
     color: #bab7e2;
+  }
+  :first-child:hover {
+    color: #dad9ee;
   }
 
   a {
