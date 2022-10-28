@@ -3,8 +3,9 @@ body {
   background: rgb(19, 0, 44);
   background: linear-gradient(81deg, rgb(0 0 0) 0%, rgba(21, 23, 125, 1) 20%, rgb(0 33 118) 22%, rgb(0 0 19) 52%, rgb(68 52 97) 82%, rgb(10 13 128) 100%);
   color: #d7cddf;
-  font-family: 'Sarabun', sans-serif, 'Segoe UI', Tahoma, Verdana, sans-serif;
+  font-family: 'Quicksand', sans-serif, 'Segoe UI', Tahoma, Verdana, sans-serif;
   letter-spacing: 0.75px;
+  font-weight: 600;
 }
 
 main {
@@ -17,9 +18,9 @@ main {
   font-size: 14px;
   height: 80px;
   width: 100%;
-  background: #2c294c;
+  background: #29305e;
   padding-top: 5px;
-  border-bottom: rgb(21 0 48 / 45%);
+  border-bottom: 3px solid rgb(16 0 36 / 33%);
   position: fixed;
   display: flex;
   justify-content: space-evenly;
@@ -33,7 +34,7 @@ main {
 }
 
 .navbar-top>h1 {
-  margin-top: 19px;
+  margin-top: 21px;
   margin-left: 12px;
   letter-spacing: 5px;
   width: 150px;
@@ -58,6 +59,7 @@ main {
   :first-child {
     color: #bab7e2;
   }
+
   :first-child:hover {
     color: #dad9ee;
   }
@@ -125,7 +127,7 @@ main {
 #explore {
   line-height: 46px;
   color: #fbf2f4;
-    text-decoration: none;
+  text-decoration: none;
 }
 
 .explore-quizzes {
@@ -232,6 +234,7 @@ main {
   padding-right: 8px;
 
   li {
+    width: 21em;
     height: 27px;
   }
 }
