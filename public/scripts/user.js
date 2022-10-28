@@ -61,16 +61,16 @@ const createQuizElement2 = function (quizObject) {
       <li><strong>
           ${quizObject.total_questions}&nbsp;
         </strong>&nbsp;questions</li>
-      <li>Average Score:&nbsp;${quizObject.avg}</strong>
+      <li>Average Score:&nbsp;${quizObject.avg}%</strong>
       </li>
     </ul>
   </div>
 
   <footer class="quiz-footer">
     <div class="tweet-icons">
-    <i class="fa-sharp fa-solid fa-flag"></i>
-    <i class="fa-sharp fa-solid fa-share"></i>
-    <i class="fa-sharp fa-solid fa-thumbs-up"></i>
+      <i class="fa-solid fa-flag">.</i>
+      <i class="fa-solid fa-retweet">.</i>
+      <i class="fa-solid fa-heart">.</i>
     </div>
   </footer>
 
