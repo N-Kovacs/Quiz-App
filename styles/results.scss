@@ -1,5 +1,5 @@
 .results-main {
-  padding-top: 150px;
+  padding-top: 13em;
   display: flex;
   flex-direction: column;
   align-items: normal;
@@ -44,10 +44,13 @@
 }
 
 #copy {
-  margin-bottom: 4px;
+  margin-bottom: 3px;
   border-radius: 0;
   line-height: 14px;
-  padding-bottom: 8px;
+  height: 29px;
+  padding-bottom: 7px;
+  background-color: #151561;
+  border-color: #5757b1;
 }
 
 .share-return {
@@ -70,4 +73,9 @@ a button {
 .btn-outline-primary {
   border-radius: 0;
 
+}
+
+#congrats {
+  font-size: 46px;
+  font-weight: 600;
 }

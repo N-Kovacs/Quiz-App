@@ -8,7 +8,7 @@ const userQueries = require('../db/queries/users');
 ////      GET     ////
 
 router.get('/', (req, res) => {
-  res.render('login');
+  res.render('login', { onuserpage: false });
 });
 
 ////      POST    ////
