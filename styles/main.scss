@@ -58,7 +58,6 @@ main {
     color: #9693d5;
     padding-right: 5px;
     text-decoration: none;
-
   }
 
   form {
@@ -80,7 +79,9 @@ main {
 
 .welcome-header {
   width: 88%;
+  height: 120px;
   padding-left: 1em;
+  margin-top: 10px;
   font-size: 12px;
   display: flex;
   justify-content: space-between;
@@ -89,6 +90,7 @@ main {
     font-family: 'Sarabun', sans-serif;
     font-weight: 300;
     font-style: italic;
+    line-height: 38px;
   }
 }
 
@@ -97,15 +99,26 @@ main {
 }
 
 .welcome-header div:nth-child(2) {
+  margin-top: -4px;
   margin-bottom: 0em;
-  font-family: 'Sarabun', sans-serif;
-  font-weight: 300;
+  padding-bottom: 1em;
+  font-family: "Sarabun", sans-serif;
   text-align: center;
-  color: #ddbacb;
+  font-weight: 400;
+  font-size: 15px;
+
+  a[href="/quizzes/"] {
+    color: #ffc0cf;
+    text-decoration: none;
+  }
+}
+
+#explore {
+  line-height: 46px;
 }
 
 .explore-quizzes {
-  width: 95%;
+  width: 93%;
   margin-top: 85px;
   padding: 10px;
   display: flex;
@@ -146,6 +159,13 @@ main {
   color: #fafcfc;
 }
 
+.make-new>a>button:hover {
+  background-color: rgb(13, 126, 255);
+  color: white;
+}
+
+
+
 .quiz-container {
   width: 100%;
   display: flex;
@@ -156,7 +176,7 @@ main {
 }
 
 .quiz {
-  height: 230px;
+  height: 176px;
   width: 90%;
   padding: 10px;
   background: #6f79a163;
@@ -165,7 +185,7 @@ main {
   margin-bottom: 15px;
   display: flex;
   flex-direction: column;
-  box-shadow: -2px -2px 0px #4844859d;
+  box-shadow: -2px -2px 0px #54527936;
   transition: box-shadow 0.15s;
 }
 
@@ -177,10 +197,10 @@ main {
 .quiz-header {
   width: 70%;
   height: 33px;
-  padding-left: 3px;
+  padding-left: 11px;
   padding-top: 3px;
   margin-bottom: 0.4em;
-  text-align: center;
+  /* text-align: center; */
   flex-direction: column;
   justify-content: center;
   background-position: center;
@@ -215,6 +235,7 @@ main {
   height: 6em;
   margin: 7px 7px 0 0;
   background-color: rgba(182, 227, 227, 0.532);
+  border-radius: 4px;
   position: absolute;
   align-self: flex-end;
   z-index: 0;
@@ -222,6 +243,30 @@ main {
   img {
     max-height: 100%;
     max-width: 100%;
+    border-radius: 4px;
+  }
+}
+
+.quiz-filter {
+  padding-top: 17px;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-self: center;
+
+  select {
+    color: rgb(209, 216, 222);
+    background-color: #18181b;
+  }
+
+  select:focus {
+    background-color: #55718e;
+    color: black;
+  }
+
+  button {
+    margin-top: 10px;
+    border-radius: 0;
   }
 }
 

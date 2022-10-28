@@ -40,23 +40,23 @@
         <header class="welcome-header">
           <h1>Welcome,<br>&nbsp;Gale Hawkins!</h1>
           <div>
-            <h1>Explore<br>Quizzes</h1>
+            <a href="/quizzes/"><h1 id="explore">Explore<br>Quizzes</h1></a>
             <!-- <img src="../public/images/down-arrow.png"/> -->
-            <i class="fa-sharp fa-solid fa-down-long fa-4x"></i>
+            <!-- <i class="fa-sharp fa-solid fa-down-long fa-4x"></i> -->
           </div>
         </header>
         <div class="make-new">
           <a href="/quizzes/new"><button class="btn btn-primary">Make New Quiz</button></a>
         </div>
-        <div class="form-group">
+        <div class="form-group quiz-filter">
           <label for="exampleFormControlSelect1">Topic Filter</label>
           <select class="form-control" id="topic-filter">
             <% for (let q of quizzes) { %>
               <option><%= q.subject %></option>
             <% } %>
           </select>
-          <button class="btn btn-primary" id="filter">Filter</button>
-          <button class="btn btn-danger" id="clear-filter">Clear</button>
+          <button class="btn btn-outline-primary" id="filter">Filter</button>
+          <button class="btn btn-outline-danger" id="clear-filter">Clear</button>
         </div>
 
       </div>
