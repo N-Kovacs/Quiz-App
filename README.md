@@ -9,7 +9,12 @@ Please enjoy!
 Creating, taking and sharing quizzes.
 
 ## Screenshots
-
+!["explore"](https://github.com/N-Kovacs/Quiz-App/blob/master/docs/quizapp1.png)
+!["make new quiz and share"](https://github.com/N-Kovacs/Quiz-App/blob/master/docs/quizapp1a.png)
+!["filter quizzes"](https://github.com/N-Kovacs/Quiz-App/blob/master/docs/quizapp2.png)
+!["take quiz"](https://github.com/N-Kovacs/Quiz-App/blob/master/docs/quizapp3.png)
+!["see results and share"](https://github.com/N-Kovacs/Quiz-App/blob/master/docs/quizapp4.png)
+!["user's quizzes and results](https://github.com/N-Kovacs/Quiz-App/blob/master/docs/quizapp5.png)
 
 ## Getting Started
 
