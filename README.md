@@ -1,7 +1,7 @@
 ## Project Information
 
-Welcome to the world of Quizapp where you can Explore, Create and Share customized games to challenge your friends. 
-This web application was built as a midterm project for Lighthouse Labs by Nicholas Kovacs and Spencer Cole.
+Welcome to the world of Quizapp where you can Explore, Create and Share customized games to challenge your friends.  
+This web application was built as a midterm project for Lighthouse Labs by Nicholas Kovacs and Spencer Cole.  
 Please enjoy!
 
 ## Features
